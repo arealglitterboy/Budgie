@@ -1,0 +1,36 @@
+html {
+    font-size: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: $ff-primary;
+    color: $text;
+}
+
+body {
+    background-color: $background;
+}
+
+button{
+    border: none;
+    padding: 0.15em;
+    background-color: $accent-1;
+    color: $background;
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
+}
+
+h4 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 0.2rem;
+}
+
+.hidden-link {
+    text-decoration: none;
+}

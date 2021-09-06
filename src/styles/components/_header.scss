@@ -1,0 +1,12 @@
+.main-header__link{
+    text-decoration: none;
+    font-size: $fs-body-1;
+
+    &--active {
+        color: #7834FF;
+    }
+
+    &:not(:first-of-type) {
+        padding-left: 1em;
+    }
+}

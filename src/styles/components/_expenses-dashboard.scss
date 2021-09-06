@@ -1,0 +1,17 @@
+.expense-list {
+    background-color: $accent-2;
+
+    padding: 0.25rem;
+
+    &__item {
+        background-color: $background;
+        margin: 1rem 0.5rem;
+        padding: 0.25rem 0.5rem;
+
+        &__header {
+            border-bottom: solid 0.05em $primary-3;
+            margin-block-end: 0.35rem;
+            padding-block-end: 0.2rem;
+        }
+    }
+}
