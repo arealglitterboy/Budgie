@@ -1,23 +1,10 @@
 import React from 'react';
+import ReactDatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import { DateRangePicker } from 'react-dates';
 import { connect } from 'react-redux';
 
-import { setFilterTerm, sortByNewest, sortByOldest, sortByAmountDescending, sortByAmountAscending, setEndDate, setStartDate } from '../actions/filters';
-
-const getSort = (sortBy) => {
-    switch(sortBy) {
-        case 'newest':
-            return sortByNewest;
-        case 'oldest':
-            return sortByOldest;
-        case 'amountAscending':
-            return sortByAmountAscending;
-        case 'amountDescending':
-            return sortByAmountDescending;
-        default:
-            console.log('invalid sort selected');
-    }
-};
+import { setFilterTerm, setSortBy, setEndDate, setStartDate } from '../actions/filters.action';
 
 class ExpenseListFilters extends React.Component {
     state = {
@@ -25,7 +12,7 @@ class ExpenseListFilters extends React.Component {
     };
 
     onSearchTermChange = (e) => (this.props.dispatch(setFilterTerm(e.target.value)));
-    onSortChange = (e) => (this.props.dispatch(getSort(e.target.value)()));
+    onSortChange = (e) => (this.props.dispatch(setSortBy(e.target.value)));
     onDatesChange = ({ startDate, endDate }) => {
         this.props.dispatch(setStartDate(startDate));
         this.props.dispatch(setEndDate(endDate));
@@ -33,7 +20,6 @@ class ExpenseListFilters extends React.Component {
     onFocusChange = (calendarFocused) => {this.setState(() => ({ calendarFocused }))};
 
     render() {
-
         return (
             <header>
                 <div>
@@ -43,11 +29,15 @@ class ExpenseListFilters extends React.Component {
                 <div>
                     <label htmlFor="sort-expense">Sort By: </label>
                     <select id="sort-expenses" onChange={this.onSortChange}>
-                        <option value="newest">Newest</option>
-                        <option value="oldest">Oldest</option>
-                        <option value="amountAscending">Amount ascending</option>
-                        <option value="amountDescending">Amount descending</option>
+                        <option value="byNewest">Newest</option>
+                        <option value="byOldest">Oldest</option>
+                        <option value="byAmountDescending">Amount descending</option>
+                        <option value="byAmountAscending">Amount ascending</option>
                     </select>
+                    {/* <ReactDatePicker
+                        selected={this.startDate}
+                        onChange={(date) => this.startDate = date}
+                    /> */}
                     <DateRangePicker
                         startDate={this.props.filters.startDate}
                         startDateId="range-filter-start"
@@ -90,6 +80,6 @@ class ExpenseListFilters extends React.Component {
 //     );
 // };
 
-const mapStateToProps = connect(({ filters }) => ({ filters: filters }));
+const mapStateToProps = connect(({ filters }) => ({ filters }));
 
 export default mapStateToProps(ExpenseListFilters);

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ExpenseForm from './ExpenseForm';
-import { addExpense } from '../actions/expenses';
+import { addExpense } from '../actions/expenses.action';
 
 const CreatePage = (props) => {
     const onSubmit = (expense) => {

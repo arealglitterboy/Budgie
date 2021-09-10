@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import 'normalize.css';
 
-import AppRouter from './routers/AppRouter';
+import AppRouter from './routers/Router';
 
-import configureStore from './store/configureStore';
-import { addExpense } from './actions/expenses';
-
+import configureStore from './store/configure.store';
+import { addExpense } from './actions/expenses.action';
 
 import './styles/styles.scss';
 
