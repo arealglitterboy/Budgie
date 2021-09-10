@@ -15,11 +15,9 @@ export default (state = defaultState, action) => {
             return { ...state, startDate: action.date };
         case 'SET_END_DATE':
             return { ...state, endDate: action.date };
-        // case 'SORT_BY':
-        //     return { ...state, sortBy };
-        case 'SORT_BY_DATE_NEWEST':
+        case 'SORT_BY_NEWEST':
             return { ...state, sortBy: 'byNewest' }
-        case 'SORT_BY_DATE_OLDEST':
+        case 'SORT_BY_OLDEST':
             return { ...state, sortBy: 'byOldest' };
         case 'SORT_BY_AMOUNT_DESCENDING':
             return { ...state, sortBy: 'byAmountDescending' };

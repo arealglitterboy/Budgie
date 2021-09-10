@@ -1,18 +1,7 @@
 import moment from "moment";
 
 import selectExpenses from "../../selectors/expenses.selector";
-
-//#region Utility methods & variables
-const createExpense = (id, description, date, amount, note = '', currency = '€') => ({ id, description, date, amount, note, currency });
-
-const createState = ({ term = "", startDate = undefined, endDate = undefined, sortBy = "byNewest" } = {}) => ({ term, startDate, endDate, sortBy });
-
-const expenses = [
-    createExpense(1, "Food", moment("2021-04-09"), 1050, "Bought food for mastication"),
-    createExpense(2, "Rent", moment("2021-10-12"), 50653, "Alex (landlord), wanted next month early"),
-    createExpense(3, "Credit Card", moment("2010-07-16"), 4500, "Paying off loan to completion")
-];
-//#endregion
+import { createState, expenses } from "../fixtures/expenses.fixture";
 
 //#region Select search term
 test('should filter by text value', () => {

@@ -6,9 +6,8 @@ import {v4 as uuid} from 'uuid';
  * @returns @type {expense} returns an expense object.
  */
 // Deconstruct the input object, taking only the required properties, and initialising missing properties with default values.
-export const addExpense = (
-        { description = '', note = '', date = 0, currency = '€', amount = 0 } = {}
-    ) => ({
+export const addExpense = ({ description = '', note = '', date = 0, currency = '€', amount = 0 } = {}) => (
+    {
         type: 'ADD_EXPENSE',
         expense: {
             id: uuid(),
