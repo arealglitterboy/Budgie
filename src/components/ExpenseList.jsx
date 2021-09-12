@@ -4,9 +4,13 @@ import { connect } from 'react-redux';
 import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from '../selectors/expenses.selector';
 
-const ExpenseList = ({ expenses }) => (
+export const ExpenseList = ({ expenses = [] }) => (
     <section className="expense-list">
-        {expenses.map((e) => (<ExpenseListItem { ...e } key={e.id} />))}
+        {
+            (expenses.length === 0)
+            ? <p className="expense-list__empty-list">Start by adding an expense</p>
+            : expenses.map((e) => (<ExpenseListItem { ...e } key={e.id} />))
+        }
     </section>
 );
 

@@ -1,12 +1,24 @@
-.main-header__link{
-    text-decoration: none;
-    font-size: $fs-body-1;
-
-    &--active {
-        color: #7834FF;
+.page-header{
+    &__title {
+        font: 700 3.2em/1 $ff-accent;
+        margin: 0;
+        padding: 0.1em 0 0.4em;
     }
 
-    &:not(:first-of-type) {
-        padding-left: 1em;
+    &__nav{
+        display: flex;
+        flex-flow: row nowrap;
+        width: min(25%, 100vw);
+        justify-content: space-between;
+
+        &__link{
+            width: max-content;
+            text-decoration: none;
+            font-size: $fs-body-1;
+
+            &--active {
+                color: #7834FF;
+            }
+        }
     }
 }

@@ -2,13 +2,10 @@ import React from 'react';
 import moment from 'moment';
 
 import { SingleDatePicker } from 'react-dates';
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
 
 export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props.expense);
 
         this.state = {
             description: props.expense ? props.expense.description : '',
@@ -29,7 +26,6 @@ export default class ExpenseForm extends React.Component {
             this.setState(() => ({ error: `Error, you must provide ${(description) ? 'an amount' : (amount) ? 'a description' : 'a description and an amount'}.` }));
         } else {
             this.setState(() => ({ error: '' }));
-            console.log('submit');
             this.props.onSubmit({ 
                 description: this.state.description,
                 note: this.state.note,
@@ -72,20 +68,22 @@ export default class ExpenseForm extends React.Component {
     selectionInRange = (start, end, length) => (start >= (length - 2) && end >= (length - 2)); 
 
     textOnInput = (e) => {
-        const split = e.target.value.split(/[\.,]/g);
+        // const split = e.target.value.split(/[\.,]/g);
 
-        if (split.length === 1) { // * If there are no decimal points yet
-            if (isNaN(e.data) && !((e.data === '.' || e.data === ',') && e.target.value && this.selectionInRange(e.target.selectionStart, e.target.selectionEnd, e.target.value.length))) { // * If the input is not a number that isn't a separator
-                e.preventDefault();
-            }
-        } else if (isNaN(e.data) || (split[1].length >= 2 && this.selectionInRange(e.target.selectionStart, e.target.selectionEnd, e.target.value.length))) {
-            e.preventDefault();
-        }
+        // if (split.length === 1) { // * If there are no decimal points yet
+        //     if (isNaN(e.data) && !((e.data === '.' || e.data === ',') && e.target.value && this.selectionInRange(e.target.selectionStart, e.target.selectionEnd, e.target.value.length))) { // * If the input is not a number that isn't a separator
+        //         e.preventDefault();
+        //     }
+        // } else if (isNaN(e.data) || (split[1].length >= 2 && this.selectionInRange(e.target.selectionStart, e.target.selectionEnd, e.target.value.length))) {
+        //     e.preventDefault();
+        // }
     };
 
-    textOnChange = (e) => {
+    amountOnChange = (e) => {
         const amount = e.target.value;
-        this.setState({ amount });
+        if (!amount || amount.match(/^(0|[1-9]\d*)(\.\d+)?$/gm)) {
+            this.setState(() => ({ amount }));
+        }
     };
 
     onClickCloseDialog = (e) => {
@@ -133,7 +131,7 @@ export default class ExpenseForm extends React.Component {
                         <option value="GBP">£</option>
                         <option value="USD">$</option>
                     </select>
-                    <input type="text" id="add-expense__amount" value={this.state.amount} onBeforeInput={this.textOnInput} onChange={this.textOnChange} />
+                    <input type="text" id="add-expense__amount" value={this.state.amount} onChange={this.amountOnChange} />
                 </div>
 
                 <button id="add-expense__create" type="submit">Confirm</button>

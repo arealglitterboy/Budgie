@@ -4,7 +4,7 @@ import ExpenseList from './ExpenseList';
 import ExpenseListFilters from './ExpenseListFilters';
 
 // ? If this were a module based dashboard, then ExpenseListFilters would be inside a module with ExpenseList
-const DashboardPage = () => (
+const ExpenseDashboardPage = () => (
     <main>
         <h1>Expenses</h1>
         <ExpenseListFilters />
@@ -12,4 +12,4 @@ const DashboardPage = () => (
     </main>
 );
 
-export default DashboardPage;
+export default ExpenseDashboardPage;

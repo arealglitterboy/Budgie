@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ExpenseList with expenses 1`] = `
+<section
+  className="expense-list"
+>
+  <ExpenseListItem
+    amount={1050}
+    currency="EUR"
+    date={"2021-04-08T23:00:00.000Z"}
+    description="Food"
+    id={1}
+    key="1"
+    note="Bought food for mastication"
+  />
+  <ExpenseListItem
+    amount={50653}
+    currency="EUR"
+    date={"2021-10-11T23:00:00.000Z"}
+    description="Rent"
+    id={2}
+    key="2"
+    note="Alex (landlord), wanted next month early"
+  />
+  <ExpenseListItem
+    amount={4500}
+    currency="MXN"
+    date={"2010-07-15T23:00:00.000Z"}
+    description="Credit Card"
+    id={3}
+    key="3"
+    note="Paying off loan to completion"
+  />
+</section>
+`;
+
+exports[`should render empty ExpenseList, empty array 1`] = `
+<section
+  className="expense-list"
+>
+  <p
+    className="expense-list__empty-list"
+  >
+    Start by adding an expense
+  </p>
+</section>
+`;
+
+exports[`should render empty ExpenseList, no props 1`] = `
+<section
+  className="expense-list"
+>
+  <p
+    className="expense-list__empty-list"
+  >
+    Start by adding an expense
+  </p>
+</section>
+`;

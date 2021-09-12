@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import 'normalize.css';
 
 import AppRouter from './routers/Router';
 
@@ -9,6 +8,10 @@ import configureStore from './store/configure.store';
 import { addExpense } from './actions/expenses.action';
 
 import './styles/styles.scss';
+import 'normalize.css';
+import "react-datepicker/dist/react-datepicker.css";
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 
 function setupStore(store) {
     store.dispatch(addExpense({ description: 'test', currency: 'EUR', amount: 42050, date: Date.UTC(2001, 3, 9) }));

@@ -7,33 +7,31 @@ const dateOptions = {
     day: 'numeric'
 };
 
-const toIEString = (val, options) => (val.toLocaleString('en-IE', options));
+const toIEString = (val, options) => (val.toLocaleString('en-US', options));
 
-const getAmount = (amount, currency = 'EUR') => (
-    <data value={amount}>
-        {toIEString(amount/100, { style: "currency", currency })}
-    </data>
-);
-
-function getTime(epoch) {
-    const date = new Date(epoch);
+export const ExpenseListItem = ({ id, description, note, currency, amount, date }) => {
+    const time = new Date(date);
     return (
-        <time dateTime={`${date.toUTCString()}`}>{toIEString(date, dateOptions)}</time>
-    );
-}
-
-const ExpenseListItem = ({ id, description, note, currency, amount, date }) => (
-    <article className="expense-list__item">
-        <header className="expense-list__item__header">
-            <h4><Link to={`/edit/${id}`} className="hidden-link">{description}</Link></h4>
-            {(note) && <aside>{note}</aside>}
-        </header>
-        
-        <div className="expense-list__information">
-            <p>Value: {getAmount(amount, currency)}</p>
-            <p>Date: {getTime(date)}</p>
-        </div>
-    </article>
-);
+        <article className="expense-list__item">
+            <header className="expense-list__item__header">
+                <h4><Link to={`/edit/${id}`} className="hidden-link">{description}</Link></h4>
+                {(note) && <aside>{note}</aside>}
+            </header>
+            
+            <div className="expense-list__information">
+                <p>Value: 
+                    <data value={amount}>
+                        {(amount/100).toLocaleString('en-IE', { style: "currency", currency })}
+                    </data>
+                </p>
+                <p>Date: 
+                    <time dateTime={`${time.toUTCString()}`}>
+                        {time.toLocaleString('en-IE', dateOptions)}
+                    </time>
+                </p>
+            </div>
+        </article>
+    )
+};
 
 export default ExpenseListItem;
