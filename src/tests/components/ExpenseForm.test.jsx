@@ -34,27 +34,27 @@ test('should render error for invalid form submission', () => {
 });
 
 test('should set description on input change', () => {
-    simulateChange('add-expense__description', 'description', "description change");
+    simulateChange('description', 'description', "description change");
 });
 
 test('should set note on text area change', () => {
-    simulateChange('add-expense__note', 'note', "note change");
+    simulateChange('note', 'note', "note change");
 });
 
 test('should set amount if valid input', () => {
-    simulateChange('add-expense__amount', 'amount', '23.50');
+    simulateChange('amount', 'amount', '23.50');
 })
 
 test('should not set amount if not valid input', () => {
     const value = '23.50';
-    const wrapper = simulateChange('add-expense__amount', 'amount', value);
-    wrapper.find('#add-expense__amount').simulate('change', { target: { value: '23.50' } }); // Test/set amount with a valid amount
+    const wrapper = simulateChange('amount', 'amount', value);
+    wrapper.find('#amount').simulate('change', { target: { value: '23.50' } }); // Test/set amount with a valid amount
     expect(wrapper.state('amount')).toBe(value);
     
-    wrapper.find('#add-expense__amount').simulate('change', { target: { value: '-14.45' } }); // Test an invalid amount
+    wrapper.find('#amount').simulate('change', { target: { value: '-14.45' } }); // Test an invalid amount
     expect(wrapper.state('amount')).toBe(value);
     
-    wrapper.find('#add-expense__amount').simulate('change', { target: { value: "Hello World" } }); // Test an invalid value
+    wrapper.find('#amount').simulate('change', { target: { value: "Hello World" } }); // Test an invalid value
     expect(wrapper.state('amount')).toBe(value);
 });
 
@@ -64,7 +64,7 @@ test('should call onSubmit prop for valid form submission', () => {
     wrapper.find('form').simulate('submit', { preventDefault: () => {} });
     expect(wrapper.state('error')).toBe('');
     const { description, amount, note, date, currency } = expenses[0];
-    expect(onSubmitSpy).toHaveBeenLastCalledWith({ description, amount, note, date: date.valueOf(), currency });
+    expect(onSubmitSpy).toHaveBeenLastCalledWith({ description, amount, note, date, currency });
 });
 
 test('should set new date on date changed', () => {

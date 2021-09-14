@@ -9,7 +9,6 @@ import { addExpense } from './actions/expenses.action';
 
 import './styles/styles.scss';
 import 'normalize.css';
-import "react-datepicker/dist/react-datepicker.css";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 
