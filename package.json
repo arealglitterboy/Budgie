@@ -8,16 +8,18 @@
   "private": true,
   "scripts": {
     "serve": "webpack serve --mode development",
-    "build": "webpack --mode production",
+    "build:prod": "webpack --mode production",
+    "build:dev": "webpack --mode development",
     "test": "jest --config=jest.config.json --runInBand"
   },
   "dependencies": {
+    "mini-css-extract-plugin": "^2.3.0",
     "moment": "^2.29.1",
     "normalize.css": "^8.0.1",
+    "react": "^16.14.0",
     "react-currency-masked-input": "^2.5.0",
     "react-datepicker": "^4.2.1",
     "react-dates": "^21.8.0",
-    "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-modal": "^3.14.2",
     "react-redux": "^7.2.4",

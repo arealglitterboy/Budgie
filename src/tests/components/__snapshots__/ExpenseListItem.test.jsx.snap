@@ -7,38 +7,39 @@ exports[`should render Expense List Item with expense details 1`] = `
   <header
     className="expense-list__item__header"
   >
-    <h4>
+    <h4
+      className="expense-list__item__header__description"
+    >
       <Link
-        className="hidden-link"
+        className="expense-list__item__header__description--link"
         to="/edit/1"
       >
         Food
       </Link>
     </h4>
-    <aside>
-      Bought food for mastication
-    </aside>
+    <time
+      className="expense-list__item__header__date"
+      dateTime="Thu, 08 Apr 2021 23:00:00 GMT"
+    >
+      9 April 2021
+    </time>
   </header>
-  <div
-    className="expense-list__information"
+  <section
+    className="expense-list__item__note"
   >
     <p>
-      Value:
-      <data
-        value={1050}
-      >
-        €10.50
-      </data>
+      Bought food for mastication
     </p>
-    <p>
-      Date:
-      <time
-        dateTime="Thu, 08 Apr 2021 23:00:00 GMT"
-      >
-        9 April 2021
-      </time>
-    </p>
-  </div>
+  </section>
+  <section
+    className="expense-list__item__amount"
+  >
+    <data
+      value={1050}
+    >
+      €10.50
+    </data>
+  </section>
 </article>
 `;
 
@@ -49,37 +50,38 @@ exports[`should render Expense List Item with expense details and different curr
   <header
     className="expense-list__item__header"
   >
-    <h4>
+    <h4
+      className="expense-list__item__header__description"
+    >
       <Link
-        className="hidden-link"
+        className="expense-list__item__header__description--link"
         to="/edit/3"
       >
         Credit Card
       </Link>
     </h4>
-    <aside>
-      Paying off loan to completion
-    </aside>
+    <time
+      className="expense-list__item__header__date"
+      dateTime="Thu, 15 Jul 2010 23:00:00 GMT"
+    >
+      16 July 2010
+    </time>
   </header>
-  <div
-    className="expense-list__information"
+  <section
+    className="expense-list__item__note"
   >
     <p>
-      Value:
-      <data
-        value={4500}
-      >
-        MX$45.00
-      </data>
+      Paying off loan to completion
     </p>
-    <p>
-      Date:
-      <time
-        dateTime="Thu, 15 Jul 2010 23:00:00 GMT"
-      >
-        16 July 2010
-      </time>
-    </p>
-  </div>
+  </section>
+  <section
+    className="expense-list__item__amount"
+  >
+    <data
+      value={4500}
+    >
+      MX$45.00
+    </data>
+  </section>
 </article>
 `;

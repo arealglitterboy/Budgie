@@ -7,29 +7,24 @@ const dateOptions = {
     day: 'numeric'
 };
 
-const toIEString = (val, options) => (val.toLocaleString('en-US', options));
-
 export const ExpenseListItem = ({ id, description, note, currency, amount, date }) => {
     const time = new Date(date);
     return (
         <article className="expense-list__item">
             <header className="expense-list__item__header">
-                <h4><Link to={`/edit/${id}`} className="hidden-link">{description}</Link></h4>
-                {(note) && <aside>{note}</aside>}
+                <h4 className="expense-list__item__header__description"><Link to={`/edit/${id}`} className="expense-list__item__header__description--link">{description}</Link></h4> 
+                <time className="expense-list__item__header__date" dateTime={`${time.toUTCString()}`}>
+                    {time.toLocaleString('en-IE', dateOptions)}
+                </time>
             </header>
             
-            <div className="expense-list__information">
-                <p>Value: 
-                    <data value={amount}>
-                        {(amount/100).toLocaleString('en-IE', { style: "currency", currency })}
-                    </data>
-                </p>
-                <p>Date: 
-                    <time dateTime={`${time.toUTCString()}`}>
-                        {time.toLocaleString('en-IE', dateOptions)}
-                    </time>
-                </p>
-            </div>
+            {(note) && <section className="expense-list__item__note"><p>{note}</p></section>}
+            
+            <section className="expense-list__item__amount">
+                <data value={amount}>
+                    {(amount/100).toLocaleString('en-US', { style: "currency", currency })}
+                </data>
+            </section>
         </article>
     )
 };
