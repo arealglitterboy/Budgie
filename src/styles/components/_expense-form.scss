@@ -2,12 +2,6 @@
     position: relative;
     
     &__error-box {
-        // position: absolute;
-        // top: 50%;
-        // left: 50%;
-        // transform: translate(-50%, -50%);
-        // z-index: 1000;
-        
         display: grid;
         
         padding: 0.75rem;
@@ -25,12 +19,14 @@
     display: grid;
     margin: 0 auto;
     width: min-content;
-    gap: 0.5em 1em;
+    gap: 0.6em 1em;
     grid-template-columns: min-content 1fr;
-    background-color: $bg-white;
+    background-color: #FFFFFF;
     padding: 2em 3em;
-    border-radius: 0.75em;
     position: relative;
+
+    border-radius: 0.3em;
+    box-shadow: $shadow;
 
     &__fieldset {
         border: none;
@@ -50,15 +46,10 @@
     }
 
     &__submit {
-        font-size: 1.1em;
-        border-radius: 0.15em;
-        padding: 0.25em 0.5em;
-    }
-    &::after {
-        display: box;
-        position: absolute;
-        width: 130%;
-        height: 130%;
-        background: orange;
+        font: 500 1.1em/1 $ff-primary;
+        background-color: $colour-primary;
+        border-radius: 0.2em;
+        grid-column: 1 / span 2;
+        padding: 0.5em 1.1em;
     }
 }

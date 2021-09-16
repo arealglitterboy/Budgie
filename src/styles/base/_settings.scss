@@ -10,16 +10,26 @@ $background: #fbfbff;
 
 $bg-white: #f2f7f8;
 
-$grey: #9aa6aa;
+$grey: #5c5c5c;
 $text: lighten($primary-3, 15%);
 
 $budgie-blue: #304FFE;
-$budgie-blue--lighter: #83D4FF;
-$budgie-blue--darker: #0026CA;
+$budgie-blue__lighter: #83D4FF;
+$budgie-blue__darker: #0026CA;
+
+$budgie-blue--text: #FFFFFF;
+$budgie-blue__lighter--text: #0C1640;
+
+$colour-primary: $budgie-blue;
+$colour-primary--lighter: $budgie-blue--lighter;
+$colour-primary--darker: $budgie-blue__darker;
+
+$colour-text--dark: $budgie-blue__lighter--text;
+$colour-text--light: $budgie-blue--text;
 
 // * Fonts
-$ff-primary: 'Roboto', Arial, sans-serif;
-$ff-accent: 'Spartan', Helvetica, sans-serif;
+$ff-primary: 'Rubik', 'Roboto', Arial, sans-serif;
+$ff-accent: 'Spartan', 'Open Sans', Helvetica, sans-serif;
 
 // * Font Sizing
 $fs-body-1: 12pt;
@@ -29,4 +39,4 @@ $fs-body-1: 12pt;
 
 // * Styling
 $borer-radius: 0.4rem;
-$shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+$shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);;

@@ -1,0 +1,52 @@
+.expense-item {
+    background-color: #FFF;
+    padding: 0.5rem 1rem;
+
+    width: 100%;
+    display: grid;
+    gap: 0 1em;
+    align-items: center;
+    grid-template-areas: "icon info amount" "footer footer footer";
+    grid-template-rows: max-content auto;
+    grid-template-columns: auto 1fr auto;
+
+    border-radius: 0.3em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+    &__icon {
+        grid-area: icon;
+    }
+
+    &__info {
+        grid-area: info;
+        width: 100%;
+        padding-block: 0.2em;
+
+        &__date {
+            margin: 0;
+            padding: 0;
+            color: $grey;
+            letter-spacing: 0.08;
+            font: 500 0.7em/1.75 $ff-accent;
+        }
+    }
+
+    &__amount {
+        grid-area: amount;
+        font: 400 1.1em/1 $ff-primary;
+    }
+    
+    &__footer {
+        grid-area: footer;
+        overflow: hidden;
+        width: 100%;
+
+        &--inactive {
+            display: none;
+        }
+
+        &__note {
+
+        }
+    }
+}

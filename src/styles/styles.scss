@@ -1,5 +1,8 @@
 @import './base/settings';
 @import './base/base';
+@import './base/headings';
+
 @import './components/header';
-@import './components/expenses-dashboard';
+@import './components/expenses-list';
+@import './components/expense-item';
 @import './components/expense-form';

@@ -2,86 +2,94 @@
 
 exports[`should render Expense List Item with expense details 1`] = `
 <article
-  className="expense-list__item"
+  className="expense-item"
+  onClick={[Function]}
 >
-  <header
-    className="expense-list__item__header"
+  <img
+    alt="icon"
+    className="expense-item__icon"
+    src=""
+  />
+  <section
+    className="expense-item__info"
   >
-    <h4
-      className="expense-list__item__header__description"
-    >
-      <Link
-        className="expense-list__item__header__description--link"
-        to="/edit/1"
-      >
-        Food
-      </Link>
-    </h4>
     <time
-      className="expense-list__item__header__date"
+      className="expense-item__info__date"
       dateTime="Thu, 08 Apr 2021 23:00:00 GMT"
     >
-      9 April 2021
+      5 months ago
     </time>
-  </header>
-  <section
-    className="expense-list__item__note"
+    <h5
+      className="expense-item__info__description"
+    >
+      Food
+    </h5>
+  </section>
+  <data
+    className="expense-item__amount"
+    value={1050}
+  >
+    €10.50
+  </data>
+  <footer
+    className="expense-item__footer expense-item__footer--inactive"
   >
     <p>
       Bought food for mastication
     </p>
-  </section>
-  <section
-    className="expense-list__item__amount"
-  >
-    <data
-      value={1050}
+    <Link
+      className="expense-item__footer__edit"
+      to="/edit/1"
     >
-      €10.50
-    </data>
-  </section>
+      EDIT
+    </Link>
+  </footer>
 </article>
 `;
 
 exports[`should render Expense List Item with expense details and different currency 1`] = `
 <article
-  className="expense-list__item"
+  className="expense-item"
+  onClick={[Function]}
 >
-  <header
-    className="expense-list__item__header"
+  <img
+    alt="icon"
+    className="expense-item__icon"
+    src=""
+  />
+  <section
+    className="expense-item__info"
   >
-    <h4
-      className="expense-list__item__header__description"
-    >
-      <Link
-        className="expense-list__item__header__description--link"
-        to="/edit/3"
-      >
-        Credit Card
-      </Link>
-    </h4>
     <time
-      className="expense-list__item__header__date"
+      className="expense-item__info__date"
       dateTime="Thu, 15 Jul 2010 23:00:00 GMT"
     >
-      16 July 2010
+      11 years ago
     </time>
-  </header>
-  <section
-    className="expense-list__item__note"
+    <h5
+      className="expense-item__info__description"
+    >
+      Credit Card
+    </h5>
+  </section>
+  <data
+    className="expense-item__amount"
+    value={4500}
+  >
+    MX$45.00
+  </data>
+  <footer
+    className="expense-item__footer expense-item__footer--inactive"
   >
     <p>
       Paying off loan to completion
     </p>
-  </section>
-  <section
-    className="expense-list__item__amount"
-  >
-    <data
-      value={4500}
+    <Link
+      className="expense-item__footer__edit"
+      to="/edit/3"
     >
-      MX$45.00
-    </data>
-  </section>
+      EDIT
+    </Link>
+  </footer>
 </article>
 `;
