@@ -7,7 +7,7 @@ exports[`should render Header correctly 1`] = `
   <h1
     className="page-header__title"
   >
-    Expensify
+    Budgie
   </h1>
   <nav
     className="page-header__nav"

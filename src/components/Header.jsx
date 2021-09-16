@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Header = (props) => (
     <header className="page-header">
-        <h1 className="page-header__title">Expensify</h1>
+        <h1 className="page-header__title">Budgie</h1>
         <nav className="page-header__nav">
             <NavLink to="/" className="page-header__nav__link" exact activeClassName="page-header__nav__link--active">Dashboard</NavLink>
             <NavLink to="/create" className="page-header__nav__link" activeClassName="page-header__nav__link--active">Create</NavLink>

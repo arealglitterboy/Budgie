@@ -13,6 +13,7 @@
     "test": "jest --config=jest.config.json --runInBand"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "mini-css-extract-plugin": "^2.3.0",
     "moment": "^2.29.1",
     "normalize.css": "^8.0.1",

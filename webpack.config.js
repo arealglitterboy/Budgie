@@ -46,6 +46,7 @@ module.exports = (env, argv) => {
         devtool: isProduction ? 'source-map' : 'inline-cheap-module-source-map',
         plugins: [new webpack.HotModuleReplacementPlugin(), new MiniCssExtractPlugin({ filename: 'styles.css' })],
         devServer: {
+            historyApiFallback: true,
             static: {
                 // directory: __dirname,
                 directory: path.join(__dirname, 'public'),

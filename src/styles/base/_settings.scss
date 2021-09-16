@@ -13,9 +13,13 @@ $bg-white: #f2f7f8;
 $grey: #9aa6aa;
 $text: lighten($primary-3, 15%);
 
+$budgie-blue: #304FFE;
+$budgie-blue--lighter: #83D4FF;
+$budgie-blue--darker: #0026CA;
+
 // * Fonts
-$ff-primary: 'Roboto', Helvetica, Arial, sans-serif;
-$ff-accent: 'Commissioner', 'Epilogue', 'Arial Black', sans-serif;
+$ff-primary: 'Roboto', Arial, sans-serif;
+$ff-accent: 'Spartan', Helvetica, sans-serif;
 
 // * Font Sizing
 $fs-body-1: 12pt;

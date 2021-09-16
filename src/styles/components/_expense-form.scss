@@ -2,14 +2,14 @@
     position: relative;
     
     &__error-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1000;
+        // position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%, -50%);
+        // z-index: 1000;
         
         display: grid;
-        // place-content: center;
+        
         padding: 0.75rem;
         text-align: center;
         min-height: 5rem;
@@ -47,6 +47,12 @@
         display: flex;
         flex-flow: row nowrap;
         width: max-content;
+    }
+
+    &__submit {
+        font-size: 1.1em;
+        border-radius: 0.15em;
+        padding: 0.25em 0.5em;
     }
     &::after {
         display: box;
