@@ -1,29 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DateRangePicker } from 'react-dates';
-// import ReactDatePicker from 'react-datepicker';
+import ReactDatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
 
 import { setFilterTerm, setSortBy, setEndDate, setStartDate } from '../actions/filters.action';
 
 export class ExpenseListFilters extends React.Component {
     state = {
-        calendarFocused: null
+        // calendarFocused: null,
+        startDate: undefined,
+        endDate: undefined
     };
-
+    
     onSearchTermChange = (e) => this.props.setFilterTerm(e.target.value);
 
     onSortChange = (e) => this.props.setSortBy(e.target.value);
     
-    onDatesChange = ({ startDate, endDate }) => {
-        this.props.setStartDate(startDate);
-        this.props.setEndDate(endDate);
-    }
+    // onDatesChange = ({ startDate, endDate }) => {
+    //     this.props.setStartDate(startDate);
+    //     this.props.setEndDate(endDate);
+    // }
     
-    onFocusChange = (calendarFocused) => {this.setState(() => ({ calendarFocused }))};
+    // onFocusChange = (calendarFocused) => {this.setState(() => ({ calendarFocused }))};
 
+    setStartDate = (startDate) => {
+        // this.setState(() => ({ startDate }));
+        this.props.setStartDate(startDate);
+    };
+    setEndDate = (endDate) => {
+        this.props.setEndDate(endDate);
+        // this.setState(() => ({ endDate }));
+    };
+    
     render() {
         return (
-            <header>
+            <header className="expense-filters">
                 <section>
                     <label htmlFor="search-term">Search: </label>
                     <input type="search" id="search-term" onChange={this.onSearchTermChange} />
@@ -36,11 +47,35 @@ export class ExpenseListFilters extends React.Component {
                         <option value="byAmountDescending">Amount descending</option>
                         <option value="byAmountAscending">Amount ascending</option>
                     </select>
-                    {/* <ReactDatePicker
-                        selected={this.startDate}
-                        onChange={(date) => this.startDate = date}
-                    /> */}
-                    <DateRangePicker
+                    <section className="expense-filters__dates">
+                        <ReactDatePicker
+                            selectsStart
+                            className="expense-filters__dates__input"
+                            dateFormat="dd/MM/yyyy"
+
+                            selected={this.props.filters.startDate}
+                            onChange={this.setStartDate}
+
+                            startDate={this.props.filters.startDate}
+                            endDate={this.props.filters.endDate}
+
+                            maxDate={this.state.endDate}
+                        />
+                        <ReactDatePicker
+                            selectsEnd
+                            className="expense-filters__dates__input"
+                            dateFormat="dd/MM/yyyy"
+
+                            selected={this.props.filters.endDate}
+                            onChange={this.setEndDate}
+                            
+                            startDate={this.props.filters.startDate}
+                            endDate={this.props.filters.endDate}
+                            
+                            minDate={this.props.filters.startDate}
+                        />
+                    </section>
+                    {/* <DateRangePicker
                         startDate={this.props.filters.startDate}
                         startDateId="range-filter-start"
                         endDate={this.props.filters.endDate}
@@ -51,7 +86,7 @@ export class ExpenseListFilters extends React.Component {
                         showClearDates={true}
                         numberOfMonths={1}
                         isOutsideRange={() => false}
-                    />
+                    /> */}
                 </section>
             </header>
         );

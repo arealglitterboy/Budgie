@@ -1,8 +1,15 @@
 .page-header{
-    &__title {
-        font: 700 3.2em/1 $ff-accent;
-        margin: 0;
-        padding: 0.1em 0 0.4em;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    gap: 1em;
+    margin: 1em auto;
+    width: max-content;
+    padding: 0.25em 0.5em;
+
+    &__logo {
+        display: inline-block;
+        width: min(20%, 5rem);
     }
 
     &__nav{
@@ -10,6 +17,7 @@
         flex-flow: row nowrap;
         width: min(25%, 100vw);
         justify-content: space-between;
+        gap: 1em;
 
         &__link{
             width: max-content;

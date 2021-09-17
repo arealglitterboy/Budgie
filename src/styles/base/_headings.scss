@@ -1,3 +1,16 @@
+h1 {
+    font: 700 3.25em/1 $ff-accent;
+    color: $budgie-blue__lighter--text;
+    margin: 0;
+    padding: 0.1em 0 0.4em;
+}
+
+h2 {
+    font: 650 2.5em/1 $ff-accent;
+    letter-spacing: -0.075em;
+    color: $budgie-blue__lighter--text;
+}
+
 h4 {
     font-size: 1.3rem;
     font-weight: 800;

@@ -21,7 +21,6 @@ function findDifference(date) {
     return (key) ? formatDifference(Math.floor(difference/times[key]), key, ((date > today) ? 'till' : 'ago')) : "Now";
 }
 
-
 export default class ExpenseListItem extends React.Component {
     handleClick = (e) => {
         console.log(this);

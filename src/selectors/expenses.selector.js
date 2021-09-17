@@ -17,15 +17,32 @@ const createIncludes = (needle) => {
     return (haystack = "") => haystack.search(regExp) >= 0;
 };
 
-function filterExpense(expense, term, startDate, endDate) {
-    const includes = createIncludes(term);
-    const dateMoment = moment(expense.date);
+const createDateCompare = (date, before = true) => {
+    let method = () => true;
 
+    if (date) {
+        let control = new Date(date);
+        control.setHours(0, 0, 0, 0);
+        method = (before) ? ((comp) => comp <= control) : ((comp) => comp >= control);
+    }
+
+    return method;
+};
+
+function filterExpense(expense, includes, isAfterStart, isBeforeEnd) {
     const containsTerm = includes(expense.description) || includes(expense.note); // ? If either the description or the note contains the search term.
-    const inDate = (!startDate || startDate.isSameOrBefore(dateMoment, 'day')) && (!endDate || endDate.isSameOrAfter(dateMoment, 'day')); // ? If the start/end date is defined, and the given date is greater/less than it.
+    const inDate = (isAfterStart(expense.date)) && (isBeforeEnd(expense.date)); // ? If the start/end date is defined, and the given date is greater/less than it.
     return containsTerm && inDate;
 }
 
-export default (expenses, { term = "", startDate = undefined, endDate = undefined, sortBy = "byNewest" } = {}) => {
-    return expenses.filter((e) => (filterExpense(e, term, startDate, endDate))).sort(sort[sortBy]);
+export default (expenses, filters) => {
+    const isAfterStart = createDateCompare(filters.startDate, false);
+    const isBeforeEnd = createDateCompare(filters.endDate, true);
+    const includes = createIncludes(filters.term);
+
+    return expenses.filter(
+        ({ description, note, date }) => (
+            includes(description + note) && isAfterStart(date) && isBeforeEnd(date)
+        )).sort(sort[filters.sortBy]);
+    // return expenses.filter((e) => (filterExpense(e, includes, isAfterStart, isBeforeEnd))).sort(sort[sortBy]);
 };

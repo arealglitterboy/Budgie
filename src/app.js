@@ -7,10 +7,11 @@ import AppRouter from './routers/Router';
 import configureStore from './store/configure.store';
 import { addExpense } from './actions/expenses.action';
 
-import './styles/styles.scss';
 import 'normalize.css';
+import "react-datepicker/dist/react-datepicker.css";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import './styles/styles.scss';
 
 function setupStore(store) {
     store.dispatch(addExpense({ description: 'test', currency: 'EUR', amount: 42050, date: Date.UTC(2001, 3, 9) }));
