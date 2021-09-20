@@ -15,7 +15,7 @@ exports[`should render Expense List Item with expense details 1`] = `
   >
     <time
       className="expense-item__info__date"
-      dateTime="Thu, 08 Apr 2021 23:00:00 GMT"
+      dateTime="Fri, 09 Apr 2021 00:00:00 GMT"
     >
       5 months ago
     </time>
@@ -62,7 +62,7 @@ exports[`should render Expense List Item with expense details and different curr
   >
     <time
       className="expense-item__info__date"
-      dateTime="Thu, 15 Jul 2010 23:00:00 GMT"
+      dateTime="Fri, 16 Jul 2010 00:00:00 GMT"
     >
       11 years ago
     </time>

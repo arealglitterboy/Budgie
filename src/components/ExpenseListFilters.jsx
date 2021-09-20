@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { DateRangePicker } from 'react-dates';
+import React from 'react';
 import ReactDatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
 
@@ -7,7 +6,6 @@ import { setFilterTerm, setSortBy, setEndDate, setStartDate } from '../actions/f
 
 export class ExpenseListFilters extends React.Component {
     state = {
-        // calendarFocused: null,
         startDate: undefined,
         endDate: undefined
     };
@@ -16,22 +14,10 @@ export class ExpenseListFilters extends React.Component {
 
     onSortChange = (e) => this.props.setSortBy(e.target.value);
     
-    // onDatesChange = ({ startDate, endDate }) => {
-    //     this.props.setStartDate(startDate);
-    //     this.props.setEndDate(endDate);
-    // }
-    
-    // onFocusChange = (calendarFocused) => {this.setState(() => ({ calendarFocused }))};
+    setStartDate = (startDate) => this.props.setStartDate(startDate);
 
-    setStartDate = (startDate) => {
-        // this.setState(() => ({ startDate }));
-        this.props.setStartDate(startDate);
-    };
-    setEndDate = (endDate) => {
-        this.props.setEndDate(endDate);
-        // this.setState(() => ({ endDate }));
-    };
-    
+    setEndDate = (endDate) => this.props.setEndDate(endDate);    
+
     render() {
         return (
             <header className="expense-filters">
@@ -39,6 +25,7 @@ export class ExpenseListFilters extends React.Component {
                     <label htmlFor="search-term">Search: </label>
                     <input type="search" id="search-term" onChange={this.onSearchTermChange} />
                 </section>
+                
                 <section>
                     <label htmlFor="sort-expense">Sort By: </label>
                     <select id="sort-expenses" onChange={this.onSortChange}>
@@ -75,18 +62,6 @@ export class ExpenseListFilters extends React.Component {
                             minDate={this.props.filters.startDate}
                         />
                     </section>
-                    {/* <DateRangePicker
-                        startDate={this.props.filters.startDate}
-                        startDateId="range-filter-start"
-                        endDate={this.props.filters.endDate}
-                        endDateId="range-filter-end"
-                        onDatesChange={this.onDatesChange}
-                        focusedInput={this.state.calendarFocused}
-                        onFocusChange={this.onFocusChange}
-                        showClearDates={true}
-                        numberOfMonths={1}
-                        isOutsideRange={() => false}
-                    /> */}
                 </section>
             </header>
         );

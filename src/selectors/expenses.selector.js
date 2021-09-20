@@ -1,10 +1,17 @@
-import moment from "moment";
-
 const sort = {
     byNewest: (e1, e2) => (e2.date - e1.date),
     byOldest: (e1, e2) => (e1.date - e2.date),
     byAmountDescending: (e1, e2) => (e2.amount - e1.amount),
     byAmountAscending: (e1, e2) => (e1.amount - e2.amount),
+};
+
+const getSort = (sortBy) => {
+    console.log( "-->", sortBy);
+    if (Object.keys(sort).includes(sortBy)) {
+        return sort[sortBy];
+    } else {
+        throw new Error('Illegal sort name, ' + sortBy + '.');
+    }
 };
 
 /**
@@ -29,20 +36,12 @@ const createDateCompare = (date, before = true) => {
     return method;
 };
 
-function filterExpense(expense, includes, isAfterStart, isBeforeEnd) {
-    const containsTerm = includes(expense.description) || includes(expense.note); // ? If either the description or the note contains the search term.
-    const inDate = (isAfterStart(expense.date)) && (isBeforeEnd(expense.date)); // ? If the start/end date is defined, and the given date is greater/less than it.
-    return containsTerm && inDate;
+const createFilter = ({ term = '', startDate, endDate } = {}) => {
+    const includes = createIncludes(term);
+    const isAfterStart = createDateCompare(startDate, false);
+    const isBeforeEnd = createDateCompare(endDate, true);
+
+    return ({ description, note, date }) => (isAfterStart(date) && isBeforeEnd(date) && (includes(description) || includes(note)));
 }
 
-export default (expenses, filters) => {
-    const isAfterStart = createDateCompare(filters.startDate, false);
-    const isBeforeEnd = createDateCompare(filters.endDate, true);
-    const includes = createIncludes(filters.term);
-
-    return expenses.filter(
-        ({ description, note, date }) => (
-            includes(description + note) && isAfterStart(date) && isBeforeEnd(date)
-        )).sort(sort[filters.sortBy]);
-    // return expenses.filter((e) => (filterExpense(e, includes, isAfterStart, isBeforeEnd))).sort(sort[sortBy]);
-};
+export default (expenses, filters) => (expenses.filter(createFilter(filters)).sort(getSort(filters.sortBy)));
