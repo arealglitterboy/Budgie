@@ -1,4 +1,3 @@
-import moment from 'moment';
 import filtersReducer from '../../reducers/filters.reducer';
 import { createFromDefault } from '../fixtures/filters.fixture';
 
@@ -72,7 +71,7 @@ test('should set the end date filter', () => {
 });
 
 test('should reset the end date filter', () => {
-    const currentState = { term: 'initial search term', startDate: new Date("2021-01-01"), endDate: moment("2021-01-31"), sortBy: 'byNewest' };
+    const currentState = { term: 'initial search term', startDate: new Date("2021-01-01"), endDate: new Date("2021-01-31"), sortBy: 'byNewest' };
     const action = { type: 'SET_END_DATE', date: undefined };
 
     const state = filtersReducer(currentState, action);

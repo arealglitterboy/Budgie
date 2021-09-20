@@ -9,8 +9,6 @@ import { addExpense } from './actions/expenses.action';
 
 import 'normalize.css';
 import "react-datepicker/dist/react-datepicker.css";
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
 import './styles/styles.scss';
 
 function setupStore(store) {

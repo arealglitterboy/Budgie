@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { setFilterTerm, setSortBy, setEndDate, setStartDate } from '../actions/filters.action';
 
+import { Input } from './Input';
+
 export class ExpenseListFilters extends React.Component {
     state = {
         startDate: undefined,
@@ -22,8 +24,13 @@ export class ExpenseListFilters extends React.Component {
         return (
             <header className="expense-filters">
                 <section>
-                    <label htmlFor="search-term">Search: </label>
-                    <input type="search" id="search-term" onChange={this.onSearchTermChange} />
+                    <Input label="Search" />
+                </section>
+                <section>
+                    <label htmlFor="search-term" className="input">
+                        <span className="input__label">Search:</span>
+                        <input className="input__input" type="search" id="search-term" onChange={this.onSearchTermChange} />
+                    </label>
                 </section>
                 
                 <section>
@@ -37,6 +44,7 @@ export class ExpenseListFilters extends React.Component {
                     <section className="expense-filters__dates">
                         <ReactDatePicker
                             selectsStart
+                            id="start-date"
                             className="expense-filters__dates__input"
                             dateFormat="dd/MM/yyyy"
 
@@ -50,6 +58,7 @@ export class ExpenseListFilters extends React.Component {
                         />
                         <ReactDatePicker
                             selectsEnd
+                            id="end-date"
                             className="expense-filters__dates__input"
                             dateFormat="dd/MM/yyyy"
 
@@ -59,7 +68,7 @@ export class ExpenseListFilters extends React.Component {
                             startDate={this.props.filters.startDate}
                             endDate={this.props.filters.endDate}
                             
-                            minDate={this.props.filters.startDate}
+                            minDate={this.state.startDate}
                         />
                     </section>
                 </section>

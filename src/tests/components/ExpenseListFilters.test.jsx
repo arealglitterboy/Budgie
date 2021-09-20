@@ -3,7 +3,6 @@ import { shallow } from "enzyme";
 
 import { ExpenseListFilters } from "../../components/ExpenseListFilters";
 import { filters, altFilters } from "../fixtures/filters.fixture";
-import moment from "moment";
 
 let setFilterTerm, setSortBy, setEndDate, setStartDate, wrapper;
 
@@ -47,14 +46,9 @@ test('should change sort', () => {
 });
 
 test('should handle date change', () => {
-    const change = { startDate: moment("2021-01-04"), endDate: moment("2021-05-09")};
-    wrapper.find('withStyles(DateRangePicker)').prop('onDatesChange')(change);
+    const change = { startDate: new Date("2021-01-04"), endDate: new Date("2021-05-09")};
+    wrapper.find('#start-date').prop('onChange')(change.startDate);
+    wrapper.find('#end-date').prop('onChange')(change.endDate);
     expect(setStartDate).toHaveBeenLastCalledWith(change.startDate);
     expect(setEndDate).toHaveBeenLastCalledWith(change.endDate);
-});
-
-test('should handle date focus changes', () => {
-    const calendarFocused = 'endDate';
-    wrapper.find('withStyles(DateRangePicker)').prop('onFocusChange')(calendarFocused);
-    expect(wrapper.state('calendarFocused')).toBe(calendarFocused);
 });

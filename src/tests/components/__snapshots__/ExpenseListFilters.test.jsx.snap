@@ -6,15 +6,21 @@ exports[`should render expense list filters correctly 1`] = `
 >
   <section>
     <label
+      className="input"
       htmlFor="search-term"
     >
-      Search: 
+      <span
+        className="input__label"
+      >
+        Search:
+      </span>
+      <input
+        className="input__input"
+        id="search-term"
+        onChange={[Function]}
+        type="search"
+      />
     </label>
-    <input
-      id="search-term"
-      onChange={[Function]}
-      type="search"
-    />
   </section>
   <section>
     <label
@@ -62,6 +68,7 @@ exports[`should render expense list filters correctly 1`] = `
         enableTabLoop={true}
         excludeScrollbar={true}
         focusSelectedMonth={false}
+        id="start-date"
         monthsShown={1}
         nextMonthButtonLabel="Next Month"
         nextYearButtonLabel="Next Year"
@@ -113,6 +120,7 @@ exports[`should render expense list filters correctly 1`] = `
         enableTabLoop={true}
         excludeScrollbar={true}
         focusSelectedMonth={false}
+        id="end-date"
         monthsShown={1}
         nextMonthButtonLabel="Next Month"
         nextYearButtonLabel="Next Year"
@@ -163,15 +171,21 @@ exports[`should render expense list filters with alt data correctly 1`] = `
 >
   <section>
     <label
+      className="input"
       htmlFor="search-term"
     >
-      Search: 
+      <span
+        className="input__label"
+      >
+        Search:
+      </span>
+      <input
+        className="input__input"
+        id="search-term"
+        onChange={[Function]}
+        type="search"
+      />
     </label>
-    <input
-      id="search-term"
-      onChange={[Function]}
-      type="search"
-    />
   </section>
   <section>
     <label
@@ -220,6 +234,7 @@ exports[`should render expense list filters with alt data correctly 1`] = `
         endDate={2021-09-20T00:00:00.000Z}
         excludeScrollbar={true}
         focusSelectedMonth={false}
+        id="start-date"
         monthsShown={1}
         nextMonthButtonLabel="Next Month"
         nextYearButtonLabel="Next Year"
@@ -274,7 +289,7 @@ exports[`should render expense list filters with alt data correctly 1`] = `
         endDate={2021-09-20T00:00:00.000Z}
         excludeScrollbar={true}
         focusSelectedMonth={false}
-        minDate={2021-09-05T00:00:00.000Z}
+        id="end-date"
         monthsShown={1}
         nextMonthButtonLabel="Next Month"
         nextYearButtonLabel="Next Year"

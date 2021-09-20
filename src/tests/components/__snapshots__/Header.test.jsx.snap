@@ -4,16 +4,11 @@ exports[`should render Header correctly 1`] = `
 <header
   className="page-header"
 >
-  <img
-    alt="Budgie Logo"
-    className="page-header__logo"
-    src="/images/budgie--v1.svg"
-  />
-  <h1
+  <h2
     className="page-header__title"
   >
     Budgie
-  </h1>
+  </h2>
   <nav
     className="page-header__nav"
   >

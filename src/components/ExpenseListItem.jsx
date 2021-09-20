@@ -6,18 +6,17 @@ const times = {
     month:  2419200000,  //(1000 * 60 * 60 * 24 * 7 * 4)
     week:   604800000,   //(1000 * 60 * 60 * 24 * 7)
     day:    86400000,    //(1000 * 60 * 60 * 24)
-    // hour:   3600000,     //(1000 * 60 * 60)
-    // minute: 60000,       //(1000 * 60)
+    hour:   3600000,     //(1000 * 60 * 60)
+    minute: 60000,       //(1000 * 60)
     // second: 1000,        //(1000)
 };
 
 const formatDifference = (time, unit, inPast) => (((!inPast) ? "In " : "") + time + " " + unit + ((time != 1) ? 's' : '') + ((inPast) ? " ago" : ""));
 
-function findDifference(date) {
-    let today = Date.now();
+function findDifference(date, today = Date.now()) {
     const difference = Math.abs(date - today);
     const key = Object.keys(times).find((time) => (difference >= times[time]));
-    return (key) ? (formatDifference(Math.floor(difference/times[key]), key, (date < today))) : "Today";
+    return (key) ? (formatDifference(Math.floor(difference/times[key]), key, (date < today))) : "Now";
 }
 
 export default class ExpenseListItem extends React.Component {
@@ -29,7 +28,7 @@ export default class ExpenseListItem extends React.Component {
     };
     
     render() {
-        const { description, note, date, amount, currency, id} = this.props;
+        const { description, note, date, amount, currency, id, today } = this.props;
         const time = new Date(date);
         
         return (
@@ -37,7 +36,7 @@ export default class ExpenseListItem extends React.Component {
                 <img src="" alt="icon" className="expense-item__icon" />
                 
                 <section className="expense-item__info">
-                    <time className="expense-item__info__date" dateTime={`${time.toUTCString()}`}>{findDifference(date)}</time>
+                    <time className="expense-item__info__date" dateTime={`${time.toUTCString()}`}>{findDifference(date, today)}</time>
                     <h5 className="expense-item__info__description">{description}</h5> 
                 </section>
                 

@@ -1,6 +1,5 @@
 import React from "react";
 import { shallow } from "enzyme";
-import moment from "moment";
 
 import ExpenseForm from "../../components/ExpenseForm";
 import { expenses } from "../fixtures/expenses.fixture";
@@ -15,17 +14,17 @@ const simulateChange = (id, state, value, wrapper = getWrapper()) => {
 
 test('should render expense form correctly', () => {
     // const wrapper = shallow(<ExpenseForm />);
-    const wrapper = getWrapper();
+    const wrapper = getWrapper({ today: new Date("2021-09-20T16:00:41.960Z") });
     expect(wrapper).toMatchSnapshot();
 });
 
 test('should render expense form with expense data', () => {
-    const wrapper = shallow(<ExpenseForm expense={expenses[0]} />);
+    const wrapper = getWrapper({ expense: expenses[0] });
     expect(wrapper).toMatchSnapshot();
 });
 
 test('should render error for invalid form submission', () => {
-    const wrapper = shallow(<ExpenseForm />);
+    const wrapper = getWrapper({ today: new Date("2021-09-20T16:00:41.990Z") });
     expect(wrapper).toMatchSnapshot(); // Check before the error
 
     wrapper.find('form').simulate('submit', { preventDefault: () => {} }); // Find the form, then simulate a submit event with an event object
@@ -69,14 +68,7 @@ test('should call onSubmit prop for valid form submission', () => {
 
 test('should set new date on date changed', () => {
     const wrapper = getWrapper();
-    const now = moment();
-    wrapper.find('withStyles(SingleDatePicker)').prop('onDateChange')(now);
+    const now = new Date();
+    wrapper.find('#date-picker').prop('onChange')(now);
     expect(wrapper.state('date')).toEqual(now);
-});
-
-test('should set calendar focus on calendar focus', () => {
-    const wrapper = getWrapper();
-    expect(wrapper.state('calendarFocus')).toBe(false);
-    wrapper.find('withStyles(SingleDatePicker)').prop('onFocusChange')({ focused: true });
-    expect(wrapper.state('calendarFocus')).toBe(true);
 });

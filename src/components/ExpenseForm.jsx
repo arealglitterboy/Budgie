@@ -5,7 +5,7 @@ export default class ExpenseForm extends React.Component {
     state = {
         description: this.props.expense ? this.props.expense.description : '',
         note: this.props.expense ? this.props.expense.note : '',
-        date: this.props.expense ? new Date(this.props.expense.date) : new Date(),
+        date: this.props.expense ? new Date(this.props.expense.date) : ((this.props.today) ? new Date(this.props.today) : new Date()),
         currency: this.props.expense ? this.props.expense.currency :'EUR',
         amount: this.props.expense ? (this.props.expense.amount/100).toFixed(2).toString() : '',
         error: ''
@@ -19,12 +19,16 @@ export default class ExpenseForm extends React.Component {
 
         if (!(description && amount)) {
             error = `Error, you must provide ${(description) ? 'an amount': (amount) ? ' a description' : 'a description and an amount'}`;
+        } else if(!this.isValidAmount(amount)) {
+            error = `Error, you must provide a valid amount of money.`;
         } else {
             this.props.onSubmit({ description, note, currency, date, amount: Math.floor(amount.replace(',', '.') * 100) });
         }
 
         this.setState(() => ({ error }));
     }
+
+    isValidAmount = ((amount) => (!amount || amount.match(/^(0|[1-9]\d*)(\.\d{0,2})?$/gm)));
 
     onDescriptionChange = (e) => {
         const description = e.target.value;
@@ -43,7 +47,7 @@ export default class ExpenseForm extends React.Component {
 
     onAmountChange = (e) => {
         const amount = e.target.value;
-        if (!amount || amount.match(/^(0|[1-9]\d*)(\.\d{0,2})?$/gm)) {
+        if (this.isValidAmount(amount)) {
             this.setState(() => ({ amount }));
         }
     };
@@ -63,8 +67,8 @@ export default class ExpenseForm extends React.Component {
                 <form action="" onSubmit={this.onSubmit} className="expense-form">
                     <fieldset className="expense-form__date expense-form__fieldset">
                         <ReactDatePicker
-                            selectsEnd
-                            className="expense-form__date__input"
+                            id="date-picker"
+                            className="date-picker expense-form__date__input"
                             dateFormat="dd/MM/yyyy"
 
                             selected={this.state.date}

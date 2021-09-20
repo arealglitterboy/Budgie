@@ -46,6 +46,18 @@ exports[`should render empty ExpenseList, empty array 1`] = `
 </section>
 `;
 
+exports[`should render empty ExpenseList, no props (except today, as this sets the values of the expense list items) 1`] = `
+<section
+  className="expense-list"
+>
+  <p
+    className="expense-list__empty-list"
+  >
+    Start by adding an expense
+  </p>
+</section>
+`;
+
 exports[`should render empty ExpenseList, no props 1`] = `
 <section
   className="expense-list"

@@ -1,5 +1,3 @@
-import moment from "moment";
-
 import expensesReducer from "../../reducers/expenses.reducer";
 import { createExpense, expenses } from "../fixtures/expenses.fixture"; 
 
@@ -28,7 +26,7 @@ test('should not remove expense if id not found', () => {
 
 //#region Edit expense
 test('should edit an expense by id', () => {
-    const action = { type: 'EDIT_EXPENSE', id: expenses[1].id, updates: { note: 'HELLO NEW WORLD', date: moment("2021-09-10") } };
+    const action = { type: 'EDIT_EXPENSE', id: expenses[1].id, updates: { note: 'HELLO NEW WORLD', date: new Date("2021-09-10") } };
     const state = expensesReducer(expenses, action);
     expect(state.length).toBe(expenses.length);
     expect(state[1]).toEqual({ ...expenses[1], ...action.updates  });
@@ -50,7 +48,7 @@ test('should not allow editing of expense id', () => {
 
 //#region Add expense
 test('should add an expense', () => {
-    const expense = createExpense(124, 'Hello World', moment("2019-10-24"), 14000);
+    const expense = createExpense(124, 'Hello World', new Date("2019-10-24"), 14000);
     const action = { type: 'ADD_EXPENSE', expense: {...expense} };
     const state = expensesReducer(expenses, action);
 

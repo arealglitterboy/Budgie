@@ -1,5 +1,3 @@
-import moment from "moment";
-
 import {
     setFilterTerm,
     setSortBy,
@@ -69,14 +67,14 @@ test('should generate a set sort by object with type amount ascending', () => {
 
 // setStartDate
 test('should generate set start date action object', () => {
-    const date = moment(1634012412000);
+    const date = new Date(1634012412000);
     const action = setStartDate(date);
     expect(action).toEqual({ type: 'SET_START_DATE', date });
 });
 
 // setEndDate
 test('should generate set end date action object', () => {
-    const date = moment(1634012412000);
+    const date = new Date(1634012412000);
     const action = setEndDate(date);
     expect(action).toEqual({ type: 'SET_END_DATE', date });
 });

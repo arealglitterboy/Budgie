@@ -15,7 +15,6 @@
   "dependencies": {
     "express": "^4.17.1",
     "mini-css-extract-plugin": "^2.3.0",
-    "moment": "^2.29.1",
     "normalize.css": "^8.0.1",
     "react": "^16.14.0",
     "react-currency-masked-input": "^2.5.0",
