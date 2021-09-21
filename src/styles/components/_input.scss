@@ -10,12 +10,14 @@
     border: 0.075em solid #333;
     width: max-content;
     height: max-content;
+    cursor: text;
 
     &--active {
         border-color: $accent-1;
     }
 
     &__label {
+        @include unselectable();
         font-size: 1em;
         color: grey;
         font-weight: 400;
@@ -27,6 +29,7 @@
         &--active {
             transform: translateY(-80%);
             font-weight: 400;
+            color: $accent-1;
             font-size: 0.7em;
         }
     }
