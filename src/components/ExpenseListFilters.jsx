@@ -17,9 +17,26 @@ export class ExpenseListFilters extends React.Component {
 
     onSortChange = (e) => this.props.setSortBy(e.target.value);
     
+    setSortBy = (sortBy) => this.props.setSortBy(sortBy);
+
     setStartDate = (startDate) => this.props.setStartDate(startDate);
 
     setEndDate = (endDate) => this.props.setEndDate(endDate);    
+
+    options = [
+        {
+            value: 'byNewest',
+            title: 'By Newest'
+        }, {
+            value: 'byOldest',
+            title: 'By Oldest'
+        }, {
+            value: 'byAmountDescending',
+            title: 'Amount Descending'
+        }, {
+            value: 'byAmountAscending',
+            title: 'Amount Ascending'
+        }];
 
     render() {
         return (
@@ -29,47 +46,38 @@ export class ExpenseListFilters extends React.Component {
                 </section>
 
                 <section>
-                    <InputSelect label="Sort" id="sort-expenses" onChange={this.props.onSortChange} options={[{value: 'byNewest', title: 'By Newest'}, {value: 'byOldest', title: 'By Oldest'}]} />
+                    <InputSelect label="Sort" id="sort-expenses" onChange={this.setSortBy} options={this.options} />
                 </section>
                 
-                <section>
-                    <label htmlFor="sort-expense">Sort By: </label>
-                    <select id="sort-expenses" onChange={this.onSortChange}>
-                        <option value="byNewest">Newest</option>
-                        <option value="byOldest">Oldest</option>
-                        <option value="byAmountDescending">Amount descending</option>
-                        <option value="byAmountAscending">Amount ascending</option>
-                    </select>
-                    <section className="expense-filters__dates">
-                        <ReactDatePicker
-                            selectsStart
-                            id="start-date"
-                            className="expense-filters__dates__input"
-                            dateFormat="dd/MM/yyyy"
+                <section className="expense-filters__dates">
+                    <ReactDatePicker
+                        selectsStart
+                        id="start-date"
+                        className="expense-filters__dates__input"
+                        dateFormat="dd/MM/yyyy"
 
-                            selected={this.props.filters.startDate}
-                            onChange={this.setStartDate}
+                        selected={this.props.filters.startDate}
+                        onChange={this.setStartDate}
 
-                            startDate={this.props.filters.startDate}
-                            endDate={this.props.filters.endDate}
+                        startDate={this.props.filters.startDate}
+                        endDate={this.props.filters.endDate}
 
-                            maxDate={this.state.endDate}
-                        />
-                        <ReactDatePicker
-                            selectsEnd
-                            id="end-date"
-                            className="expense-filters__dates__input"
-                            dateFormat="dd/MM/yyyy"
+                        maxDate={this.state.endDate}
+                    />
+                    <ReactDatePicker
+                        selectsEnd
+                        id="end-date"
+                        className="expense-filters__dates__input"
+                        dateFormat="dd/MM/yyyy"
 
-                            selected={this.props.filters.endDate}
-                            onChange={this.setEndDate}
-                            
-                            startDate={this.props.filters.startDate}
-                            endDate={this.props.filters.endDate}
-                            
-                            minDate={this.state.startDate}
-                        />
-                    </section>
+                        selected={this.props.filters.endDate}
+                        onChange={this.setEndDate}
+                        
+                        startDate={this.props.filters.startDate}
+                        endDate={this.props.filters.endDate}
+                        
+                        minDate={this.state.startDate}
+                    />
                 </section>
             </header>
         );

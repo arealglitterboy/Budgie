@@ -41,28 +41,10 @@ export default class InputSelect extends Component {
                 >
                     <option value="" disabled hidden></option>
                     {
-                        this.props.options && this.props.options.map(({ value, title }) => <option key={value} value={value}>{title}</option>)
+                        this.props.options && this.props.options.map(({ value, title }) => <option className="input__input--select__option" key={value} value={value}>{title}</option>)
                     }
                 </select>
             </fieldset>
         );
-        // return (
-        //     <label className={`input input--select input--${this.state.active}`}>
-        //         <span className={`input__label input__label--${this.state.active}`}>{this.props.label}</span>
-        //         <select
-        //             className="input__input input__input--select"
-        //             id={this.props.id}
-        //             onFocus={this.onFocus}
-        //             onBlur={this.onBlur}
-        //             onChange={this.onChange}
-        //             value={this.state.value}
-        //         >
-        //             <option value="" disabled hidden></option>
-        //             {
-        //                 this.props.options && this.props.options.map(({ value, title }) => <option key={value} value={value}>{title}</option>)
-        //             }
-        //         </select>
-        //     </label>
-        // )
     }
 }

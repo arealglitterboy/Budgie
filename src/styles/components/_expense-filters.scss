@@ -1,9 +1,10 @@
 .expense-filters {
+    display: flex;
+    flex-flow: row wrap;
     &__dates {
         display: flex;
         flex-flow: row wrap;
         justify-content: start;
-        // grid-template-columns: 1fr 1fr;
         & > * {
             width: min-content;
         }
