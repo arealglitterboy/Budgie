@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { setFilterTerm, setSortBy, setEndDate, setStartDate } from '../actions/filters.action';
 
 import { Input } from './Input';
+import InputSelect from './InputSelect';
 
 export class ExpenseListFilters extends React.Component {
     state = {
@@ -24,13 +25,11 @@ export class ExpenseListFilters extends React.Component {
         return (
             <header className="expense-filters">
                 <section>
-                    <Input label="Search" />
+                    <Input label="Search" id="search-term" type="search" onChange={this.props.setFilterTerm} />
                 </section>
+
                 <section>
-                    <label htmlFor="search-term" className="input">
-                        <span className="input__label">Search:</span>
-                        <input className="input__input" type="search" id="search-term" onChange={this.onSearchTermChange} />
-                    </label>
+                    <InputSelect label="Sort" id="sort-expenses" onChange={this.props.onSortChange} options={[{value: 'byNewest', title: 'By Newest'}, {value: 'byOldest', title: 'By Oldest'}]} />
                 </section>
                 
                 <section>

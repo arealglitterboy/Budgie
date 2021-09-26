@@ -5,12 +5,19 @@
     border-radius: 0.3em;
     grid-template-areas: "main";
     justify-self: center;
-    padding: 1.15em 0.9em 0.5em;
+    padding: 1.1em 1em 0.45em;
     margin-block: 0.4em 0.8em;
     border: 0.075em solid #333;
     width: max-content;
     height: max-content;
-    cursor: text;
+
+    &--text {
+        cursor: text;
+    }
+
+    &--select {
+        cursor: default;
+    }
 
     &--active {
         border-color: $accent-1;
@@ -25,9 +32,11 @@
         transition: all 200ms;
         z-index: 1000;
         transform: translateY(-30%);
+        pointer-events: none;
+        height: 1em;
 
         &--active {
-            transform: translateY(-80%);
+            transform: translateY(-125%);
             font-weight: 400;
             color: $accent-1;
             font-size: 0.7em;
@@ -40,6 +49,13 @@
         background: none;
         outline: none;
         border: none;
+
+        &--select {
+            margin-left: -0.3em;
+            height: max-content;
+            cursor: pointer;
+        }
+
         &:focus-visible {
             outline: none;
         }
