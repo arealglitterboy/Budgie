@@ -7,8 +7,6 @@ export default class InputSelect extends Component {
     }
 
     onFocus = (e) => {
-        e.persist();
-        console.log(e);
         this.setState({ active: 'active' });
     }
 

@@ -4,8 +4,11 @@ import { connect } from 'react-redux';
 
 import { setFilterTerm, setSortBy, setEndDate, setStartDate } from '../actions/filters.action';
 
+import { isValidDate } from '../utility/validateDates';
+
 import { Input } from './Input';
 import InputSelect from './InputSelect';
+import InputCalendar from './InputCalendar';
 
 export class ExpenseListFilters extends React.Component {
     state = {
@@ -16,6 +19,22 @@ export class ExpenseListFilters extends React.Component {
     onSearchTermChange = (e) => this.props.setFilterTerm(e.target.value);
 
     onSortChange = (e) => this.props.setSortBy(e.target.value);
+
+    onStartDateChange = (input) => {
+        const date = new Date(input);
+
+        if (isValidDate(date)) {
+            this.setStartDate(date);
+        }
+    }
+
+    onEndDateChange = (input) => {
+        const date = new Date(input);
+
+        if (isValidDate(date)) {
+            this.setEndDate(date);
+        }
+    }
     
     setSortBy = (sortBy) => this.props.setSortBy(sortBy);
 
@@ -23,22 +42,24 @@ export class ExpenseListFilters extends React.Component {
 
     setEndDate = (endDate) => this.props.setEndDate(endDate);    
 
-    options = [
-        {
-            value: 'byNewest',
-            title: 'By Newest'
-        }, {
-            value: 'byOldest',
-            title: 'By Oldest'
-        }, {
-            value: 'byAmountDescending',
-            title: 'Amount Descending'
-        }, {
-            value: 'byAmountAscending',
-            title: 'Amount Ascending'
-        }];
-
+    options = [{
+        value: 'byNewest',
+        title: 'By Newest'
+    }, {
+        value: 'byOldest',
+        title: 'By Oldest'
+    }, {
+        value: 'byAmountDescending',
+        title: 'Amount Descending'
+    }, {
+        value: 'byAmountAscending',
+        title: 'Amount Ascending'
+    }];
+        
     render() {
+        const StartDateInput = React.forwardRef(({ value, onClick }, ref) => <Input type="text" label="Start Date" id="set-start-date" ref={ref} value={value} onChange={this.onStartDateChange} onClick={onClick} />);
+        const EndDateInput = React.forwardRef(({ value, onClick }, ref) => <Input type="text" label="End Date" id="set-end-date" ref={ref} value={value} onChange={this.onEndDateChange} onClick={onClick} />);
+        
         return (
             <header className="expense-filters">
                 <section>
@@ -63,6 +84,7 @@ export class ExpenseListFilters extends React.Component {
                         endDate={this.props.filters.endDate}
 
                         maxDate={this.state.endDate}
+                        customInput={<StartDateInput />}
                     />
                     <ReactDatePicker
                         selectsEnd
@@ -77,6 +99,7 @@ export class ExpenseListFilters extends React.Component {
                         endDate={this.props.filters.endDate}
                         
                         minDate={this.state.startDate}
+                        customInput={<EndDateInput />}
                     />
                 </section>
             </header>
