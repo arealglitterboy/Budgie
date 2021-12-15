@@ -1,0 +1,32 @@
+html
+	font-size: 100%
+
+*, *::before, *::after 
+	box-sizing: border-box
+	padding: 0
+	margin: 0
+
+@media(prefers-color-scheme: light)
+	body 
+		background-color: $background
+		font-family: $ff-primary
+		color: $text
+
+// For later implementation
+@media(prefers-color-scheme: dark)
+	body 
+		background-color: $background
+		font-family: $ff-primary
+		color: $text
+
+button
+	border: none
+	padding: 0.15em
+	background-color: $accent-1
+	color: $background
+
+	&:not(:disabled) 
+		cursor: pointer
+
+.hidden-link
+	text-decoration: none

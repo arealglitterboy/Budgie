@@ -1,0 +1,78 @@
+.input
+	display: grid
+	position: relative
+	background-color: white
+	border-radius: 0.3em
+	grid-template-areas: "main"
+	justify-self: center
+	padding: 0.45em 1em
+	margin-block: 0.4em 0.8em
+	border: 0.075em solid #333
+	width: max-content
+	height: 3em
+	max-height: max-content
+
+	&--text
+		cursor: text
+
+	&--select
+		cursor: default
+		width: max-content
+
+		&::after
+			content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cpath d='M0 0h24v24H0V0z' fill='none'/%3E%3Cpath d='M8.71 11.71l2.59 2.59c.39.39 1.02.39 1.41 0l2.59-2.59c.63-.63.18-1.71-.71-1.71H9.41c-.89 0-1.33 1.08-.7 1.71z'/%3E%3C/svg%3E")
+			color: orange
+			display: inline
+			z-index: 1000
+			grid-area: main
+			width: 1.1rem
+			justify-self: right
+			margin: 0
+			padding: 0
+			align-self: center
+			pointer-events: none
+
+	&--active
+		border-color: $accent-1
+
+	&__label
+		@include unselectable()
+		font-size: 1em
+		color: grey
+		font-weight: 400
+		grid-area: main
+		transition: all 200ms
+		z-index: 1000
+		transform: translateY(40%)
+		pointer-events: none
+		height: 1em
+
+		&--active
+			transform: translateY(-40%)
+			font-weight: 400
+			color: $accent-1
+			font-size: 0.75em
+
+	&__input
+		grid-area: main
+
+		background: none
+		outline: none
+		border: none
+		align-self: end
+
+		&--select
+			height: max-content
+			min-width: 100%
+			padding-right: 1.5rem
+			width: max-content
+			cursor: pointer
+			-webkit-appearance: none
+			-moz-appearance: none
+			appearance: none
+
+			&__option 
+				cursor: pointer
+
+		&:focus-visible 
+			outline: none
