@@ -27,7 +27,7 @@ export default class InputSelect extends Component {
 
     render() {
         return (
-            <fieldset className={`input input--select input--${this.state.active}`}>
+            <fieldset className={`input input--select input--${this.state.active} ${this.props.className || ''}`}>
                 <label htmlFor="" className={`input__label input__label--${this.state.active}`}>{this.props.label}</label>
                 <select
                     className="input__input input__input--select"

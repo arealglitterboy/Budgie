@@ -39,7 +39,7 @@ export class Input extends Component {
 
     render() {
         return (
-            <label htmlFor={this.props.id} className={`input input--text input--${this.state.active}`}>
+            <label htmlFor={this.props.id} className={`input input--text input--${this.state.active} ${this.props.className || ''}`}>
                 <span className={`input__label input__label--${this.state.active}`}>{this.props.label}</span>
                 <input className="input__input" type={this.props.type} id={this.props.id} onFocus={this.onFocus} onBlur={this.onBlur} onChange={this.onChange} onClick={this.props.onClick} value={this.state.value} />
             </label>

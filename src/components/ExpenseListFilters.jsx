@@ -12,7 +12,8 @@ import InputSelect from './InputSelect';
 export class ExpenseListFilters extends React.Component {
     state = {
         startDate: undefined,
-        endDate: undefined
+        endDate: undefined,
+        filtersVisible: false
     };
     
     onSearchTermChange = (e) => this.props.setFilterTerm(e.target.value);
@@ -40,6 +41,8 @@ export class ExpenseListFilters extends React.Component {
     setStartDate = (startDate) => this.props.setStartDate(startDate);
 
     setEndDate = (endDate) => this.props.setEndDate(endDate);
+
+    toggleFilters = () => this.setState(() => ({ filtersVisible: !this.state.filtersVisible }))
     
     option = (value, title) => ({ value, title });
 
@@ -55,39 +58,46 @@ export class ExpenseListFilters extends React.Component {
         const EndDateInput = React.forwardRef(({ value, onClick }, ref) => <Input type="text" label="End Date" id="set-end-date" ref={ref} value={value} onChange={this.onEndDateChange} onClick={onClick} />);
         
         return (
-            <header className="expense-filters">
-                <Input label="Search" id="search-term" type="search" onChange={this.props.setFilterTerm} />
-                <InputSelect label="Sort" id="sort-expenses" onChange={this.setSortBy} options={this.options} />
-                <section>
-                    <ReactDatePicker
-                        selectsStart
-                        id="start-date"
-                        className="expense-filters__dates__input"
-                        dateFormat="dd/MM/yyyy"
-                        selected={this.props.filters.startDate}
-                        onChange={this.setStartDate}
-                        startDate={this.props.filters.startDate}
-                        endDate={this.props.filters.endDate}
-                        maxDate={this.state.endDate}
-                        customInput={<StartDateInput />}
-                    />
-                </section>
-                <section>
-                    <ReactDatePicker
-                        selectsEnd
-                        id="end-date"
-                        className="expense-filters__dates__input"
-                        dateFormat="dd/MM/yyyy"
-                        selected={this.props.filters.endDate}
-                        onChange={this.setEndDate}
+            <header className="filters">
+                <Input className="filters__search" label="Search" id="search-term" type="search" onChange={this.props.setFilterTerm} />
+
+                <button className="filters__button" onClick={this.toggleFilters} data-filters-visible={this.state.filtersVisible}>Filters</button>
+
+                <fieldset className="filters__options" data-filters-visible={this.state.filtersVisible}>
+                    <div>
+                        <InputSelect label="Sort" id="sort-expenses" onChange={this.setSortBy} options={this.options} />
+                    </div>
+                    <div>
+                        <ReactDatePicker
+                            selectsStart
+                            id="start-date"
+                            className="expense-filters__dates__input"
+                            dateFormat="dd/MM/yyyy"
+                            selected={this.props.filters.startDate}
+                            onChange={this.setStartDate}
+                            startDate={this.props.filters.startDate}
+                            endDate={this.props.filters.endDate}
+                            maxDate={this.state.endDate}
+                            customInput={<StartDateInput />}
+                        />
+                    </div>
+                    <div>
+                        <ReactDatePicker
+                            selectsEnd
+                            id="end-date"
+                            className="expense-filters__dates__input"
+                            dateFormat="dd/MM/yyyy"
+                            selected={this.props.filters.endDate}
+                            onChange={this.setEndDate}
                     
-                        startDate={this.props.filters.startDate}
-                        endDate={this.props.filters.endDate}
+                            startDate={this.props.filters.startDate}
+                            endDate={this.props.filters.endDate}
                     
-                        minDate={this.state.startDate}
-                        customInput={<EndDateInput />}
-                    />
-                </section>
+                            minDate={this.state.startDate}
+                            customInput={<EndDateInput />}
+                        />
+                    </div>
+                </fieldset>
             </header>
         );
     }
