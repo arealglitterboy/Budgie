@@ -4,10 +4,9 @@
 	position: relative
 	background-color: light.$secondary-container
 	color: light.$on-secondary-container
-	border-radius: 0.3em
+	border-radius: 1em
 	grid-template-areas: "main"
 	padding: 0.45em 1em
-	margin-block: 0.4em 0.8em
 	border: 0.075em solid light.$outline
 	height: 3em
 	max-height: max-content
@@ -23,7 +22,7 @@
 		&::after
 			content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cpath d='M0 0h24v24H0V0z' fill='none'/%3E%3Cpath d='M8.71 11.71l2.59 2.59c.39.39 1.02.39 1.41 0l2.59-2.59c.63-.63.18-1.71-.71-1.71H9.41c-.89 0-1.33 1.08-.7 1.71z'/%3E%3C/svg%3E")
 			display: inline
-			z-index: 1000
+			z-index: 2
 			grid-area: main
 			width: 1.1rem
 			justify-self: right
@@ -41,8 +40,8 @@
 		color: light.$on-secondary-container
 		font-weight: 400
 		grid-area: main
-		transition: all 200ms
-		z-index: 1000
+		transition: transform 200ms
+		z-index: 2
 		transform: translateY(40%)
 		pointer-events: none
 		height: 1em
