@@ -1,20 +1,20 @@
 import {v4 as uuid} from 'uuid';
 
 /**
- * 
- * @param {object} expense expense details. Optional object properties of description, note, date, currency and amount.
+ * Creates an ADD_EXPENSE action with the given details
+ * @param {object} expense expense details. Object properties: title, participant id, note, date, category, amount.
  * @returns @type {expense} returns an expense object.
  */
-// Deconstruct the input object, taking only the required properties, and initialising missing properties with default values.
-export const addExpense = ({ description = '', note = '', date = 0, currency = '€', amount = 0 } = {}) => (
+export const addExpense = ({ title, participant, note, date, category, amount } = {}) => (
     {
         type: 'ADD_EXPENSE',
         expense: {
             id: uuid(),
-            description,
+            participant, // id of person/thing sending/receiving money
+            title,
             note,
             date,
-            currency,
+            category,
             amount
         }
     }

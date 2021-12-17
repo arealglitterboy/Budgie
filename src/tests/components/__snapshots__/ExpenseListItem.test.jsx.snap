@@ -20,7 +20,7 @@ exports[`should render Expense List Item with expense details 1`] = `
       5 months ago
     </time>
     <h5
-      className="expense-item__info__description"
+      className="expense-item__info__title"
     >
       Food
     </h5>
@@ -47,7 +47,7 @@ exports[`should render Expense List Item with expense details 1`] = `
 </article>
 `;
 
-exports[`should render Expense List Item with expense details and different currency 1`] = `
+exports[`should render Expense List Item with expense details and different category 1`] = `
 <article
   className="expense-item"
   onClick={[Function]}
@@ -67,7 +67,7 @@ exports[`should render Expense List Item with expense details and different curr
       11 years ago
     </time>
     <h5
-      className="expense-item__info__description"
+      className="expense-item__info__title"
     >
       Credit Card
     </h5>

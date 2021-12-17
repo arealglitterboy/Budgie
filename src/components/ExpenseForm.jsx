@@ -3,10 +3,10 @@ import ReactDatePicker from 'react-datepicker';
 
 export default class ExpenseForm extends React.Component {
     state = {
-        description: this.props.expense ? this.props.expense.description : '',
+        title: this.props.expense ? this.props.expense.title : '',
         note: this.props.expense ? this.props.expense.note : '',
         date: this.props.expense ? new Date(this.props.expense.date) : ((this.props.today) ? new Date(this.props.today) : new Date()),
-        currency: this.props.expense ? this.props.expense.currency :'EUR',
+        category: this.props.expense ? this.props.expense.category :'EUR',
         amount: this.props.expense ? (this.props.expense.amount/100).toFixed(2).toString() : '',
         error: ''
     };
@@ -15,14 +15,14 @@ export default class ExpenseForm extends React.Component {
         e.preventDefault();
 
         let error = '';
-        const { description, note, amount, currency, date } = this.state;
+        const { title, note, amount, category, date } = this.state;
 
-        if (!(description && amount)) {
-            error = `Error, you must provide ${(description) ? 'an amount': (amount) ? ' a description' : 'a description and an amount'}`;
+        if (!(title && amount)) {
+            error = `Error, you must provide ${(title) ? 'an amount': (amount) ? ' a title' : 'a title and an amount'}`;
         } else if(!this.isValidAmount(amount)) {
             error = `Error, you must provide a valid amount of money.`;
         } else {
-            this.props.onSubmit({ description, note, currency, date, amount: Math.floor(amount.replace(',', '.') * 100) });
+            this.props.onSubmit({ title, note, category, date, amount: Math.floor(amount.replace(',', '.') * 100) });
         }
 
         this.setState(() => ({ error }));
@@ -30,9 +30,9 @@ export default class ExpenseForm extends React.Component {
 
     isValidAmount = ((amount) => (!amount || amount.match(/^(0|[1-9]\d*)(\.\d{0,2})?$/gm)));
 
-    onDescriptionChange = (e) => {
-        const description = e.target.value;
-        this.setState(() => ({ description }));
+    onTitleChange = (e) => {
+        const title = e.target.value;
+        this.setState(() => ({ title }));
     };
 
     onNoteChange = (e) => {
@@ -40,9 +40,9 @@ export default class ExpenseForm extends React.Component {
         this.setState(() => ({ note }));
     };
 
-    onCurrencyChange = (e) => {
-        const currency = e.target.value;
-        this.setState({ currency });
+    onCategoryChange = (e) => {
+        const category = e.target.value;
+        this.setState({ category });
     };
 
     onAmountChange = (e) => {
@@ -76,15 +76,15 @@ export default class ExpenseForm extends React.Component {
                         />
                     </fieldset>
 
-                    <label htmlFor="description">Description: </label>
-                    <input type="text" id="description" onChange={this.onDescriptionChange} value={this.state.description} autoFocus />
+                    <label htmlFor="title">Title: </label>
+                    <input type="text" id="title" onChange={this.onTitleChange} value={this.state.title} autoFocus />
 
                     <label htmlFor="note">Note: </label>
                     <textarea id="note" onChange={this.onNoteChange} value={this.state.note}></textarea>
 
                     <label htmlFor="amount">Amount: </label>
                     <fieldset className="expense-form__fieldset expense-form__amount">
-                        <select value={this.state.currency} onChange={this.onCurrencyChange}>
+                        <select value={this.state.category} onChange={this.onCategoryChange}>
                             <option value="EUR">€</option>
                             <option value="GBP">£</option>
                             <option value="USD">$</option>

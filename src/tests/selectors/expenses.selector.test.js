@@ -7,7 +7,7 @@ test('should filter by text value', () => {
     expect(result).toEqual([ expenses[1], expenses[2] ]);
 });
 
-test('should filter by text value from expense description', () => {
+test('should filter by text value from expense title', () => {
     const result = selectExpenses(expenses, createState({ term: 'credit' }));
     expect(result).toEqual([ expenses[2] ]);
 });

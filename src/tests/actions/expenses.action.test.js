@@ -3,10 +3,11 @@ import { addExpense, editExpense, removeExpense } from '../../actions/expenses.a
 // * addExpense
 test('should setup add expense action object', () => {
     const expenseData = {
-        description: 'Expense Title',
+        participant: '12412',
+        title: 'Expense Title',
         note: 'Expense note, this is the body of the expense',
         amount: 42.0,
-        currency: '€',
+        category: ['Expense'],
         date: 1634012412000,
     };
 
@@ -21,6 +22,7 @@ test('should setup add expense action object', () => {
     });
 });
 
+// ! I don't know if this should still exist
 test('should setup add expense action with default values', () => {
     const action = addExpense();
 
@@ -28,10 +30,11 @@ test('should setup add expense action with default values', () => {
         type: 'ADD_EXPENSE',
         expense: {
             id: expect.any(String),
-            description: '',
+            participant: '',
+            title: '',
             note: '',
             date: 0,
-            currency: '€',
+            category: [],
             amount: 0
         }
     });
@@ -39,13 +42,13 @@ test('should setup add expense action with default values', () => {
 
 // * editExpense
 test('should setup edit expense action object', () => {
-    const action = editExpense('123abc', { description: 'Hello World', note: 'New body for expense.' });
+    const action = editExpense('123abc', { title: 'Deliveroo', note: 'Delivery from McDonald\'s' });
     expect(action).toEqual({
         type: 'EDIT_EXPENSE',
         id: '123abc',
         updates: {
-            description: 'Hello World',
-            note: 'New body for expense.'
+            title: 'Deliveroo',
+            note: 'Delivery from McDonald\'s'
         }
     });
 });

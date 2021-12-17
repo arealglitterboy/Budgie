@@ -1,5 +1,5 @@
 //#region Utility methods & variables
-export const createExpense = (id, description, date, amount, note = '', currency = 'EUR') => ({ id, description, date, amount, note, currency });
+export const createExpense = (id, title, date, amount, note = '', category = 'EUR') => ({ id, title, date, amount, note, category });
 
 export const createState = ({ term = "", startDate = undefined, endDate = undefined, sortBy = "byNewest" } = {}) => ({ term, startDate, endDate, sortBy });
 

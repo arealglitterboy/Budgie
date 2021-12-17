@@ -3,10 +3,11 @@ const sort = {
     byOldest: (e1, e2) => (e1.date - e2.date),
     byAmountDescending: (e1, e2) => (e2.amount - e1.amount),
     byAmountAscending: (e1, e2) => (e1.amount - e2.amount),
+    byTitleDescending: (e1, e2) => (e1.title.localeCompare(e2.title)),
+    byTitleAscending: (e1, e2) => (-e1.title.localeCompare(e2.title))
 };
 
 const getSort = (sortBy) => {
-    console.log( "-->", sortBy);
     if (Object.keys(sort).includes(sortBy)) {
         return sort[sortBy];
     } else {
@@ -24,6 +25,15 @@ const createIncludes = (needle) => {
     return (haystack = "") => haystack.search(regExp) >= 0;
 };
 
+/**
+ * 
+ * @param {array} category 
+ */
+//TODO: Finish this method
+const createIncludesCategory = (category) => {
+    return (categories = []) => categories.every((value) => category.indexOf(value) >= 0);
+}
+
 const createDateCompare = (date, before = true) => {
     let method = () => true;
 
@@ -36,12 +46,12 @@ const createDateCompare = (date, before = true) => {
     return method;
 };
 
-const createFilter = ({ term = '', startDate, endDate } = {}) => {
+const createFilter = ({ term = '', category=[], startDate, endDate } = {}) => {
     const includes = createIncludes(term);
     const isAfterStart = createDateCompare(startDate, false);
     const isBeforeEnd = createDateCompare(endDate, true);
 
-    return ({ description, note, date }) => (isAfterStart(date) && isBeforeEnd(date) && (includes(description) || includes(note)));
+    return ({ title, note, date }) => (isAfterStart(date) && isBeforeEnd(date) && (includes(title) || includes(note) || includes(category.toLocaleString())));
 }
 
 export default (expenses, filters) => (expenses.filter(createFilter(filters)).sort(getSort(filters.sortBy)));

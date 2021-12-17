@@ -5,7 +5,7 @@ import {v4 as uuid} from 'uuid';
 
 const addExpense = (
     {
-        description = '',
+        title = '',
         note = '',
         amount = 0,
         date = 0
@@ -14,7 +14,7 @@ const addExpense = (
     type: 'ADD_EXPENSE',
     expense: {
         id: uuid(),
-        description,
+        title,
         note,
         amount,
         date
@@ -102,7 +102,7 @@ const containsIgnoreCase = (key, searching) => (!key || (searching && searching.
 const isUndefined = (x) => (typeof x === 'undefined');
 
 function filterExpense(expense, term, startDate, endDate) {
-    const containsTerm = containsIgnoreCase(term, expense.title) || containsIgnoreCase(term, expense.description); // ? If either the title or the description contains the search term.
+    const containsTerm = containsIgnoreCase(term, expense.title) || containsIgnoreCase(term, expense.title); // ? If either the title or the title contains the search term.
     const inDate = (isUndefined(startDate) || expense.date >= startDate) && (isUndefined(endDate) || expense.date <= endDate); // ? If the start/end date is defined, and the given date is greater/less than it.
     
     return containsTerm && inDate;
@@ -131,10 +131,10 @@ store.subscribe(() => {
 
 console.log(store.getState());
 
-const expenseOne = store.dispatch(addExpense({ description: 'Rent', amount: 10000 }));
-const expenseTwo = store.dispatch(addExpense({ description: 'Lent', amount: 100000 }));
-const expenseThree = store.dispatch(addExpense({ description: 'Covfefe', amount: 250 }));
-const expenseFour = store.dispatch(addExpense({ description: 'Coffee', amount: 2500, date: 1000 }));
+const expenseOne = store.dispatch(addExpense({ title: 'Rent', amount: 10000 }));
+const expenseTwo = store.dispatch(addExpense({ title: 'Lent', amount: 100000 }));
+const expenseThree = store.dispatch(addExpense({ title: 'Covfefe', amount: 250 }));
+const expenseFour = store.dispatch(addExpense({ title: 'Coffee', amount: 2500, date: 1000 }));
 
 const removeId = expenseThree.expense.id;
 

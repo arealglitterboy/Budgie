@@ -64,13 +64,13 @@ exports[`should render error for invalid form submission 1`] = `
       />
     </fieldset>
     <label
-      htmlFor="description"
+      htmlFor="title"
     >
-      Description: 
+      Title: 
     </label>
     <input
       autoFocus={true}
-      id="description"
+      id="title"
       onChange={[Function]}
       type="text"
       value=""
@@ -194,13 +194,13 @@ exports[`should render error for invalid form submission 2`] = `
       />
     </fieldset>
     <label
-      htmlFor="description"
+      htmlFor="title"
     >
-      Description: 
+      Title: 
     </label>
     <input
       autoFocus={true}
-      id="description"
+      id="title"
       onChange={[Function]}
       type="text"
       value=""
@@ -265,7 +265,7 @@ exports[`should render error for invalid form submission 2`] = `
       Warning!
     </h3>
     <p>
-      Error, you must provide a description and an amount
+      Error, you must provide a title and an amount
     </p>
     <button
       className="expense-form__error-box__close"
@@ -342,13 +342,13 @@ exports[`should render expense form correctly 1`] = `
       />
     </fieldset>
     <label
-      htmlFor="description"
+      htmlFor="title"
     >
-      Description: 
+      Title: 
     </label>
     <input
       autoFocus={true}
-      id="description"
+      id="title"
       onChange={[Function]}
       type="text"
       value=""
@@ -472,13 +472,13 @@ exports[`should render expense form with expense data 1`] = `
       />
     </fieldset>
     <label
-      htmlFor="description"
+      htmlFor="title"
     >
-      Description: 
+      Title: 
     </label>
     <input
       autoFocus={true}
-      id="description"
+      id="title"
       onChange={[Function]}
       type="text"
       value="Food"

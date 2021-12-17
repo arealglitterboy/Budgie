@@ -20,9 +20,9 @@ exports[`should render edit expense page correctly 1`] = `
     expense={
       Object {
         "amount": 1050,
-        "currency": "EUR",
+        "category": "EUR",
         "date": 2021-04-09T00:00:00.000Z,
-        "description": "Food",
+        "title": "Food",
         "id": 1,
         "note": "Bought food for mastication",
       }
