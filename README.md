@@ -9,6 +9,8 @@
 Budgie is a react based web app for managing personal expenses and budgeting. By offering a suite of expense tracking, visual budgeting tools, sharable savings goals, and more, Budgie offers a simple and straight forward way to save money and analyse areas where you might be over spending.
 
 
+![Budgie that colours for app were taken from](https://www.urbanroad.com.au/assets/full/UR_P_706.jpg?20211126071729)
+
 
 #### Goals
 
