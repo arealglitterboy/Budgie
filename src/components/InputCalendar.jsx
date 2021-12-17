@@ -6,7 +6,8 @@ import { isValidDate } from '../utility/validateDates';
 
 export default class InputCalendar extends Component {
     state = {
-        date: this.props.date ? this.props.date : ''
+        date: this.props.date ? this.props.date : '',
+        endDate: this.props.endDate
     }
 
     onInputChange = (value) => {
@@ -27,8 +28,8 @@ export default class InputCalendar extends Component {
             <ReactDatePicker
                 dateFormat="dd/MM/yyyy"
 
-                startDate={this.props.filters.startDate}
-                endDate={this.props.filters.endDate}
+                startDate={this.props.startDate}
+                endDate={this.props.endDate}
 
                 maxDate={this.state.endDate}
                 selected={this.state.date}

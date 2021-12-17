@@ -9,7 +9,7 @@ import { addExpense } from './actions/expenses.action';
 
 import 'normalize.css';
 import "react-datepicker/dist/react-datepicker.css";
-import './styles/styles.scss';
+import './styles/styles.sass';
 
 function setupStore(store) {
     store.dispatch(addExpense({ description: 'test', currency: 'EUR', amount: 42050, date: Date.UTC(2001, 3, 9) }));

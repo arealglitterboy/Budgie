@@ -1,11 +1,13 @@
+@use "../base/light"
+
 .page-header
 	display: flex
 	flex-flow: row nowrap
-	align-items: baseline
+	align-items: center
 	gap: 1em
 	margin: 1em auto
 	width: max-content
-	padding: 0.25em 0.5em
+	height: 2rem
 
 	&__logo 
 		display: inline-block
@@ -24,4 +26,4 @@
 			font-size: $fs-body-1
 
 			&--active 
-				color: #7834FF
+				color: light.$primary

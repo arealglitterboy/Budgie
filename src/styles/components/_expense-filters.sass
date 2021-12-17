@@ -1,17 +1,13 @@
 .expense-filters
-	$gap: 0.3rem
-	display: flex
-	flex-flow: row wrap
-	flex-basis: 25%
+	$gap: 0.25rem 1rem
+	display: grid
+	grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr))
+	grid-template-rows: 1fr
 	gap: $gap
-	
-	&__dates
-		display: flex
-		flex-flow: row wrap
-		gap: $gap
-		justify-content: start
+	place-content: center
+	max-width: 100%
 
-		& > *
-			width: min-content
-		&__input 
-			width: min-content
+	& .react-datepicker-wrapper
+		z-index: 0
+	& > section
+		width: 100%

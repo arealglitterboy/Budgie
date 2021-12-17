@@ -1,0 +1,49 @@
+@use "../base/light"
+
+.add-expense
+	position: relative
+	
+	&__error-box
+		display: grid
+		place-items: center
+		gap: 0.6rem
+		
+		min-height: 5rem
+		height: min-content
+		min-width: 15rem
+		padding: 0.75rem
+		text-align: center
+
+.expense-form
+	display: grid
+	gap: 0.6em 1em
+	grid-template-columns: min-content 1fr
+	position: relative
+	width: min-content
+	margin: 0 auto
+	padding: 2em 3em
+	border-radius: 0.3em
+
+	background-color: light.$primary-container
+	color: light.$on-primary-container
+	box-shadow: $shadow
+
+	&__fieldset
+		border: none
+		margin: 0
+		padding: 0
+
+	&__date
+		justify-self: end
+		grid-column: 2
+
+	&__amount
+		display: flex
+		flex-flow: row nowrap
+		width: max-content
+
+	&__submit
+		font: 500 1.1em/1 $ff-primary
+		border-radius: 0.2em
+		grid-column: 1 / span 2
+		padding: 0.5em 1.1em

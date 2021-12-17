@@ -1,5 +1,7 @@
+@use "light"
 html
 	font-size: 100%
+	padding: 0.1rem 0.15rem
 
 *, *::before, *::after 
 	box-sizing: border-box
@@ -8,22 +10,22 @@ html
 
 @media(prefers-color-scheme: light)
 	body 
-		background-color: $background
+		background-color: light.$background
 		font-family: $ff-primary
-		color: $text
+		color: light.$on-surface-var
 
 // For later implementation
 @media(prefers-color-scheme: dark)
 	body 
-		background-color: $background
+		background-color: light.$background
 		font-family: $ff-primary
-		color: $text
+		color: light.$on-background
 
 button
 	border: none
 	padding: 0.15em
-	background-color: $accent-1
-	color: $background
+	background-color: light.$primary
+	color: light.$on-primary
 
 	&:not(:disabled) 
 		cursor: pointer
