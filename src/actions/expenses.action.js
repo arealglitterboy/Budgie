@@ -1,3 +1,4 @@
+'use strict'
 import {v4 as uuid} from 'uuid';
 
 /**
@@ -5,21 +6,20 @@ import {v4 as uuid} from 'uuid';
  * @param {object} expense expense details. Object properties: title, participant id, note, date, categories, amount.
  * @returns @type {expense} returns an expense object.
  */
-export const addExpense = ({ title, participant, note, date, categories, amount } = {}) => (
-    {
+export const addExpense = (expense = {}) => {
+    return ['participant', 'title', 'amount'].every((property) => (expense.hasOwnProperty(property))) ? {
         type: 'ADD_EXPENSE',
         expense: {
             id: uuid(),
-            participant, // id of person/thing sending/receiving money
-            title,
-            note,
-            date,
-            categories,
-            amount
+            participant: expense.participant, // id of person/thing sending/receiving money
+            title: expense.title,
+            note: expense.note,
+            date: expense.date,
+            categories: expense.categories,
+            amount: expense.amount
         }
-    }
-);
-
+    } : {};
+}
 export const removeExpense = ({ id } = {}) => ({ type: 'REMOVE_EXPENSE', id });
 
 export const editExpense = (id, updates) => ({ type: 'EDIT_EXPENSE', id, updates });

@@ -6,9 +6,9 @@ test('should setup add expense action object', () => {
         participant: '12412',
         title: 'Expense Title',
         note: 'Expense note, this is the body of the expense',
-        amount: 42.0,
+        amount: 420,
         categories: ['Expense'],
-        date: 1634012412000,
+        date: 1634012412000
     };
 
     const action = addExpense(expenseData);
@@ -22,22 +22,10 @@ test('should setup add expense action object', () => {
     });
 });
 
-// ! I don't know if this should still exist
-test('should setup add expense action with default values', () => {
+test('should not setup add expense action as no values are passed', () => {
     const action = addExpense();
 
-    expect(action).toEqual({
-        type: 'ADD_EXPENSE',
-        expense: {
-            id: expect.any(String),
-            participant: '',
-            title: '',
-            note: '',
-            date: 0,
-            categories: [],
-            amount: 0
-        }
-    });
+    expect(action).toEqual({});
 });
 
 // * editExpense
