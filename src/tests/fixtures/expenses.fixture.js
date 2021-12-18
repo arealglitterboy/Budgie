@@ -6,9 +6,9 @@
  */
 export const sortByID = (arr) => arr.map(obj => obj.id).sort();
 
-export const createExpense = (id, participant, title, note = '', date, categories = [''], amount) => ({ id, participant, title, note, date, categories, amount });
+export const createExpense = (id, contact, title, note = '', date, categories = [''], amount) => ({ id, contact, title, note, date, categories, amount });
 
-export const createState = ({ participants = [], term = "", categories = [], startDate = undefined, endDate = undefined, sortBy = "byNewest" } = {}) => ({ participants, term, categories, startDate, endDate, sortBy });
+export const createState = ({ contacts = [], term = "", categories = [], startDate = undefined, endDate = undefined, sortBy = "byNewest" } = {}) => ({ contacts, term, categories, startDate, endDate, sortBy });
 
 export const expenses = [
     createExpense(1, 124, "Food", "Bought food for mastication", new Date("2021-04-09"), ['Food'], 1050),

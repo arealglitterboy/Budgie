@@ -24,6 +24,7 @@
     "react-modal": "^3.14.2",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
+    "react-textarea-autosize": "^8.3.3",
     "redux": "^4.1.0",
     "uuid": "^8.3.2",
     "validator": "8.0.0"

@@ -2,15 +2,13 @@
 .input
 	display: grid
 	position: relative
-	background-color: light.$secondary-container
-	color: light.$on-secondary-container
-	border-radius: 1em
+	border-radius: 0.5em
 	grid-template-areas: "main"
 	padding: 0.45em 1em
-	border: 0.075em solid light.$outline
-	height: 3em
 	max-height: max-content
 	width: 100%
+	border-width: 2px
+	border-style: solid
 
 	&--text
 		cursor: text
@@ -22,7 +20,6 @@
 		&::after
 			content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cpath d='M0 0h24v24H0V0z' fill='none'/%3E%3Cpath d='M8.71 11.71l2.59 2.59c.39.39 1.02.39 1.41 0l2.59-2.59c.63-.63.18-1.71-.71-1.71H9.41c-.89 0-1.33 1.08-.7 1.71z'/%3E%3C/svg%3E")
 			display: inline
-			z-index: 2
 			grid-area: main
 			width: 1.1rem
 			justify-self: right
@@ -31,29 +28,32 @@
 			align-self: center
 			pointer-events: none
 
-	&--active
-		border-color: light.$secondary
-
 	&__label
 		@include unselectable()
 		font-size: 1em
-		color: light.$on-secondary-container
 		font-weight: 400
-		grid-area: main
-		transition: transform 200ms
-		z-index: 2
+		transition-property: font-size, transform, opacity
+		transition-duration: 150ms
+		transition-timing-function: ease
+		width: 100%
+
 		transform: translateY(40%)
+		grid-area: main
+		opacity: 0.6
 		pointer-events: none
 		height: 1em
 
 		&--active
 			transform: translateY(-40%)
 			font-weight: 400
-			color: light.$secondary
 			font-size: 0.75em
+			opacity: 1
 
 	&__input
 		grid-area: main
+		padding-block-start: 0.8rem
+		height: max-content
+		width: 100%
 
 		background: none
 		outline: none
@@ -72,3 +72,45 @@
 
 		&:focus-visible 
 			outline: none
+	
+	&__textarea
+		resize: none
+		overflow-y: hidden
+
+	&__label:not(&__label--active) + &__input::placeholder
+		opacity: 0
+
+	&[data-style='primary']
+		background: light.$primary-container
+		color: light.$on-primary-container
+		border-color: light.$on-primary-container
+		
+	&--active[data-style='primary']
+		border-color: light.$primary
+		
+	&[data-style='primary'] &__label--active
+		color: light.$primary
+
+	
+	&[data-style='secondary']
+		background-color: light.$secondary-container
+		color: light.$on-secondary-container
+		border-color: light.$on-secondary-container
+
+	&[data-style='secondary'] &__label--active		
+		color: light.$secondary
+
+	&--active[data-style='secondary']
+		border-color: light.$secondary
+
+		
+	&[data-style='tertiary']
+		background-color: light.$tertiary-container
+		color: light.$on-tertiary-container
+		border-color: light.$on-tertiary-container
+
+	&[data-style='tertiary'] &__label--active		
+		color: light.$tertiary
+
+	&--active[data-style='tertiary']
+		border-color: light.$tertiary

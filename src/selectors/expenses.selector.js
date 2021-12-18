@@ -43,17 +43,17 @@ const createDateCompare = (date, before = true) => {
     return method;
 };
 
-const createFilter = ({ participants=[], term = '', categories=[], startDate, endDate } = {}) => {
+const createFilter = ({ contacts=[], term = '', categories=[], startDate, endDate } = {}) => {
     const includes = createIncludes(term);
 
-    const withParticipant = participant => participants.length == 0 || participants.includes(participant);
+    const withContact = contact => contacts.length == 0 || contacts.includes(contact);
 
     const isAfterStart = createDateCompare(startDate, false);
     const isBeforeEnd = createDateCompare(endDate, true);
 
     const hasCategories = createHasCategories(categories);
 
-    return ({ participant, title, note, date, categories }) => (isAfterStart(date) && isBeforeEnd(date) && withParticipant(participant) && (includes(title) || includes(note)) && (hasCategories(categories)));
+    return ({ contact, title, note, date, categories }) => (isAfterStart(date) && isBeforeEnd(date) && withContact(contact) && (includes(title) || includes(note)) && (hasCategories(categories)));
 }
 
 export default (expenses, filters) => (expenses.filter(createFilter(filters)).sort(getSort(filters.sortBy)));

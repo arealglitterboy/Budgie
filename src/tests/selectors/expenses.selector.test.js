@@ -40,22 +40,22 @@ test('should filter by non-existing category value', () => {
 //#endregion
 
 //#region Select categories
-test('should filter by participant id where participant has more than one entry', () => {
-    const result = selectExpenses(expenses, createState({ participants: [124] }));
+test('should filter by contact id where contact has more than one entry', () => {
+    const result = selectExpenses(expenses, createState({ contacts: [124] }));
     const expected = [expenses[0], expenses[3]];
 
     expect(sortByID(result)).toEqual(sortByID(expected));
 });
 
-test('should filter by participant id where participant has one entry', () => {
-    const result = selectExpenses(expenses, createState({ participants: [764] }));
+test('should filter by contact id where contact has one entry', () => {
+    const result = selectExpenses(expenses, createState({ contacts: [764] }));
     const expected = [expenses[2]];
 
     expect(sortByID(result)).toEqual(sortByID(expected));
 });
 
 test('should filter by non-existing category value', () => {
-    const result = selectExpenses(expenses, createState({ participants: [0] }));
+    const result = selectExpenses(expenses, createState({ contacts: [0] }));
 
     expect(result).toHaveLength(0);
 });

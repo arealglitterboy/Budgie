@@ -3,7 +3,7 @@ import { addExpense, editExpense, removeExpense } from '../../actions/expenses.a
 // * addExpense
 test('should setup add expense action object', () => {
     const expenseData = {
-        participant: '12412',
+        contact: '12412',
         title: 'Expense Title',
         note: 'Expense note, this is the body of the expense',
         amount: 420,

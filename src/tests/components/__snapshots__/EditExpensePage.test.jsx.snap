@@ -26,7 +26,7 @@ exports[`should render edit expense page correctly 1`] = `
         "date": 2021-04-09T00:00:00.000Z,
         "id": 1,
         "note": "Bought food for mastication",
-        "participant": 124,
+        "contact": 124,
         "title": "Food",
       }
     }

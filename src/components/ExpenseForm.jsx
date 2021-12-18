@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDatePicker from 'react-datepicker';
+import TextareaAutosize from 'react-textarea-autosize';
 
 import {Input} from './Input';
+import {InputArea} from './InputArea';
 
 export default class ExpenseForm extends React.Component {
     state = {
         title: this.props.expense ? this.props.expense.title : '',
-        participant: this.props.expense ? this.props.expense.participant : '',
+        contact: this.props.expense ? this.props.expense.contact : '',
         note: this.props.expense ? this.props.expense.note : '',
         date: this.props.expense ? new Date(this.props.expense.date) : new Date(),
         categories: this.props.expense ? this.props.expense.categories : [],
@@ -18,12 +20,12 @@ export default class ExpenseForm extends React.Component {
         e.preventDefault();
 
         let error = '';
-        const { participant, title, note, amount, categories, date } = this.state;
+        const { contact, title, note, amount, categories, date } = this.state;
 
-        if (!(title.trim() && amount && participant && date)) {
+        if (!(title.trim() && amount && contact && date)) {
             error= `ERROR: Nice try, you need to fill out all non-optional fields`;
         } else {
-            this.props.onSubmit({ participant, title, note, categories, date, amount: Math.floor(amount.replace(',', '.') * 100) });
+            this.props.onSubmit({ contact, title, note, categories, date, amount: Math.floor(amount.replace(',', '.') * 100) });
         }
 
         this.setState(() => ({ error }));
@@ -31,7 +33,7 @@ export default class ExpenseForm extends React.Component {
 
     isValidAmount = (amount => !amount || amount.match(/^(0|[1-9]\d*)(\.\d{0,2})?$/gm));
 
-    onParticipantChange = (participant) => {this.setState(() => ({ participant }))};
+    onContactChange = (contact) => {this.setState(() => ({ contact }))};
 
     onTitleChange = (title) => {this.setState(() => ({ title }))};
 
@@ -58,15 +60,13 @@ export default class ExpenseForm extends React.Component {
     }
 
     render() {
-        const DateInput = React.forwardRef(({ value, onClick }, ref) => <Input type="text" label="Date" id="set-date" ref={ref} value={value} onChange={this.setDate} onClick={onClick} />);
+        const style='secondary';
+        const DateInput = React.forwardRef(({ value, onClick }, ref) => <Input data-style={style} type="text" label="Date" id="set-date" ref={ref} value={value} onChange={this.setDate} onClick={onClick} />);
 
         return (
             <section>
                 <form action="" onSubmit={this.onSubmit} className="expense-form">
-                    <input className="expense-form__title" placeholder='Title' onChange={(e) => this.onTitleChange(e.target.value)} value={this.state.title} />
-                    {/* <fieldset>
-                        <Input type="text" label="Title" onChange={this.onTitleChange} value={this.state.title} />
-                    </fieldset> */}
+                    <TextareaAutosize className="expense-form__title" placeholder='Title' onChange={(e) => this.onTitleChange(e.target.value)} value={this.state.title} />
 
                     <fieldset className="expense-form__date">
                         <ReactDatePicker
@@ -81,18 +81,41 @@ export default class ExpenseForm extends React.Component {
                         />
                     </fieldset>
 
-                    <fieldset>
-                        <Input type="text" label="Participant" onChange={this.onParticipantChange} value={this.state.participant} />
+                    <fieldset className="expense-form__amount">
+                        <Input
+                            data-style={style}
+                            className="expense-form__amount"
+                            type="text"
+                            label="Amount"
+                            value={this.state.amount}
+                            onChange={this.onAmountChange}
+                            validator={this.isValidAmount}
+                        />
                     </fieldset>
 
-
-                    <fieldset>
-                        <label htmlFor="note">Note: </label>
-                        <textarea id="note" onChange={e => this.onNoteChange(e.currentTarget.value)} value={this.state.note}></textarea>
+                    <fieldset className="expense-form__contacts">
+                        <Input
+                            data-style={style}
+                            type="text"
+                            label="Contact"
+                            onChange={this.onContactChange}
+                            value={this.state.contact}
+                        />
                     </fieldset>
 
-                    <fieldset>
-                        <Input className="expense-form__amount" type="text" label="Amount" value={this.state.amount} onChange={this.onAmountChange} validator={this.isValidAmount} />
+                    <fieldset className="expense-form__categories">
+                        <Input
+                            data-style={style}
+                            className="expense-form__categories"
+                            type="text"
+                            label="Categories"
+                            value={this.state.categories.toString()}
+                            onChange={this.onCategoriesChange}
+                        />
+                    </fieldset>
+
+                    <fieldset className="expense-form__note">
+                        <InputArea data-style={style} id="note" label="Note" onChange={this.onNoteChange} placeholder="What were the details" value={this.state.note} />
                     </fieldset>
 
                     <button className="expense-form__submit" type="submit">Confirm</button>
