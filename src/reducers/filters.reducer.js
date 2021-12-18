@@ -21,6 +21,10 @@ export default (state = defaultState, action) => {
             return { ...state, sortBy: 'byAmountDescending' };
         case 'SORT_BY_AMOUNT_ASCENDING':
             return { ...state, sortBy: 'byAmountAscending' };
+        case 'SORT_BY_TITLE_DESCENDING':
+            return { ...state, sortBy: 'byTitleDescending' };
+        case 'SORT_BY_TITLE_ASCENDING':
+            return { ...state, sortBy: 'byTitleAscending' };
         default:
             return state;
     }
