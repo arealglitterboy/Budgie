@@ -62,8 +62,8 @@ test('should call onSubmit prop for valid form submission', () => {
     const wrapper = getWrapper({ expense: expenses[0], onSubmit: onSubmitSpy });
     wrapper.find('form').simulate('submit', { preventDefault: () => {} });
     expect(wrapper.state('error')).toBe('');
-    const { title, amount, note, date, category } = expenses[0];
-    expect(onSubmitSpy).toHaveBeenLastCalledWith({ title, amount, note, date, category });
+    const { title, amount, note, date, categories } = expenses[0];
+    expect(onSubmitSpy).toHaveBeenLastCalledWith({ title, amount, note, date, categories });
 });
 
 test('should set new date on date changed', () => {

@@ -503,7 +503,11 @@ exports[`should render expense form with expense data 1`] = `
     >
       <select
         onChange={[Function]}
-        value="EUR"
+        value={
+          Array [
+            "Food",
+          ]
+        }
       >
         <option
           value="EUR"

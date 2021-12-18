@@ -1,11 +1,19 @@
 //#region Utility methods & variables
-export const createExpense = (id, title, date, amount, note = '', category = 'EUR') => ({ id, title, date, amount, note, category });
+/**
+ * Sorts the array by ID, allowing for comparison disregarding order of returned object
+ * @param {array} arr 
+ * @returns 
+ */
+export const sortByID = (arr) => arr.map(obj => obj.id).sort();
 
-export const createState = ({ term = "", startDate = undefined, endDate = undefined, sortBy = "byNewest" } = {}) => ({ term, startDate, endDate, sortBy });
+export const createExpense = (id, participant, title, note = '', date, categories = [''], amount) => ({ id, participant, title, note, date, categories, amount });
+
+export const createState = ({ participants = [], term = "", categories = [], startDate = undefined, endDate = undefined, sortBy = "byNewest" } = {}) => ({ participants, term, categories, startDate, endDate, sortBy });
 
 export const expenses = [
-    createExpense(1, "Food", new Date("2021-04-09"), 1050, "Bought food for mastication"),
-    createExpense(2, "Rent", new Date("2021-10-12"), 50653, "Alex (landlord), wanted next month early"),
-    createExpense(3, "Credit Card", new Date("2010-07-16"), 4500, "Paying off loan to completion", "MXN")
+    createExpense(1, 124, "Food", "Bought food for mastication", new Date("2021-04-09"), ['Food'], 1050),
+    createExpense(2, 1642, "Rent", "Alex (landlord), wanted next month early", new Date("2021-10-12"), ['Rent'], 50653, ),
+    createExpense(3, 764, "Credit Card", "Paying off loan to completion", new Date("2010-07-16"), ['Debt', 'Credit Card'], 4500),
+    createExpense(4, 124, "Food", "Dinner at McDonald's", new Date("2021-05-19"), ['Food'], 1200)
 ];
 //#endregion

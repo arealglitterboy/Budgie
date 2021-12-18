@@ -47,7 +47,7 @@ exports[`should render Expense List Item with expense details 1`] = `
 </article>
 `;
 
-exports[`should render Expense List Item with expense details and different category 1`] = `
+exports[`should render Expense List Item with expense details and different categories 1`] = `
 <article
   className="expense-item"
   onClick={[Function]}

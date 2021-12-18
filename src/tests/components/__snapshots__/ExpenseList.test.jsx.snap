@@ -6,7 +6,7 @@ exports[`should render ExpenseList with expenses 1`] = `
 >
   <ExpenseListItem
     amount={1050}
-    category="EUR"
+    categories="EUR"
     date={2021-04-09T00:00:00.000Z}
     title="Food"
     id={1}
@@ -15,7 +15,7 @@ exports[`should render ExpenseList with expenses 1`] = `
   />
   <ExpenseListItem
     amount={50653}
-    category="EUR"
+    categories="EUR"
     date={2021-10-12T00:00:00.000Z}
     title="Rent"
     id={2}
@@ -24,7 +24,7 @@ exports[`should render ExpenseList with expenses 1`] = `
   />
   <ExpenseListItem
     amount={4500}
-    category="MXN"
+    categories="MXN"
     date={2010-07-16T00:00:00.000Z}
     title="Credit Card"
     id={3}

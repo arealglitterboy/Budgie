@@ -28,7 +28,7 @@ export default class ExpenseListItem extends React.Component {
     };
     
     render() {
-        const { id, participant, title, note, category, date, amount, today } = this.props;
+        const { id, participant, title, note, categories, date, amount, today } = this.props;
         const time = new Date(date);
         
         return (

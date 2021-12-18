@@ -9,7 +9,7 @@ test('should render Expense List Item with expense details', () => {
     expect(wrapper).toMatchSnapshot();
 });
 
-test('should render Expense List Item with expense details and different category', () => {
+test('should render Expense List Item with expense details and different categories', () => {
     const wrapper = shallow(<ExpenseListItem { ...expenses[2] } today={new Date('2021-09-12')} />)
     expect(wrapper).toMatchSnapshot();
 });

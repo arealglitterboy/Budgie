@@ -7,7 +7,7 @@ test('should setup add expense action object', () => {
         title: 'Expense Title',
         note: 'Expense note, this is the body of the expense',
         amount: 42.0,
-        category: ['Expense'],
+        categories: ['Expense'],
         date: 1634012412000,
     };
 
@@ -34,7 +34,7 @@ test('should setup add expense action with default values', () => {
             title: '',
             note: '',
             date: 0,
-            category: [],
+            categories: [],
             amount: 0
         }
     });
