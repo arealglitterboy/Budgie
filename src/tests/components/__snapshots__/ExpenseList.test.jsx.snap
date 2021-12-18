@@ -6,47 +6,65 @@ exports[`should render ExpenseList with expenses 1`] = `
 >
   <ExpenseListItem
     amount={1050}
-    categories="EUR"
+    categories={
+      Array [
+        "Food",
+      ]
+    }
+    contact={124}
     date={2021-04-09T00:00:00.000Z}
-    title="Food"
     id={1}
     key="1"
     note="Bought food for mastication"
+    title="Food"
   />
   <ExpenseListItem
     amount={50653}
-    categories="EUR"
+    categories={
+      Array [
+        "Rent",
+      ]
+    }
+    contact={1642}
     date={2021-10-12T00:00:00.000Z}
-    title="Rent"
     id={2}
     key="2"
     note="Alex (landlord), wanted next month early"
+    title="Rent"
   />
   <ExpenseListItem
     amount={4500}
-    categories="MXN"
+    categories={
+      Array [
+        "Debt",
+        "Credit Card",
+      ]
+    }
+    contact={764}
     date={2010-07-16T00:00:00.000Z}
-    title="Credit Card"
     id={3}
     key="3"
     note="Paying off loan to completion"
+    title="Credit Card"
+  />
+  <ExpenseListItem
+    amount={1200}
+    categories={
+      Array [
+        "Food",
+      ]
+    }
+    contact={124}
+    date={2021-05-19T00:00:00.000Z}
+    id={4}
+    key="4"
+    note="Dinner at McDonald's"
+    title="Food"
   />
 </section>
 `;
 
 exports[`should render empty ExpenseList, empty array 1`] = `
-<section
-  className="expense-list"
->
-  <p
-    className="expense-list__empty-list"
-  >
-    Start by adding an expense
-  </p>
-</section>
-`;
-
-exports[`should render empty ExpenseList, no props (except today, as this sets the values of the expense list items) 1`] = `
 <section
   className="expense-list"
 >

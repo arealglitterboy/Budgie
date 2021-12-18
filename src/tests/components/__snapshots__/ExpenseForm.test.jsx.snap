@@ -7,12 +7,19 @@ exports[`should render error for invalid form submission 1`] = `
     className="expense-form"
     onSubmit={[Function]}
   >
+    <ForwardRef(TextareaAutosize)
+      className="expense-form__title"
+      onChange={[Function]}
+      placeholder="Title"
+      value=""
+    />
     <fieldset
-      className="expense-form__date expense-form__fieldset"
+      className="expense-form__date"
     >
       <r
         allowSameDay={false}
         className="date-picker expense-form__date__input"
+        customInput={<ForwardRef />}
         customTimeInput={null}
         dateFormat="dd/MM/yyyy"
         dateFormatCalendar="LLLL yyyy"
@@ -43,7 +50,8 @@ exports[`should render error for invalid form submission 1`] = `
         previousYearButtonLabel="Previous Year"
         readOnly={false}
         renderDayContents={[Function]}
-        selected={2021-09-20T16:00:41.990Z}
+        selected={2021-12-18T21:35:40.828Z}
+        selectsStart={true}
         shouldCloseOnSelect={true}
         showFourColumnMonthYearPicker={false}
         showFullMonthYearPicker={false}
@@ -63,60 +71,51 @@ exports[`should render error for invalid form submission 1`] = `
         yearItemNumber={12}
       />
     </fieldset>
-    <label
-      htmlFor="title"
-    >
-      Title: 
-    </label>
-    <input
-      autoFocus={true}
-      id="title"
-      onChange={[Function]}
-      type="text"
-      value=""
-    />
-    <label
-      htmlFor="note"
-    >
-      Note: 
-    </label>
-    <textarea
-      id="note"
-      onChange={[Function]}
-      value=""
-    />
-    <label
-      htmlFor="amount"
-    >
-      Amount: 
-    </label>
     <fieldset
-      className="expense-form__fieldset expense-form__amount"
+      className="expense-form__amount"
     >
-      <select
-        onChange={[Function]}
-        value="EUR"
-      >
-        <option
-          value="EUR"
-        >
-          €
-        </option>
-        <option
-          value="GBP"
-        >
-          £
-        </option>
-        <option
-          value="USD"
-        >
-          $
-        </option>
-      </select>
-      <input
-        id="amount"
+      <Input
+        className="expense-form__amount"
+        data-style="secondary"
+        label="Amount"
         onChange={[Function]}
         type="text"
+        validator={[Function]}
+        value=""
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__contacts"
+    >
+      <Input
+        data-style="secondary"
+        label="Contact"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__categories"
+    >
+      <Input
+        className="expense-form__categories"
+        data-style="secondary"
+        label="Categories"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__note"
+    >
+      <InputArea
+        data-style="secondary"
+        id="note"
+        label="Note"
+        onChange={[Function]}
+        placeholder="What were the details"
         value=""
       />
     </fieldset>
@@ -137,12 +136,19 @@ exports[`should render error for invalid form submission 2`] = `
     className="expense-form"
     onSubmit={[Function]}
   >
+    <ForwardRef(TextareaAutosize)
+      className="expense-form__title"
+      onChange={[Function]}
+      placeholder="Title"
+      value=""
+    />
     <fieldset
-      className="expense-form__date expense-form__fieldset"
+      className="expense-form__date"
     >
       <r
         allowSameDay={false}
         className="date-picker expense-form__date__input"
+        customInput={<ForwardRef />}
         customTimeInput={null}
         dateFormat="dd/MM/yyyy"
         dateFormatCalendar="LLLL yyyy"
@@ -173,7 +179,8 @@ exports[`should render error for invalid form submission 2`] = `
         previousYearButtonLabel="Previous Year"
         readOnly={false}
         renderDayContents={[Function]}
-        selected={2021-09-20T16:00:41.990Z}
+        selected={2021-12-18T21:35:40.828Z}
+        selectsStart={true}
         shouldCloseOnSelect={true}
         showFourColumnMonthYearPicker={false}
         showFullMonthYearPicker={false}
@@ -193,60 +200,51 @@ exports[`should render error for invalid form submission 2`] = `
         yearItemNumber={12}
       />
     </fieldset>
-    <label
-      htmlFor="title"
-    >
-      Title: 
-    </label>
-    <input
-      autoFocus={true}
-      id="title"
-      onChange={[Function]}
-      type="text"
-      value=""
-    />
-    <label
-      htmlFor="note"
-    >
-      Note: 
-    </label>
-    <textarea
-      id="note"
-      onChange={[Function]}
-      value=""
-    />
-    <label
-      htmlFor="amount"
-    >
-      Amount: 
-    </label>
     <fieldset
-      className="expense-form__fieldset expense-form__amount"
+      className="expense-form__amount"
     >
-      <select
-        onChange={[Function]}
-        value="EUR"
-      >
-        <option
-          value="EUR"
-        >
-          €
-        </option>
-        <option
-          value="GBP"
-        >
-          £
-        </option>
-        <option
-          value="USD"
-        >
-          $
-        </option>
-      </select>
-      <input
-        id="amount"
+      <Input
+        className="expense-form__amount"
+        data-style="secondary"
+        label="Amount"
         onChange={[Function]}
         type="text"
+        validator={[Function]}
+        value=""
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__contacts"
+    >
+      <Input
+        data-style="secondary"
+        label="Contact"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__categories"
+    >
+      <Input
+        className="expense-form__categories"
+        data-style="secondary"
+        label="Categories"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__note"
+    >
+      <InputArea
+        data-style="secondary"
+        id="note"
+        label="Note"
+        onChange={[Function]}
+        placeholder="What were the details"
         value=""
       />
     </fieldset>
@@ -265,7 +263,7 @@ exports[`should render error for invalid form submission 2`] = `
       Warning!
     </h3>
     <p>
-      Error, you must provide a title and an amount
+      ERROR: Nice try, you need to fill out all non-optional fields
     </p>
     <button
       className="expense-form__error-box__close"
@@ -285,12 +283,19 @@ exports[`should render expense form correctly 1`] = `
     className="expense-form"
     onSubmit={[Function]}
   >
+    <ForwardRef(TextareaAutosize)
+      className="expense-form__title"
+      onChange={[Function]}
+      placeholder="Title"
+      value=""
+    />
     <fieldset
-      className="expense-form__date expense-form__fieldset"
+      className="expense-form__date"
     >
       <r
         allowSameDay={false}
         className="date-picker expense-form__date__input"
+        customInput={<ForwardRef />}
         customTimeInput={null}
         dateFormat="dd/MM/yyyy"
         dateFormatCalendar="LLLL yyyy"
@@ -321,7 +326,8 @@ exports[`should render expense form correctly 1`] = `
         previousYearButtonLabel="Previous Year"
         readOnly={false}
         renderDayContents={[Function]}
-        selected={2021-09-20T16:00:41.960Z}
+        selected={2021-12-18T21:35:40.733Z}
+        selectsStart={true}
         shouldCloseOnSelect={true}
         showFourColumnMonthYearPicker={false}
         showFullMonthYearPicker={false}
@@ -341,60 +347,51 @@ exports[`should render expense form correctly 1`] = `
         yearItemNumber={12}
       />
     </fieldset>
-    <label
-      htmlFor="title"
-    >
-      Title: 
-    </label>
-    <input
-      autoFocus={true}
-      id="title"
-      onChange={[Function]}
-      type="text"
-      value=""
-    />
-    <label
-      htmlFor="note"
-    >
-      Note: 
-    </label>
-    <textarea
-      id="note"
-      onChange={[Function]}
-      value=""
-    />
-    <label
-      htmlFor="amount"
-    >
-      Amount: 
-    </label>
     <fieldset
-      className="expense-form__fieldset expense-form__amount"
+      className="expense-form__amount"
     >
-      <select
-        onChange={[Function]}
-        value="EUR"
-      >
-        <option
-          value="EUR"
-        >
-          €
-        </option>
-        <option
-          value="GBP"
-        >
-          £
-        </option>
-        <option
-          value="USD"
-        >
-          $
-        </option>
-      </select>
-      <input
-        id="amount"
+      <Input
+        className="expense-form__amount"
+        data-style="secondary"
+        label="Amount"
         onChange={[Function]}
         type="text"
+        validator={[Function]}
+        value=""
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__contacts"
+    >
+      <Input
+        data-style="secondary"
+        label="Contact"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__categories"
+    >
+      <Input
+        className="expense-form__categories"
+        data-style="secondary"
+        label="Categories"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__note"
+    >
+      <InputArea
+        data-style="secondary"
+        id="note"
+        label="Note"
+        onChange={[Function]}
+        placeholder="What were the details"
         value=""
       />
     </fieldset>
@@ -415,12 +412,19 @@ exports[`should render expense form with expense data 1`] = `
     className="expense-form"
     onSubmit={[Function]}
   >
+    <ForwardRef(TextareaAutosize)
+      className="expense-form__title"
+      onChange={[Function]}
+      placeholder="Title"
+      value="Food"
+    />
     <fieldset
-      className="expense-form__date expense-form__fieldset"
+      className="expense-form__date"
     >
       <r
         allowSameDay={false}
         className="date-picker expense-form__date__input"
+        customInput={<ForwardRef />}
         customTimeInput={null}
         dateFormat="dd/MM/yyyy"
         dateFormatCalendar="LLLL yyyy"
@@ -452,6 +456,7 @@ exports[`should render expense form with expense data 1`] = `
         readOnly={false}
         renderDayContents={[Function]}
         selected={2021-04-09T00:00:00.000Z}
+        selectsStart={true}
         shouldCloseOnSelect={true}
         showFourColumnMonthYearPicker={false}
         showFullMonthYearPicker={false}
@@ -471,65 +476,52 @@ exports[`should render expense form with expense data 1`] = `
         yearItemNumber={12}
       />
     </fieldset>
-    <label
-      htmlFor="title"
-    >
-      Title: 
-    </label>
-    <input
-      autoFocus={true}
-      id="title"
-      onChange={[Function]}
-      type="text"
-      value="Food"
-    />
-    <label
-      htmlFor="note"
-    >
-      Note: 
-    </label>
-    <textarea
-      id="note"
-      onChange={[Function]}
-      value="Bought food for mastication"
-    />
-    <label
-      htmlFor="amount"
-    >
-      Amount: 
-    </label>
     <fieldset
-      className="expense-form__fieldset expense-form__amount"
+      className="expense-form__amount"
     >
-      <select
-        onChange={[Function]}
-        value={
-          Array [
-            "Food",
-          ]
-        }
-      >
-        <option
-          value="EUR"
-        >
-          €
-        </option>
-        <option
-          value="GBP"
-        >
-          £
-        </option>
-        <option
-          value="USD"
-        >
-          $
-        </option>
-      </select>
-      <input
-        id="amount"
+      <Input
+        className="expense-form__amount"
+        data-style="secondary"
+        label="Amount"
         onChange={[Function]}
         type="text"
+        validator={[Function]}
         value="10.50"
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__contacts"
+    >
+      <Input
+        data-style="secondary"
+        label="Contact"
+        onChange={[Function]}
+        type="text"
+        value={124}
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__categories"
+    >
+      <Input
+        className="expense-form__categories"
+        data-style="secondary"
+        label="Categories"
+        onChange={[Function]}
+        type="text"
+        value="Food"
+      />
+    </fieldset>
+    <fieldset
+      className="expense-form__note"
+    >
+      <InputArea
+        data-style="secondary"
+        id="note"
+        label="Note"
+        onChange={[Function]}
+        placeholder="What were the details"
+        value="Bought food for mastication"
       />
     </fieldset>
     <button

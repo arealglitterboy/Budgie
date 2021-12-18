@@ -2,63 +2,66 @@
 
 exports[`should render expense list filters correctly 1`] = `
 <header
-  className="expense-filters"
+  className="filters"
 >
-  <section>
-    <label
-      className="input"
-      htmlFor="search-term"
-    >
-      <span
-        className="input__label"
-      >
-        Search:
-      </span>
-      <input
-        className="input__input"
-        id="search-term"
+  <Input
+    className="filters__search"
+    id="search-term"
+    label="Search"
+    onChange={[MockFunction]}
+    type="search"
+  />
+  <button
+    className="filters__button"
+    data-filters-visible={false}
+    onClick={[Function]}
+  >
+    Filters
+  </button>
+  <fieldset
+    className="filters__options"
+    data-filters-visible={false}
+  >
+    <div>
+      <InputSelect
+        id="sort-expenses"
+        label="Sort"
         onChange={[Function]}
-        type="search"
+        options={
+          Array [
+            Object {
+              "title": "By Newest",
+              "value": "byNewest",
+            },
+            Object {
+              "title": "By Oldest",
+              "value": "byOldest",
+            },
+            Object {
+              "title": "Amount Descending",
+              "value": "byAmountDescending",
+            },
+            Object {
+              "title": "Amount Ascending",
+              "value": "byAmountAscending",
+            },
+            Object {
+              "title": "Title Descending",
+              "value": "byTitleDescending",
+            },
+            Object {
+              "title": "Title Ascending",
+              "value": "byTitleAscending",
+            },
+          ]
+        }
       />
-    </label>
-  </section>
-  <section>
-    <label
-      htmlFor="sort-expense"
-    >
-      Sort By: 
-    </label>
-    <select
-      id="sort-expenses"
-      onChange={[Function]}
-    >
-      <option
-        value="byNewest"
-      >
-        Newest
-      </option>
-      <option
-        value="byOldest"
-      >
-        Oldest
-      </option>
-      <option
-        value="byAmountDescending"
-      >
-        Amount descending
-      </option>
-      <option
-        value="byAmountAscending"
-      >
-        Amount ascending
-      </option>
-    </select>
-    <section
-      className="expense-filters__dates"
-    >
+    </div>
+    <div>
       <r
         allowSameDay={false}
         className="expense-filters__dates__input"
+        customInput={<ForwardRef />}
         customTimeInput={null}
         dateFormat="dd/MM/yyyy"
         dateFormatCalendar="LLLL yyyy"
@@ -108,9 +111,12 @@ exports[`should render expense list filters correctly 1`] = `
         withPortal={false}
         yearItemNumber={12}
       />
+    </div>
+    <div>
       <r
         allowSameDay={false}
         className="expense-filters__dates__input"
+        customInput={<ForwardRef />}
         customTimeInput={null}
         dateFormat="dd/MM/yyyy"
         dateFormatCalendar="LLLL yyyy"
@@ -160,70 +166,73 @@ exports[`should render expense list filters correctly 1`] = `
         withPortal={false}
         yearItemNumber={12}
       />
-    </section>
-  </section>
+    </div>
+  </fieldset>
 </header>
 `;
 
 exports[`should render expense list filters with alt data correctly 1`] = `
 <header
-  className="expense-filters"
+  className="filters"
 >
-  <section>
-    <label
-      className="input"
-      htmlFor="search-term"
-    >
-      <span
-        className="input__label"
-      >
-        Search:
-      </span>
-      <input
-        className="input__input"
-        id="search-term"
+  <Input
+    className="filters__search"
+    id="search-term"
+    label="Search"
+    onChange={[MockFunction]}
+    type="search"
+  />
+  <button
+    className="filters__button"
+    data-filters-visible={false}
+    onClick={[Function]}
+  >
+    Filters
+  </button>
+  <fieldset
+    className="filters__options"
+    data-filters-visible={false}
+  >
+    <div>
+      <InputSelect
+        id="sort-expenses"
+        label="Sort"
         onChange={[Function]}
-        type="search"
+        options={
+          Array [
+            Object {
+              "title": "By Newest",
+              "value": "byNewest",
+            },
+            Object {
+              "title": "By Oldest",
+              "value": "byOldest",
+            },
+            Object {
+              "title": "Amount Descending",
+              "value": "byAmountDescending",
+            },
+            Object {
+              "title": "Amount Ascending",
+              "value": "byAmountAscending",
+            },
+            Object {
+              "title": "Title Descending",
+              "value": "byTitleDescending",
+            },
+            Object {
+              "title": "Title Ascending",
+              "value": "byTitleAscending",
+            },
+          ]
+        }
       />
-    </label>
-  </section>
-  <section>
-    <label
-      htmlFor="sort-expense"
-    >
-      Sort By: 
-    </label>
-    <select
-      id="sort-expenses"
-      onChange={[Function]}
-    >
-      <option
-        value="byNewest"
-      >
-        Newest
-      </option>
-      <option
-        value="byOldest"
-      >
-        Oldest
-      </option>
-      <option
-        value="byAmountDescending"
-      >
-        Amount descending
-      </option>
-      <option
-        value="byAmountAscending"
-      >
-        Amount ascending
-      </option>
-    </select>
-    <section
-      className="expense-filters__dates"
-    >
+    </div>
+    <div>
       <r
         allowSameDay={false}
         className="expense-filters__dates__input"
+        customInput={<ForwardRef />}
         customTimeInput={null}
         dateFormat="dd/MM/yyyy"
         dateFormatCalendar="LLLL yyyy"
@@ -276,9 +285,12 @@ exports[`should render expense list filters with alt data correctly 1`] = `
         withPortal={false}
         yearItemNumber={12}
       />
+    </div>
+    <div>
       <r
         allowSameDay={false}
         className="expense-filters__dates__input"
+        customInput={<ForwardRef />}
         customTimeInput={null}
         dateFormat="dd/MM/yyyy"
         dateFormatCalendar="LLLL yyyy"
@@ -331,7 +343,7 @@ exports[`should render expense list filters with alt data correctly 1`] = `
         withPortal={false}
         yearItemNumber={12}
       />
-    </section>
-  </section>
+    </div>
+  </fieldset>
 </header>
 `;

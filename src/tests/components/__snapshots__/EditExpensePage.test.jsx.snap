@@ -23,10 +23,10 @@ exports[`should render edit expense page correctly 1`] = `
         "categories": Array [
           "Food",
         ],
+        "contact": 124,
         "date": 2021-04-09T00:00:00.000Z,
         "id": 1,
         "note": "Bought food for mastication",
-        "contact": 124,
         "title": "Food",
       }
     }
