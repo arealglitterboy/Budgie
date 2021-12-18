@@ -3,11 +3,12 @@ import { addExpense, editExpense, removeExpense } from '../../actions/expenses.a
 // * addExpense
 test('should setup add expense action object', () => {
     const expenseData = {
-        description: 'Expense Title',
+        participant: '12412',
+        title: 'Expense Title',
         note: 'Expense note, this is the body of the expense',
-        amount: 42.0,
-        currency: '€',
-        date: 1634012412000,
+        amount: 420,
+        categories: ['Expense'],
+        date: 1634012412000
     };
 
     const action = addExpense(expenseData);
@@ -21,31 +22,21 @@ test('should setup add expense action object', () => {
     });
 });
 
-test('should setup add expense action with default values', () => {
+test('should not setup add expense action as no values are passed', () => {
     const action = addExpense();
 
-    expect(action).toEqual({
-        type: 'ADD_EXPENSE',
-        expense: {
-            id: expect.any(String),
-            description: '',
-            note: '',
-            date: 0,
-            currency: '€',
-            amount: 0
-        }
-    });
+    expect(action).toEqual({});
 });
 
 // * editExpense
 test('should setup edit expense action object', () => {
-    const action = editExpense('123abc', { description: 'Hello World', note: 'New body for expense.' });
+    const action = editExpense('123abc', { title: 'Deliveroo', note: 'Delivery from McDonald\'s' });
     expect(action).toEqual({
         type: 'EDIT_EXPENSE',
         id: '123abc',
         updates: {
-            description: 'Hello World',
-            note: 'New body for expense.'
+            title: 'Deliveroo',
+            note: 'Delivery from McDonald\'s'
         }
     });
 });

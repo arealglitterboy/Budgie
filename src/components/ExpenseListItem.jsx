@@ -28,22 +28,24 @@ export default class ExpenseListItem extends React.Component {
     };
     
     render() {
-        const { description, note, date, amount, currency, id, today } = this.props;
+        const { id, participant, title, note, categories, date, amount, today } = this.props;
         const time = new Date(date);
         
         return (
-            <article className="expense-item" onClick={this.handleClick}>
-                <img src="" alt="icon" className="expense-item__icon" />
+            <article className="item" onClick={this.handleClick}>
+                <header className="item__header">
+                    <time className="item__header__date" dateTime={`${time.toUTCString()}`}>{findDifference(date, today)}</time>
+                </header>
                 
-                <section className="expense-item__info">
-                    <time className="expense-item__info__date" dateTime={`${time.toUTCString()}`}>{findDifference(date, today)}</time>
-                    <h5 className="expense-item__info__description">{description}</h5> 
+                <section className="item__body">
+                    <img src="" alt="icon" className="item__body__icon" />
+                    <h5 className="item__body__title">{title}</h5> 
+                    
+                    <data className="item__amount" value={amount}>
+                        {(amount/100).toLocaleString('en-IE', { style: 'currency', currency: 'EUR' })}
+                    </data>
                 </section>
-                
-                <data className="expense-item__amount" value={amount}>
-                    {(amount/100).toLocaleString('en-US', { style: "currency", currency })}
-                </data>
-                
+
                 <footer className="expense-item__footer expense-item__footer--inactive">
                     {(note) && <p>{note}</p>}
                     <Link to={`/edit/${id}`} className="expense-item__footer__edit">EDIT</Link>

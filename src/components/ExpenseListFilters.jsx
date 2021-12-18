@@ -50,7 +50,9 @@ export class ExpenseListFilters extends React.Component {
         this.option('byNewest', 'By Newest'),
         this.option('byOldest', 'By Oldest'),
         this.option('byAmountDescending', 'Amount Descending'),
-        this.option('byAmountAscending', 'Amount Ascending')
+        this.option('byAmountAscending', 'Amount Ascending'),
+        this.option('byTitleDescending', 'Title Descending'),
+        this.option('byTitleAscending', 'Title Ascending')
     ];
         
     render() {

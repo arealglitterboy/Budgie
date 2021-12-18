@@ -32,8 +32,8 @@ test('should render error for invalid form submission', () => {
     expect(wrapper).toMatchSnapshot(); // Check after the error
 });
 
-test('should set description on input change', () => {
-    simulateChange('description', 'description', "description change");
+test('should set title on input change', () => {
+    simulateChange('title', 'title', "title change");
 });
 
 test('should set note on text area change', () => {
@@ -62,8 +62,8 @@ test('should call onSubmit prop for valid form submission', () => {
     const wrapper = getWrapper({ expense: expenses[0], onSubmit: onSubmitSpy });
     wrapper.find('form').simulate('submit', { preventDefault: () => {} });
     expect(wrapper.state('error')).toBe('');
-    const { description, amount, note, date, currency } = expenses[0];
-    expect(onSubmitSpy).toHaveBeenLastCalledWith({ description, amount, note, date, currency });
+    const { title, amount, note, date, categories } = expenses[0];
+    expect(onSubmitSpy).toHaveBeenLastCalledWith({ title, amount, note, date, categories });
 });
 
 test('should set new date on date changed', () => {

@@ -1,25 +1,25 @@
+'use strict'
 import {v4 as uuid} from 'uuid';
 
 /**
- * 
- * @param {object} expense expense details. Optional object properties of description, note, date, currency and amount.
+ * Creates an ADD_EXPENSE action with the given details
+ * @param {object} expense expense details. Object properties: title, participant id, note, date, categories, amount.
  * @returns @type {expense} returns an expense object.
  */
-// Deconstruct the input object, taking only the required properties, and initialising missing properties with default values.
-export const addExpense = ({ description = '', note = '', date = 0, currency = '€', amount = 0 } = {}) => (
-    {
+export const addExpense = (expense = {}) => {
+    return ['participant', 'title', 'amount'].every((property) => (expense.hasOwnProperty(property))) ? {
         type: 'ADD_EXPENSE',
         expense: {
             id: uuid(),
-            description,
-            note,
-            date,
-            currency,
-            amount
+            participant: expense.participant, // id of person/thing sending/receiving money
+            title: expense.title,
+            note: expense.note,
+            date: expense.date,
+            categories: expense.categories,
+            amount: expense.amount
         }
-    }
-);
-
+    } : {};
+}
 export const removeExpense = ({ id } = {}) => ({ type: 'REMOVE_EXPENSE', id });
 
 export const editExpense = (id, updates) => ({ type: 'EDIT_EXPENSE', id, updates });
