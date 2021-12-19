@@ -1,59 +1,53 @@
-const sort = {
-    byNewest: (e1, e2) => (e2.date - e1.date),
-    byOldest: (e1, e2) => (e1.date - e2.date),
-    byAmountDescending: (e1, e2) => (e2.amount - e1.amount),
-    byAmountAscending: (e1, e2) => (e1.amount - e2.amount),
-    byTitleDescending: (e1, e2) => (e1.title.localeCompare(e2.title, 'en-IE', {sensitivity: 'base'})),
-    byTitleAscending: (e1, e2) => (-e1.title.localeCompare(e2.title, 'en-IE', {sensitivity: 'base'}))
-};
-
-const getSort = (sortBy) => {
-    if (Object.keys(sort).includes(sortBy)) {
-        return sort[sortBy];
-    } else {
-        throw new Error('Illegal sort name, ' + sortBy + '.');
+/**
+ * `findSort`: Takes in the name of a type of sort and returns its associated lambda function, or newest to oldest by default
+ * @param {string} sortBy Name of sort method
+ * @returns {(e1: object, e2: object) => (number)} Method to sort items in a given way
+ */
+function findSort(sortBy) {
+    switch(sortBy) {
+        case "byTitleAscending": (e1, e2) => (e2.title.localeCompare(e1.title, 'en-IE', {sensitivity: 'base'}))
+        case "byTitleDescending": (e1, e2) => (e1.title.localeCompare(e2.title, 'en-IE', {sensitivity: 'base'}))
+        case "byAmountAscending": return (e1, e2) => (e1.amount - e2.amount)
+        case "byAmountDescending": return (e1, e2) => (e2.amount - e1.amount)
+        case "byOldest": return (e1, e2) => (e1.date - e2.date)
+        case "byNewest":
+        default:
+            return (e1, e2) => (e2.date - e1.date)
     }
-};
+}
 
 /**
  * `createIncludes`: Creates a method using Regex to search for a static `needle` in a given string (`haystack`) ignoring case.
- * @param {string} needle unchanging search term
- * @returns {(haystack: string) => (boolean)} method returns true if the haystack includes the needle, false otherwise.
+ * @param {string} needle Search term
+ * @returns {(haystack: string) => (boolean)} Method returns true if the haystack includes the needle, false otherwise.
  */
 const createIncludes = (needle) => {
     const regExp = new RegExp(needle, 'gi')
-    return (haystack = "") => haystack.search(regExp) >= 0;
-};
-
-/**
- * 
- * @param {array} filter 
- */
-const createHasCategories = (filter) => (categories => filter.every(value => categories.indexOf(value) >= 0));
-
-const createDateCompare = (date, before = true) => {
-    let method = () => true;
-
-    if (date) {
-        let control = new Date(date);
-        control.setHours(0, 0, 0, 0);
-        method = (before) ? ((comp) => comp <= control) : ((comp) => comp >= control);
-    }
-
-    return method;
+    return (haystack) => haystack.search(regExp) >= 0;
 };
 
 const createFilter = ({ contacts=[], term = '', categories=[], startDate, endDate } = {}) => {
-    const includes = createIncludes(term);
+    let filters = [];
 
-    const withContact = contact => contacts.length == 0 || contacts.includes(contact);
+    if (contacts.length > 0) {
+        filters = [...filters, (item) => contacts.includes(item.contact)]; // the item's contact is included in the contacts filter
+    }
+    if (term) {
+        const regExp = new RegExp(term, 'gi');
+        const includes = (haystack) => haystack.search(regExp) >= 0;
+        filters = [...filters, (item) => includes(item.title) || includes(item.note)]; // search for the search term in the title and the note
+    }
+    if (categories.length > 0) {
+        filters = [...filters, (item) => categories.every((category) => item.categories.includes(category))]; // the item has all of the filter categories
+    }
+    if (startDate) {
+        filters = [...filters, (item) => item.date >= startDate];   // the item's date is or is after the start date
+    }
+    if (endDate) {
+        filters = [...filters, (item) => item.date <= endDate];     // the item's date is or is before the end date
+    }
+    
+    return (item) => filters.every(func => func(item));
+};
 
-    const isAfterStart = createDateCompare(startDate, false);
-    const isBeforeEnd = createDateCompare(endDate, true);
-
-    const hasCategories = createHasCategories(categories);
-
-    return ({ contact, title, note, date, categories }) => (isAfterStart(date) && isBeforeEnd(date) && withContact(contact) && (includes(title) || includes(note)) && (hasCategories(categories)));
-}
-
-export default (expenses, filters) => (expenses.filter(createFilter(filters)).sort(getSort(filters.sortBy)));
+export default (expenses, filters) => (expenses.filter(createFilter(filters)).sort(findSort(filters.sortBy)));
