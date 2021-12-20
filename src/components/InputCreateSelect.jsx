@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 
 const cleanStyles = ({ padding, margin, paddingTop, paddingRight, paddingBottom, paddingLeft, marginTop, marginRight, marginBottom, marginLeft, ...previous }) => (previous)
 
@@ -18,13 +18,13 @@ export default (props) => {
         
         const onChange = (change) => {
             setValue(change);
-            props.onChange(change ? change.value : "");
+            props.onChange(!!change ? change : {});
         };
 
         return (
             <label data-style={props['data-style']} htmlFor={props.id} className={`input input--${active} ${props.className || ''}`}>
                 <span className={`input__label input__label--${active}`}>{props.label}</span>
-                <Select 
+                <CreatableSelect
                     options={props.options}
                     id={props.id}
                     onFocus={() => setActive('active')}
@@ -33,7 +33,6 @@ export default (props) => {
                     backspaceRemovesValue
                     placeholder=''
                     isSearchable
-                    isMulti={!!props.isMulti}
                     value={value}
                     onChange={onChange}
                     className="input__select"

@@ -1,20 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import ReactDatePicker from 'react-datepicker';
 import TextareaAutosize from 'react-textarea-autosize';
-import Select from 'react-select'
 
 import {Input} from './Input';
-import InputSelect from './InputSelect';
+import InputSelect from './InputCreateSelect';
 import {InputArea} from './InputArea';
 
-export default class ExpenseForm extends React.Component {
+import { addNewContact } from '../actions/contacts.action';
+
+export class ExpenseForm extends React.Component {
     state = {
         title: this.props.expense ? this.props.expense.title : '',
-        contact: this.props.expense ? this.props.expense.contact : '',
+        contact: this.props.expense ? { id, name } = this.props.expense.contact : { id: undefined, name: undefined },
+        categories: this.props.expense ? this.props.expense.categories : [],
         note: this.props.expense ? this.props.expense.note : '',
         date: this.props.expense ? new Date(this.props.expense.date) : new Date(),
-        categories: this.props.expense ? this.props.expense.categories : [],
         amount: this.props.expense ? (this.props.expense.amount/100).toFixed(2).toString() : '',
         error: ''
     };
@@ -25,10 +27,15 @@ export default class ExpenseForm extends React.Component {
         let error = '';
         const { contact, title, note, amount, categories, date } = this.state;
 
-        if (!(title.trim() && amount && contact && date)) {
+        if (!(title.trim() && amount && (contact && contact.name) && date)) {
             error= `ERROR: Nice try, you need to fill out all non-optional fields`;
         } else {
-            this.props.onSubmit({ contact, title, note, categories, date, amount: Math.floor(amount.replace(',', '.') * 100) });
+            if (contact.name === contact.id) {
+                const newContact = this.props.addContact({ name: contact.name, date: new Date() }).contact;
+                contact.id = newContact.id;
+                contact.date = newContact.date;
+            }
+            this.props.onSubmit({ contact: contact.id, title, note, categories, date, amount: Math.floor(amount.replace(',', '.') * 100) });
         }
 
         this.setState(() => ({ error }));
@@ -36,7 +43,9 @@ export default class ExpenseForm extends React.Component {
 
     isValidAmount = (amount => !amount || amount.match(/^(0|[1-9]\d*)(\.\d{0,2})?$/gm));
 
-    onContactChange = (contact) => {this.setState(() => ({ contact }))};
+    onContactChange = ({ value:id='', label:name='' }) => {
+        this.setState(() => ({ contact: { id, name } }));
+    };
 
     onTitleChange = (title) => {this.setState(() => ({ title }))};
 
@@ -69,7 +78,7 @@ export default class ExpenseForm extends React.Component {
         return (
             <section>
                 <form action="" onSubmit={this.onSubmit} className="expense-form">
-                    <TextareaAutosize className="expense-form__title" placeholder='Title' onChange={(e) => this.onTitleChange(e.target.value)} value={this.state.title} />
+                    <TextareaAutosize className="expense-form__title" id='title' placeholder='Title' onChange={(e) => this.onTitleChange(e.target.value)} value={this.state.title} />
 
                     <fieldset className="expense-form__date">
                         <ReactDatePicker
@@ -103,7 +112,7 @@ export default class ExpenseForm extends React.Component {
                             onChange={this.onContactChange}
                             id='contact'
                             label='Contact'
-                            options={[{label: 'Test', value: 'test'}, {label: 'Test Also a Test', value: 'alsotest'}]}
+                            options={this.props.contacts.map(({id, name}) => ({ label: name, value: id }))}
                         />
                     </fieldset>
 
@@ -137,3 +146,11 @@ export default class ExpenseForm extends React.Component {
         );
     }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+    addContact: (contact) => dispatch(addNewContact(contact))
+});
+
+const mapStateToProps = connect(({ contacts }) => ({ contacts }), mapDispatchToProps);
+
+export default mapStateToProps(ExpenseForm);
