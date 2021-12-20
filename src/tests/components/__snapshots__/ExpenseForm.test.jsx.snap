@@ -9,6 +9,7 @@ exports[`should render error for invalid form submission 1`] = `
   >
     <ForwardRef(TextareaAutosize)
       className="expense-form__title"
+      id="title"
       onChange={[Function]}
       placeholder="Title"
       value=""
@@ -50,7 +51,7 @@ exports[`should render error for invalid form submission 1`] = `
         previousYearButtonLabel="Previous Year"
         readOnly={false}
         renderDayContents={[Function]}
-        selected={2021-12-19T10:32:09.035Z}
+        selected={2021-12-20T23:46:52.972Z}
         selectsStart={true}
         shouldCloseOnSelect={true}
         showFourColumnMonthYearPicker={false}
@@ -77,6 +78,7 @@ exports[`should render error for invalid form submission 1`] = `
       <Input
         className="expense-form__amount"
         data-style="secondary"
+        id="amount"
         label="Amount"
         onChange={[Function]}
         type="text"
@@ -87,12 +89,32 @@ exports[`should render error for invalid form submission 1`] = `
     <fieldset
       className="expense-form__contacts"
     >
-      <Input
-        data-style="secondary"
+      <_default
+        id="contact"
         label="Contact"
         onChange={[Function]}
-        type="text"
-        value=""
+        options={
+          Array [
+            Object {
+              "label": "Mark Matthews",
+              "value": "124",
+            },
+            Object {
+              "label": "Alex Vincent",
+              "value": "1642",
+            },
+            Object {
+              "label": "Bank Of Ireland",
+              "value": "764",
+            },
+          ]
+        }
+        value={
+          Object {
+            "id": undefined,
+            "name": undefined,
+          }
+        }
       />
     </fieldset>
     <fieldset
@@ -101,6 +123,7 @@ exports[`should render error for invalid form submission 1`] = `
       <Input
         className="expense-form__categories"
         data-style="secondary"
+        id="categories"
         label="Categories"
         onChange={[Function]}
         type="text"
@@ -138,6 +161,7 @@ exports[`should render error for invalid form submission 2`] = `
   >
     <ForwardRef(TextareaAutosize)
       className="expense-form__title"
+      id="title"
       onChange={[Function]}
       placeholder="Title"
       value=""
@@ -179,7 +203,7 @@ exports[`should render error for invalid form submission 2`] = `
         previousYearButtonLabel="Previous Year"
         readOnly={false}
         renderDayContents={[Function]}
-        selected={2021-12-19T10:32:09.035Z}
+        selected={2021-12-20T23:46:52.972Z}
         selectsStart={true}
         shouldCloseOnSelect={true}
         showFourColumnMonthYearPicker={false}
@@ -206,6 +230,7 @@ exports[`should render error for invalid form submission 2`] = `
       <Input
         className="expense-form__amount"
         data-style="secondary"
+        id="amount"
         label="Amount"
         onChange={[Function]}
         type="text"
@@ -216,12 +241,32 @@ exports[`should render error for invalid form submission 2`] = `
     <fieldset
       className="expense-form__contacts"
     >
-      <Input
-        data-style="secondary"
+      <_default
+        id="contact"
         label="Contact"
         onChange={[Function]}
-        type="text"
-        value=""
+        options={
+          Array [
+            Object {
+              "label": "Mark Matthews",
+              "value": "124",
+            },
+            Object {
+              "label": "Alex Vincent",
+              "value": "1642",
+            },
+            Object {
+              "label": "Bank Of Ireland",
+              "value": "764",
+            },
+          ]
+        }
+        value={
+          Object {
+            "id": undefined,
+            "name": undefined,
+          }
+        }
       />
     </fieldset>
     <fieldset
@@ -230,6 +275,7 @@ exports[`should render error for invalid form submission 2`] = `
       <Input
         className="expense-form__categories"
         data-style="secondary"
+        id="categories"
         label="Categories"
         onChange={[Function]}
         type="text"
@@ -285,6 +331,7 @@ exports[`should render expense form correctly 1`] = `
   >
     <ForwardRef(TextareaAutosize)
       className="expense-form__title"
+      id="title"
       onChange={[Function]}
       placeholder="Title"
       value=""
@@ -326,7 +373,7 @@ exports[`should render expense form correctly 1`] = `
         previousYearButtonLabel="Previous Year"
         readOnly={false}
         renderDayContents={[Function]}
-        selected={2021-12-19T10:32:08.932Z}
+        selected={2021-12-20T23:46:52.681Z}
         selectsStart={true}
         shouldCloseOnSelect={true}
         showFourColumnMonthYearPicker={false}
@@ -353,6 +400,7 @@ exports[`should render expense form correctly 1`] = `
       <Input
         className="expense-form__amount"
         data-style="secondary"
+        id="amount"
         label="Amount"
         onChange={[Function]}
         type="text"
@@ -363,12 +411,32 @@ exports[`should render expense form correctly 1`] = `
     <fieldset
       className="expense-form__contacts"
     >
-      <Input
-        data-style="secondary"
+      <_default
+        id="contact"
         label="Contact"
         onChange={[Function]}
-        type="text"
-        value=""
+        options={
+          Array [
+            Object {
+              "label": "Mark Matthews",
+              "value": "124",
+            },
+            Object {
+              "label": "Alex Vincent",
+              "value": "1642",
+            },
+            Object {
+              "label": "Bank Of Ireland",
+              "value": "764",
+            },
+          ]
+        }
+        value={
+          Object {
+            "id": undefined,
+            "name": undefined,
+          }
+        }
       />
     </fieldset>
     <fieldset
@@ -377,6 +445,7 @@ exports[`should render expense form correctly 1`] = `
       <Input
         className="expense-form__categories"
         data-style="secondary"
+        id="categories"
         label="Categories"
         onChange={[Function]}
         type="text"

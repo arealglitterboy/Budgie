@@ -43,8 +43,8 @@ function findSort(sortBy) {
         case "byOldest":            return (e1, e2) => (e1.date - e2.date)
         case "byAmountDescending":  return (e1, e2) => (e2.amount - e1.amount)
         case "byAmountAscending":   return (e1, e2) => (e1.amount - e2.amount)
-        case "byTitleDescending":   return (e1, e2) => (stringCompare(e2.title, e1.title))
-        case "byTitleAscending":    return (e1, e2) => (stringCompare(e1.title, e2.title))
+        case "byTitleDescending":   return (e1, e2) => (stringCompare(e1.title, e2.title))
+        case "byTitleAscending":    return (e1, e2) => (stringCompare(e2.title, e1.title))
     }
 }
 

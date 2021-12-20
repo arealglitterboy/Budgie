@@ -5,11 +5,25 @@ import { createFromDefault } from '../fixtures/filters.fixture';
 test('should setup default filter values', () => {
     const state = filtersReducer(undefined, { type: '@@INIT' });
     expect(state).toEqual({
+        contacts: [],
+        categories: [],
         term: '',
         sortBy: 'byNewest',
         startDate: undefined,
         endDate: undefined
     });
+});
+
+// Set contacts filter
+test('should set contacts filter', () => {
+    const state = filtersReducer(undefined, {type: 'SET_CONTACTS', contacts: [1249, 6432]});
+    expect(state.contacts).toEqual([1249, 6432]);
+});
+
+// Set categories filter
+test('should set the categories filter', () => {
+    const state = filtersReducer(undefined, {type: 'SET_CATEGORIES', categories: ['Food', 'Rent']});
+    expect(state.categories).toEqual(['Food', 'Rent']);
 });
 
 // Set sort by
@@ -34,6 +48,19 @@ test('should set sort by newest', () => {
 test('should set sort by oldest', () => {
     const state = filtersReducer(undefined, { type: 'SORT_BY_OLDEST' });
     expect(state.sortBy).toBe('byOldest');
+});
+
+test('should set sort by title ascending', () => {
+    const currentState = createFromDefault({ sortBy: 'byAmountAscending' });
+    const action = { type: 'SORT_BY_TITLE_ASCENDING' };
+
+    const state = filtersReducer(currentState, action);
+    expect(state.sortBy).toBe('byTitleAscending');
+});
+
+test('should set sort by title descending', () => {
+    const state = filtersReducer(undefined, { type: 'SORT_BY_TITLE_DESCENDING' });
+    expect(state.sortBy).toBe('byTitleDescending');
 });
 
 // Setting the search term

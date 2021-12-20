@@ -1,10 +1,18 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import ExpenseForm from "../../components/ExpenseForm";
+import { ExpenseForm } from "../../components/ExpenseForm";
 import { expenses } from "../fixtures/expenses.fixture";
+import { contacts } from '../fixtures/contacts.fixture';
 
-const getWrapper = (props = {}) => (shallow(<ExpenseForm {...props} />));
+let addNewContact, onSubmit;
+
+beforeEach(() => {
+    addNewContact = jest.fn();
+    onSubmit = jest.fn();
+});
+
+const getWrapper = (props = {}) => (shallow(<ExpenseForm addNewContact={addNewContact} onSubmit={onSubmit} contacts={contacts} {...props} />));
 
 const simulateChange = (id, state, value, wrapper = getWrapper()) => {
     wrapper.find(`#${id}`).simulate('change', { target: { value } });
@@ -13,8 +21,8 @@ const simulateChange = (id, state, value, wrapper = getWrapper()) => {
 };
 
 test('should render expense form correctly', () => {
-    // const wrapper = shallow(<ExpenseForm />);
-    const wrapper = getWrapper({ today: new Date("2021-09-20T16:00:41.960Z") });
+    const wrapper = getWrapper();
+    // const wrapper = getWrapper({ today: new Date("2021-09-20T16:00:41.960Z") });
     expect(wrapper).toMatchSnapshot();
 });
 
@@ -24,7 +32,7 @@ test('should render expense form with expense data', () => {
 });
 
 test('should render error for invalid form submission', () => {
-    const wrapper = getWrapper({ today: new Date("2021-09-20T16:00:41.990Z") });
+    const wrapper = getWrapper();
     expect(wrapper).toMatchSnapshot(); // Check before the error
 
     wrapper.find('form').simulate('submit', { preventDefault: () => {} }); // Find the form, then simulate a submit event with an event object
