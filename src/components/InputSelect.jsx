@@ -1,48 +1,43 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react';
+import Select from 'react-select';
 
-export default class InputSelect extends Component {
-    state = {
-        value: '',
-        active: 'inactive'
-    }
+export default (props) => {
+        const [active, setActive] = useState(!!props.value);
+        const [value, setValue] = useState(props.value);
+        const onChange = (change) => {
+            setValue(change);
+            props.onChange(change);
+        };
 
-    onFocus = (e) => {
-        this.setState({ active: 'active' });
-    }
+        const cleanStyles = ({ padding, margin, paddingTop, paddingBottom, marginTop, marginBottom, ...previous}) => (previous)
 
-    onChange = (e) => {
-        const value = e.target.value;
-        this.setState({ value });
-
-        if (this.props.onChange) {
-            this.props.onChange(value);
+        const customStyles = {
+            control: () => ({}),
+            valueContainer: cleanStyles,
+            inputContainer: cleanStyles,
+            input: cleanStyles,
+            clearIndicator: cleanStyles,
+            dropdownIndicator: cleanStyles
         }
-    }
 
-    onBlur = () => {
-        if (!this.state.value) {
-            this.setState(() => ({ active: 'inactive' }));
-        }
-    }
-
-    render() {
         return (
-            <fieldset className={`input input--select input--${this.state.active} ${this.props.className || ''}`}>
-                <label htmlFor="" className={`input__label input__label--${this.state.active}`}>{this.props.label}</label>
-                <select
-                    className="input__input input__input--select"
-                    id={this.props.id}
-                    onFocus={this.onFocus}
-                    onBlur={this.onBlur}
-                    onChange={this.onChange}
-                    value={this.state.value}
-                >
-                    <option value="" disabled hidden></option>
-                    {
-                        this.props.options && this.props.options.map(({ value, title }) => <option className="input__input--select__option" key={value} value={value}>{title}</option>)
-                    }
-                </select>
-            </fieldset>
+            <label data-style={props['data-style']} htmlFor={props.id} className={`input input--${active} ${props.className || ''}`}>
+                <span className={`input__label input__label--${active}`}>{props.label}</span>
+                <Select 
+                    options={props.options}
+                    id={props.id}
+                    onFocus={() => setActive('active')}
+                    onBlur={() => setActive(value ? 'active' : 'inactive')}
+                    isClearable
+                    backspaceRemovesValue
+                    placeholder=''
+                    isSearchable
+                    value={value}
+                    onChange={onChange}
+                    className="input__select"
+                    classNamePrefix="input__select"
+                    styles={customStyles}
+                />
+            </label>
         );
     }
-}

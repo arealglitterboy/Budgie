@@ -1,6 +1,6 @@
 @use "../base/light"
 
-.expense-item
+.expense
 	background-color: light.$secondary-container
 	color: light.$on-secondary-container
 
@@ -14,7 +14,6 @@
 	grid-template-columns: auto 1fr auto
 
 	border-radius: 1.25rem
-	// box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
 
 	&__icon
 		grid-area: icon
@@ -37,7 +36,7 @@
 		padding: 0.35em 0.5em
 		border-radius: 1em 1em 1em 0.2em
 		font: 400 1.1em/1 $ff-primary
-		align-self: flex-start
+		justify-self: flex-end
 	
 	&__footer 
 		grid-area: footer

@@ -1,8 +1,9 @@
 import React from 'react';
-import ReactDatePicker from 'react-datepicker';
-import { connect } from 'react-redux';
 
+import { connect } from 'react-redux';
 import { setFilterTerm, setSortBy, setEndDate, setStartDate } from '../actions/filters.action';
+
+import ReactDatePicker from 'react-datepicker';
 
 import { isValidDate } from '../utility/validateDates';
 

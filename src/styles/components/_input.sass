@@ -9,6 +9,9 @@
 	width: 100%
 	border-width: 2px
 	border-style: solid
+	background-color: light.$secondary-container
+	color: light.$on-secondary-container
+	border-color: light.$on-secondary-container
 
 	&--text
 		cursor: text
@@ -27,6 +30,9 @@
 			padding: 0
 			align-self: center
 			pointer-events: none
+	
+	&--active
+		border-color: light.$secondary
 
 	&__label
 		@include unselectable()
@@ -45,6 +51,7 @@
 
 		&--active
 			transform: translateY(-40%)
+			color: light.$secondary
 			font-weight: 400
 			font-size: 0.75em
 			opacity: 1
@@ -73,44 +80,41 @@
 		&:focus-visible 
 			outline: none
 	
+	&__select
+		grid-area: main
+		display: grid
+		height: max-content
+		width: 100%
+
+		background: none
+		outline: none
+		border: none
+		align-self: end
+		&__control
+			display: grid
+			grid-template-areas: "value dropdown"
+			grid-template-columns: 1fr auto
+		&__value-container
+			grid-area: value
+			width: 100%
+			padding-block-start: 0.8rem !important
+			height: max-content
+		&__indicator-seperator
+			padding: 0
+			height: 100%
+			align-self: center !important
+		&__indicators
+			color: light.$on-secondary-container !important
+			grid-area: dropdown
+			display: flex
+			flex-flow: row nowrap
+			overflow-y: visible
+			align-self: center !important
+			align-items: center
+
 	&__textarea
 		resize: none
 		overflow-y: hidden
 
 	&__label:not(&__label--active) + &__input::placeholder
 		opacity: 0
-
-	&[data-style='primary']
-		background: light.$primary-container
-		color: light.$on-primary-container
-		border-color: light.$on-primary-container
-		
-	&--active[data-style='primary']
-		border-color: light.$primary
-		
-	&[data-style='primary'] &__label--active
-		color: light.$primary
-
-	
-	&[data-style='secondary']
-		background-color: light.$secondary-container
-		color: light.$on-secondary-container
-		border-color: light.$on-secondary-container
-
-	&[data-style='secondary'] &__label--active		
-		color: light.$secondary
-
-	&--active[data-style='secondary']
-		border-color: light.$secondary
-
-		
-	&[data-style='tertiary']
-		background-color: light.$tertiary-container
-		color: light.$on-tertiary-container
-		border-color: light.$on-tertiary-container
-
-	&[data-style='tertiary'] &__label--active		
-		color: light.$tertiary
-
-	&--active[data-style='tertiary']
-		border-color: light.$tertiary

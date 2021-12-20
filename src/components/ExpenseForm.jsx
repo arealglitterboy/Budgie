@@ -1,8 +1,11 @@
 import React from 'react';
+
 import ReactDatePicker from 'react-datepicker';
 import TextareaAutosize from 'react-textarea-autosize';
+import Select from 'react-select'
 
 import {Input} from './Input';
+import InputSelect from './InputSelect';
 import {InputArea} from './InputArea';
 
 export default class ExpenseForm extends React.Component {
@@ -86,6 +89,7 @@ export default class ExpenseForm extends React.Component {
                             data-style={style}
                             className="expense-form__amount"
                             type="text"
+                            id='amount'
                             label="Amount"
                             value={this.state.amount}
                             onChange={this.onAmountChange}
@@ -94,12 +98,12 @@ export default class ExpenseForm extends React.Component {
                     </fieldset>
 
                     <fieldset className="expense-form__contacts">
-                        <Input
-                            data-style={style}
-                            type="text"
-                            label="Contact"
-                            onChange={this.onContactChange}
+                        <InputSelect
                             value={this.state.contact}
+                            onChange={this.onContactChange}
+                            id='contact'
+                            label='Contact'
+                            options={[{label: 'Test', value: 'test'}, {label: 'Test Also a Test', value: 'alsotest'}]}
                         />
                     </fieldset>
 
@@ -109,6 +113,7 @@ export default class ExpenseForm extends React.Component {
                             className="expense-form__categories"
                             type="text"
                             label="Categories"
+                            id='categories'
                             value={this.state.categories.toString()}
                             onChange={this.onCategoriesChange}
                         />
