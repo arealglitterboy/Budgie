@@ -1,0 +1,1 @@
+export const stringCompare = (str1, str2) => (str1.localeCompare(str2, 'en-IE', {sensitivity: 'base'}));

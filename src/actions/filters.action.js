@@ -1,14 +1,18 @@
+export const setContacts = (contacts = []) => ({ type: 'SET_CONTACTS', contacts });
+
+export const setCategories = (categories = []) => ({ type: 'SET_CATEGORIES', categories });
+
 export const setFilterTerm = (term = '') => ({ type: 'SET_FILTER_TERM', term });
 
 export const setSortBy = (sortBy = 'byNewest') => {
     switch(sortBy) {
-        case "byNewest": return sortByNewest();
-        case "byOldest": return sortByOldest();
-        case "byAmountDescending": return sortByAmountDescending();
-        case "byAmountAscending": return sortByAmountAscending();
-        case "byTitleDescending": return sortByTitleDescending();
-        case "byTitleAscending": return sortByTitleAscending();
-        default: return sortByNewest();
+        case "byNewest":            return sortByNewest();
+        case "byOldest":            return sortByOldest();
+        case "byAmountDescending":  return sortByAmountDescending();
+        case "byAmountAscending":   return sortByAmountAscending();
+        case "byTitleDescending":   return sortByTitleDescending();
+        case "byTitleAscending":    return sortByTitleAscending();
+        default:                    return sortByNewest();
     }
 };
 

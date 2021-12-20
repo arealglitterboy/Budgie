@@ -9,6 +9,7 @@ const Header = (props) => (
         <nav className="page-header__nav">
             <NavLink to="/" className="page-header__nav__link" exact activeClassName="page-header__nav__link--active">Dashboard</NavLink>
             <NavLink to="/create" className="page-header__nav__link" activeClassName="page-header__nav__link--active">Create</NavLink>
+            <NavLink to="/contacts" className="page-header__nav__link" activeClassName="page-header__nav__link--active">Contacts</NavLink>
             <NavLink to="/help" className="page-header__nav__link" activeClassName="page-header__nav__link--active">Help</NavLink>
         </nav>
     </header>

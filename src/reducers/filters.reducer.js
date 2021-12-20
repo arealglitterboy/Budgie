@@ -1,4 +1,6 @@
 const defaultState = {
+    contacts: [],
+    categories: [],
     term: '',
     sortBy: 'byNewest',
     startDate: undefined,
@@ -7,12 +9,20 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
     switch (action.type) {
+        case 'SET_CONTACTS':
+            return { ...state, contacts: [...action.contacts] };
+            
+        case 'SET_CATEGORIES':
+            return { ...state, categories: [...action.categories] };
+
         case 'SET_FILTER_TERM':
             return { ...state, term: action.term };
+
         case 'SET_START_DATE':
             return { ...state, startDate: action.date };
         case 'SET_END_DATE':
             return { ...state, endDate: action.date };
+
         case 'SORT_BY_NEWEST':
             return { ...state, sortBy: 'byNewest' }
         case 'SORT_BY_OLDEST':
@@ -25,6 +35,7 @@ export default (state = defaultState, action) => {
             return { ...state, sortBy: 'byTitleDescending' };
         case 'SORT_BY_TITLE_ASCENDING':
             return { ...state, sortBy: 'byTitleAscending' };
+
         default:
             return state;
     }
