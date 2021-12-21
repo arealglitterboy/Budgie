@@ -1,4 +1,3 @@
-@use "../base/light"
 .input
 	display: grid
 	position: relative
@@ -9,30 +8,14 @@
 	width: 100%
 	border-width: 2px
 	border-style: solid
-	background-color: light.$secondary-container
-	color: light.$on-secondary-container
-	border-color: light.$on-secondary-container
+	background-color: var(--container)
+	border-color: var(--placeholder-colour, #fff)
 
 	&--text
 		cursor: text
 
-	&--select
-		cursor: default
-		width: 100%
-
-		&::after
-			content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cpath d='M0 0h24v24H0V0z' fill='none'/%3E%3Cpath d='M8.71 11.71l2.59 2.59c.39.39 1.02.39 1.41 0l2.59-2.59c.63-.63.18-1.71-.71-1.71H9.41c-.89 0-1.33 1.08-.7 1.71z'/%3E%3C/svg%3E")
-			display: inline
-			grid-area: main
-			width: 1.1rem
-			justify-self: right
-			margin: 0
-			padding: 0
-			align-self: center
-			pointer-events: none
-	
 	&--active
-		border-color: light.$secondary
+		border-color: var(--colour)
 
 	&__label
 		@include unselectable()
@@ -45,13 +28,13 @@
 
 		transform: translateY(40%)
 		grid-area: main
-		opacity: 0.6
 		pointer-events: none
 		height: 1em
+		color: var(--placeholder-colour)
 
 		&--active
 			transform: translateY(-40%)
-			color: light.$secondary
+			color: var(--colour)
 			font-weight: 400
 			font-size: 0.75em
 			opacity: 1
@@ -66,6 +49,7 @@
 		outline: none
 		border: none
 		align-self: end
+		color: var(--on-container)
 
 		&--select
 			height: max-content
@@ -95,16 +79,24 @@
 			grid-template-areas: "value dropdown"
 			grid-template-columns: 1fr auto
 		&__value-container
+			cursor: text
 			grid-area: value
 			width: 100%
 			padding-block-start: 0.8rem !important
 			height: max-content
+		
+		&--no-search &__value-container
+			cursor: default
+		&__menu
+			color: var(--on-background)
+			background: var(--background)
 		&__indicator-seperator
 			padding: 0
 			height: 100%
 			align-self: center !important
 		&__indicators
-			color: light.$on-secondary-container !important
+			color: var(--on-container) !important
+			cursor: pointer
 			grid-area: dropdown
 			display: flex
 			flex-flow: row nowrap
@@ -115,6 +107,24 @@
 	&__textarea
 		resize: none
 		overflow-y: hidden
+		&::placeholder
+			color: var(--placeholder-colour)
+			transition: opacity ease 150ms
 
 	&__label:not(&__label--active) + &__input::placeholder
 		opacity: 0
+
+.react-datepicker
+	&__day
+		border-radius: 100%
+		&:hover
+			border-radius: 100%
+		&--outside-month
+			opacity: 0.25
+		&--today
+			background-color: var(--colour)
+			color: var(--on-colour)
+
+			&:hover
+				filter: saturate(150%)
+				background-color: var(--colour)

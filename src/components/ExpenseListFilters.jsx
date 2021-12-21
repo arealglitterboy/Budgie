@@ -1,7 +1,8 @@
-import React from 'react';
+'use strict';
+import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
-import { setFilterTerm, setSortBy, setEndDate, setStartDate } from '../actions/filters.action';
+import { setFilterTerm, setContacts, setSortBy, setEndDate, setStartDate } from '../actions/filters.action';
 
 import ReactDatePicker from 'react-datepicker';
 
@@ -9,110 +10,118 @@ import { isValidDate } from '../utility/validateDates';
 
 import { Input } from './Input';
 import InputSelect from './InputSelect';
+import InputMultiSelect from './InputMultiSelect';
 
-export class ExpenseListFilters extends React.Component {
-    state = {
-        startDate: undefined,
-        endDate: undefined,
-        filtersVisible: false
+const option = (value, label) => ({ value, label });
+
+const options = [
+    option('byNewest', 'By Newest'),
+    option('byOldest', 'By Oldest'),
+    option('byAmountDescending', 'Amount Descending'),
+    option('byAmountAscending', 'Amount Ascending'),
+    option('byTitleDescending', 'Title Descending'),
+    option('byTitleAscending', 'Title Ascending')
+];
+
+const onDateChange = (onSuccess) => ((input) =>{
+    const date = new Date(input);
+
+    if (isValidDate(date)) {
+        onSuccess(date);
+    }
+});
+
+export const ExpenseListFilters = (props) => {
+    let [filtersVisible, setFiltersVisible] = useState(false);
+    const toggleFiltersVisibility = () => setFiltersVisible(!filtersVisible);
+    
+    const clearFilters = () => {
+        props.setStartDate();
+        props.setEndDate();
+        props.setSortBy();
+        props.setContacts();
     };
     
-    onSearchTermChange = (e) => this.props.setFilterTerm(e.target.value);
+    const contactToOption = ({id: value, name: label}) => ({ label, value });
+    const selectContacts = ({id}) => props.filters.contacts.includes(id);
 
-    onSortChange = (e) => this.props.setSortBy(e.target.value);
+    const StartDateInput = React.forwardRef(({ value, onClick }, ref) => <Input type="text" label="Start Date" id="set-start-date" ref={ref} value={value} onChange={onDateChange(props.setStartDate)} onClick={onClick} />);
+    const EndDateInput = React.forwardRef(({ value, onClick }, ref) => <Input type="text" label="End Date" id="set-end-date" ref={ref} value={value} onChange={onDateChange(props.setEndDate)} onClick={onClick} />);        
 
-    onStartDateChange = (input) => {
-        const date = new Date(input);
+    return (
+        <header className="filters">
+            <Input className="filters__search" label="Search" id="search-term" type="search" onChange={props.setFilterTerm} />
 
-        if (isValidDate(date)) {
-            this.setStartDate(date);
-        }
-    }
+            <button className="filters__button" onClick={toggleFiltersVisibility} data-filters-visible={filtersVisible}>Filters</button>
 
-    onEndDateChange = (input) => {
-        const date = new Date(input);
+            <fieldset className="filters__options" data-filters-visible={filtersVisible}>
+                <div>
+                    <ReactDatePicker
+                        selectsStart
+                        id="start-date"
+                        className="expense-filters__dates__input"
+                        dateFormat="dd/MM/yyyy"
+                        selected={props.filters.startDate}
+                        onChange={props.setStartDate}
 
-        if (isValidDate(date)) {
-            this.setEndDate(date);
-        }
-    }
-    
-    setSortBy = (sortBy) => this.props.setSortBy(sortBy);
+                        startDate={props.filters.startDate}
+                        endDate={props.filters.endDate}
 
-    setStartDate = (startDate) => this.props.setStartDate(startDate);
-
-    setEndDate = (endDate) => this.props.setEndDate(endDate);
-
-    toggleFilters = () => this.setState(() => ({ filtersVisible: !this.state.filtersVisible }))
-    
-    option = (value, title) => ({ value, title });
-
-    options = [
-        this.option('byNewest', 'By Newest'),
-        this.option('byOldest', 'By Oldest'),
-        this.option('byAmountDescending', 'Amount Descending'),
-        this.option('byAmountAscending', 'Amount Ascending'),
-        this.option('byTitleDescending', 'Title Descending'),
-        this.option('byTitleAscending', 'Title Ascending')
-    ];
-        
-    render() {
-        const StartDateInput = React.forwardRef(({ value, onClick }, ref) => <Input type="text" label="Start Date" id="set-start-date" ref={ref} value={value} onChange={this.onStartDateChange} onClick={onClick} />);
-        const EndDateInput = React.forwardRef(({ value, onClick }, ref) => <Input type="text" label="End Date" id="set-end-date" ref={ref} value={value} onChange={this.onEndDateChange} onClick={onClick} />);
-        
-        return (
-            <header className="filters">
-                <Input className="filters__search" label="Search" id="search-term" type="search" onChange={this.props.setFilterTerm} />
-
-                <button className="filters__button" onClick={this.toggleFilters} data-filters-visible={this.state.filtersVisible}>Filters</button>
-
-                <fieldset className="filters__options" data-filters-visible={this.state.filtersVisible}>
-                    <div>
-                        <InputSelect label="Sort" id="sort-expenses" onChange={this.setSortBy} options={this.options} />
-                    </div>
-                    <div>
-                        <ReactDatePicker
-                            selectsStart
-                            id="start-date"
-                            className="expense-filters__dates__input"
-                            dateFormat="dd/MM/yyyy"
-                            selected={this.props.filters.startDate}
-                            onChange={this.setStartDate}
-                            startDate={this.props.filters.startDate}
-                            endDate={this.props.filters.endDate}
-                            maxDate={this.state.endDate}
-                            customInput={<StartDateInput />}
-                        />
-                    </div>
-                    <div>
-                        <ReactDatePicker
-                            selectsEnd
-                            id="end-date"
-                            className="expense-filters__dates__input"
-                            dateFormat="dd/MM/yyyy"
-                            selected={this.props.filters.endDate}
-                            onChange={this.setEndDate}
-                    
-                            startDate={this.props.filters.startDate}
-                            endDate={this.props.filters.endDate}
-                    
-                            minDate={this.state.startDate}
-                            customInput={<EndDateInput />}
-                        />
-                    </div>
-                </fieldset>
-            </header>
-        );
-    }
+                        maxDate={props.filters.endDate}
+                        customInput={<StartDateInput />}
+                    />
+                </div>
+                <div>
+                    <ReactDatePicker
+                        selectsEnd
+                        id="end-date"
+                        className="expense-filters__dates__input"
+                        dateFormat="dd/MM/yyyy"
+                        selected={props.filters.endDate}
+                        onChange={props.setEndDate}
+                
+                        startDate={props.filters.startDate}
+                        endDate={props.filters.endDate}
+                
+                        minDate={props.filters.startDate}
+                        customInput={<EndDateInput />}
+                    />
+                </div>
+                <div>
+                    <InputSelect
+                        label="Sort"
+                        id="sort-expenses"
+                        onChange={props.setSortBy}
+                        value={options.find(({value}) => value === props.filters.sortBy)}
+                        isSearchable={false}
+                        isClearable={false}
+                        options={options}
+                    />
+                </div>
+                <div>
+                    <InputMultiSelect 
+                        label="Contacts"
+                        id="contacts"
+                        onChange={props.setContacts}
+                        value={props.contacts.filter(selectContacts).map(contactToOption)}
+                        options={props.contacts.map(contactToOption)}
+                    />
+                </div>
+                <button className="expense-filters__clear" onClick={clearFilters}>clear</button>
+            </fieldset>
+        </header>
+    );
 }
 
+
 const mapDispatchToProps = (dispatch) => ({
+    setFilterTerm: (term) => dispatch(setFilterTerm(term)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setSortBy: (sortBy) => dispatch(setSortBy(sortBy)),
-    setFilterTerm: (term) => dispatch(setFilterTerm(term))
+    setContacts: (contacts) => dispatch(setContacts(contacts))
 });
 
-const mapStateToProps = connect((state) => ({ filters: state.filters }), mapDispatchToProps);
+const mapStateToProps = connect(({ filters, contacts }) => ({ filters, contacts }), mapDispatchToProps);
 
 export default mapStateToProps(ExpenseListFilters);

@@ -30,6 +30,13 @@ exports[`should render Header correctly 1`] = `
     <NavLink
       activeClassName="page-header__nav__link--active"
       className="page-header__nav__link"
+      to="/contacts"
+    >
+      Contacts
+    </NavLink>
+    <NavLink
+      activeClassName="page-header__nav__link--active"
+      className="page-header__nav__link"
       to="/help"
     >
       Help

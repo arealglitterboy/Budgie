@@ -23,7 +23,7 @@ exports[`should render expense list filters correctly 1`] = `
     data-filters-visible={false}
   >
     <div>
-      <InputSelect
+      <_default
         id="sort-expenses"
         label="Sort"
         onChange={[Function]}
@@ -194,7 +194,7 @@ exports[`should render expense list filters with alt data correctly 1`] = `
     data-filters-visible={false}
   >
     <div>
-      <InputSelect
+      <_default
         id="sort-expenses"
         label="Sort"
         onChange={[Function]}

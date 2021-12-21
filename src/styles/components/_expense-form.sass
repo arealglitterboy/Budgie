@@ -15,6 +15,14 @@
 		text-align: center
 
 .expense-form
+	--placeholder-colour: #{desaturate(darken(light.$secondary-container, 30%), 35%)}
+	--colour: #{light.$secondary}
+	--on-colour: #{light.$on-secondary}
+	--container: #{light.$secondary-container}
+	--on-container: #{light.$on-secondary-container}
+	--background: #{light.$background}
+	--on-background: #{light.$on-background}
+
 	display: grid
 	gap: 0.6em 1em
 	display: flex
@@ -26,8 +34,8 @@
 	max-width: 35rem
 	min-width: 15rem
 
-	background-color: light.$secondary-container
-	color: light.$on-secondary-container
+	background-color: var(--container)
+	color: var(--on-container)
 	box-shadow: $shadow
 
 	& > *

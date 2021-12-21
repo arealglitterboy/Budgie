@@ -36,6 +36,9 @@ export default (state = defaultState, action) => {
         case 'SORT_BY_TITLE_ASCENDING':
             return { ...state, sortBy: 'byTitleAscending' };
 
+        case 'RESET_FILTERS':
+            return { ...defaultState };
+
         default:
             return state;
     }

@@ -9,34 +9,30 @@ const customStyles = {
     inputContainer: cleanStyles,
     input: cleanStyles,
     clearIndicator: cleanStyles,
-    dropdownIndicator: cleanStyles
+    dropdownIndicator: cleanStyles,
+    option: (previous) => ({...previous, cursor: 'pointer'})
 }
 
 export default (props) => {
-        const [value, setValue] = useState(props.value);
-        const [active, setActive] = useState(!!props.value);
-        
-        const onChange = (change) => {
-            setValue(change);
-            props.onChange(change ? change.value : "");
-        };
+        const [active, setActive] = useState(!!props.value ? 'active' : 'inactive');
+
+        const onChange = ({value=''} = {}) => props.onChange(value);
 
         return (
-            <label data-style={props['data-style']} htmlFor={props.id} className={`input input--${active} ${props.className || ''}`}>
+            <label htmlFor={props.id} className={`input input--${active} ${props.className || ''}`}>
                 <span className={`input__label input__label--${active}`}>{props.label}</span>
                 <Select 
                     options={props.options}
                     id={props.id}
                     onFocus={() => setActive('active')}
-                    onBlur={() => setActive(value ? 'active' : 'inactive')}
-                    isClearable
+                    onBlur={() => setActive(props.value ? 'active' : 'inactive')}
+                    isClearable={props.hasOwnProperty('isClearable') ? !!props.isClearable : true}
                     backspaceRemovesValue
                     placeholder=''
-                    isSearchable
-                    isMulti={!!props.isMulti}
-                    value={value}
+                    isSearchable={props.hasOwnProperty('isSearchable') ? !!props.isSearchable : true}
+                    value={props.value}
                     onChange={onChange}
-                    className="input__select"
+                    className={`input__select${props.hasOwnProperty('isSearchable') && !props.isSearchable ? ' input__select--no-search' : ''}`}
                     classNamePrefix="input__select"
                     styles={customStyles}
                 />

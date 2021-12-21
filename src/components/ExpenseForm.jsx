@@ -108,7 +108,7 @@ export class ExpenseForm extends React.Component {
 
                     <fieldset className="expense-form__contacts">
                         <InputSelect
-                            value={this.state.contact}
+                            value={{label: this.state.contact.name, value: this.state.contact.id}}
                             onChange={this.onContactChange}
                             id='contact'
                             label='Contact'
