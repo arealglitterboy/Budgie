@@ -50,16 +50,30 @@ export const ExpenseListFilters = (props) => {
 
     return (
         <header className="filters">
-            <Input className="filters__search" label="Search" id="search-term" type="search" onChange={props.setFilterTerm} />
 
-            <button className="filters__button" onClick={toggleFiltersVisibility} data-filters-visible={filtersVisible}>Filters</button>
+            <section className="filters__top-level">
+                <Input className="filters__top-level__search" label="Search" id="search-term" type="search" onChange={props.setFilterTerm} />
+                <div>
+                    <InputSelect
+                        label="Sort"
+                        id="sort-expenses"
+                        className="filters__top-level__sort"
+                        onChange={props.setSortBy}
+                        value={options.find(({value}) => value === props.filters.sortBy)}
+                        isSearchable={false}
+                        isClearable={false}
+                        options={options}
+                    />
+                </div>
+                <button className="filters__top-level__button" onClick={toggleFiltersVisibility} data-filters-visible={filtersVisible}>Filters</button>
+            </section>
 
-            <fieldset className="filters__options" data-filters-visible={filtersVisible}>
+            <section className="filters__options" data-filters-visible={filtersVisible}>
                 <div>
                     <ReactDatePicker
                         selectsStart
                         id="start-date"
-                        className="expense-filters__dates__input"
+                        className="filters__options__dates filters__options__dates--start"
                         dateFormat="dd/MM/yyyy"
                         selected={props.filters.startDate}
                         onChange={props.setStartDate}
@@ -75,7 +89,7 @@ export const ExpenseListFilters = (props) => {
                     <ReactDatePicker
                         selectsEnd
                         id="end-date"
-                        className="expense-filters__dates__input"
+                        className="filters__options__dates filters__options__dates--end"
                         dateFormat="dd/MM/yyyy"
                         selected={props.filters.endDate}
                         onChange={props.setEndDate}
@@ -88,27 +102,17 @@ export const ExpenseListFilters = (props) => {
                     />
                 </div>
                 <div>
-                    <InputSelect
-                        label="Sort"
-                        id="sort-expenses"
-                        onChange={props.setSortBy}
-                        value={options.find(({value}) => value === props.filters.sortBy)}
-                        isSearchable={false}
-                        isClearable={false}
-                        options={options}
-                    />
-                </div>
-                <div>
                     <InputMultiSelect 
                         label="Contacts"
                         id="contacts"
+                        className="filters__options__contacts"
                         onChange={props.setContacts}
                         value={props.contacts.filter(selectContacts).map(contactToOption)}
                         options={props.contacts.map(contactToOption)}
                     />
                 </div>
-                <button className="expense-filters__clear" onClick={clearFilters}>clear</button>
-            </fieldset>
+                <button className="filters__options__clear" onClick={clearFilters}>clear</button>
+            </section>
         </header>
     );
 }
