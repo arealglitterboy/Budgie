@@ -18,7 +18,7 @@ const createFilter = ({ contacts=[], term = '', categories=[], startDate, endDat
 
     if (term) {
         const regExp = new RegExp(term, 'gi');
-        const includes = (haystack) => haystack.search(regExp) >= 0;
+        const includes = (haystack = '') => haystack.search(regExp) >= 0;
         filters = [...filters, (item) => includes(item.title) || includes(item.note)]; // search for the search term in the title and the note
     }
 

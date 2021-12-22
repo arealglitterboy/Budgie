@@ -1,4 +1,5 @@
 @use "../base/light"
+@use "../base/shadow"
 
 .filters
 	--placeholder-colour: #{desaturate(darken(light.$secondary-container, 30%), 35%)}
@@ -13,10 +14,12 @@
 	&__top-level
 		display: flex
 		flex-flow: row-reverse wrap
-		justify-content: space-between
+		place-content: center
 		padding: 0.5rem 2rem
+		gap: 0.5rem 1.5rem
+
 		& > *
-			flex: 0 1 15rem
+			flex: 1 0 10rem
 
 		&__button
 			grid-area: button
@@ -57,11 +60,10 @@
 		border: none
 		background: var(--background)
 		border-radius: 0.5em
-		box-shadow: 2px 3px 1.2px 1px hsla(0%, 1%, 50%, 0.4), 3px 3px 2.5px 2px hsla(0%, 1%, 80%, 0.2)
+		@include shadow.materialShadow(2)
 		
 		& > *
-			flex: 1 1
-			flex-basis: 10rem
+			flex: 1 0 10rem
 
 		&[data-filters-visible='true']
 			display: flex

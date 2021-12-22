@@ -52,7 +52,7 @@ export const ExpenseListFilters = (props) => {
         <header className="filters">
 
             <section className="filters__top-level">
-                <Input className="filters__top-level__search" label="Search" id="search-term" type="search" onChange={props.setFilterTerm} />
+                <Input className="filters__top-level__search" label="Search" id="search-term" type="search" value={props.filters.term} onChange={props.setFilterTerm} />
                 <div>
                     <InputSelect
                         label="Sort"

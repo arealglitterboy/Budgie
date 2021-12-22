@@ -1,6 +1,6 @@
-export const setCategories = (categories = []) => ({ type: 'SET_CATEGORIES', categories });
+export const setCategories = (categories = []) => ({ type: 'SET_CONTACTS_CATEGORIES', categories });
 
-export const setFilterTerm = (term = '') => ({ type: 'SET_FILTER_TERM', term });
+export const setFilterTerm = (term = '') => ({ type: 'SET_CONTACTS_FILTER_TERM', term });
 
 export const setSortBy = (sortBy = 'byNewest') => {
     switch(sortBy) {
@@ -12,10 +12,10 @@ export const setSortBy = (sortBy = 'byNewest') => {
     }
 };
 
-export const sortByNewest = () => ({ type: 'SORT_BY_NEWEST' });
+export const sortByNewest = () => ({ type: 'SORT_CONTACTS_BY_NEWEST' });
 
-export const sortByOldest = () => ({ type: 'SORT_BY_OLDEST' });
+export const sortByOldest = () => ({ type: 'SORT_CONTACTS_BY_OLDEST' });
 
-export const sortByNameDescending = () => ({ type: 'SORT_BY_NAME_DESCENDING' });
+export const sortByNameDescending = () => ({ type: 'SORT_CONTACTS_BY_NAME_DESCENDING' });
 
-export const sortByNameAscending = () => ({ type: 'SORT_BY_NAME_ASCENDING' });
+export const sortByNameAscending = () => ({ type: 'SORT_CONTACTS_BY_NAME_ASCENDING' });
