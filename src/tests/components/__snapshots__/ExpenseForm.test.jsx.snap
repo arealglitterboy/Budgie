@@ -51,7 +51,7 @@ exports[`should render error for invalid form submission 1`] = `
         previousYearButtonLabel="Previous Year"
         readOnly={false}
         renderDayContents={[Function]}
-        selected={2021-12-21T11:15:56.996Z}
+        selected={2021-12-22T12:23:34.369Z}
         selectsStart={true}
         shouldCloseOnSelect={true}
         showFourColumnMonthYearPicker={false}
@@ -111,8 +111,8 @@ exports[`should render error for invalid form submission 1`] = `
         }
         value={
           Object {
-            "id": undefined,
-            "name": undefined,
+            "label": undefined,
+            "value": undefined,
           }
         }
       />
@@ -203,7 +203,7 @@ exports[`should render error for invalid form submission 2`] = `
         previousYearButtonLabel="Previous Year"
         readOnly={false}
         renderDayContents={[Function]}
-        selected={2021-12-21T11:15:56.996Z}
+        selected={2021-12-22T12:23:34.369Z}
         selectsStart={true}
         shouldCloseOnSelect={true}
         showFourColumnMonthYearPicker={false}
@@ -263,8 +263,8 @@ exports[`should render error for invalid form submission 2`] = `
         }
         value={
           Object {
-            "id": undefined,
-            "name": undefined,
+            "label": undefined,
+            "value": undefined,
           }
         }
       />
@@ -373,7 +373,7 @@ exports[`should render expense form correctly 1`] = `
         previousYearButtonLabel="Previous Year"
         readOnly={false}
         renderDayContents={[Function]}
-        selected={2021-12-21T11:15:56.557Z}
+        selected={2021-12-22T12:23:34.265Z}
         selectsStart={true}
         shouldCloseOnSelect={true}
         showFourColumnMonthYearPicker={false}
@@ -433,8 +433,8 @@ exports[`should render expense form correctly 1`] = `
         }
         value={
           Object {
-            "id": undefined,
-            "name": undefined,
+            "label": undefined,
+            "value": undefined,
           }
         }
       />

@@ -5,7 +5,7 @@ import ReactDatePicker from 'react-datepicker';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import {Input} from './Input';
-import InputSelect from './InputCreateSelect';
+import InputCreateSelect from './InputCreateSelect';
 import {InputArea} from './InputArea';
 
 import { addNewContact } from '../actions/contacts.action';
@@ -43,7 +43,7 @@ export class ExpenseForm extends React.Component {
 
     isValidAmount = (amount => !amount || amount.match(/^(0|[1-9]\d*)(\.\d{0,2})?$/gm));
 
-    onContactChange = ({ value:id='', label:name='' }) => {
+    onContactChange = ({ value:id='', label:name='' } = {}) => {
         this.setState(() => ({ contact: { id, name } }));
     };
 
@@ -107,7 +107,7 @@ export class ExpenseForm extends React.Component {
                     </fieldset>
 
                     <fieldset className="expense-form__contacts">
-                        <InputSelect
+                        <InputCreateSelect
                             value={{label: this.state.contact.name, value: this.state.contact.id}}
                             onChange={this.onContactChange}
                             id='contact'
