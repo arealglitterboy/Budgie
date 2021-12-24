@@ -1,20 +1,11 @@
 @use "../base/light"
 
-.contacts-list, .contacts-add-contact
-    --colour: #{light.$primary}
-    --on-colour: #{light.$on-primary}
-    --container: #{light.$primary-container}
-    --on-container: #{light.$on-primary-container}
-    --background: #{light.$background}
-    --on-background: #{light.$on-background}
-
+.contacts-list
     display: flex
     flex-flow: row wrap
     gap: 1.5rem
     justify-content: center
-
-.contacts-add-contact
-    margin-block-start: 1.5rem
+    padding-block: 1.25rem
 
 .contact
     display: grid
