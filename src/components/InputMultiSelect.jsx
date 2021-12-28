@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import Select from 'react-select';
 
 const cleanStyles = ({ padding, margin, paddingTop, paddingRight, paddingBottom, paddingLeft, marginTop, marginRight, marginBottom, marginLeft, ...previous }) => (previous)
+const indicatorStyles = ({ padding, margin, paddingTop, paddingRight, paddingBottom, paddingLeft, marginTop, marginRight, marginBottom, marginLeft, ...previous }, state) => ({...previous, color: state.isFocused ? 'var(--colour, #0f0)' : 'var(--placeholder-colour, #000)'});
+const separatorStyles = ({ padding, margin, paddingTop, paddingRight, paddingBottom, paddingLeft, marginTop, marginRight, marginBottom, marginLeft, ...previous }, state) => ({...previous, backgroundColor: state.isFocused ? 'var(--colour, #0f0)' : 'var(--placeholder-colour, #000)'});
 
 const customStyles = {
     control: () => ({}),
     valueContainer: cleanStyles,
     inputContainer: cleanStyles,
     input: cleanStyles,
-    clearIndicator: cleanStyles,
-    dropdownIndicator: cleanStyles,
+    clearIndicator: indicatorStyles,
+    indicatorSeparator: separatorStyles,
+    dropdownIndicator: indicatorStyles,
     option: (previous) => ({...previous, cursor: 'pointer'})
 }
 

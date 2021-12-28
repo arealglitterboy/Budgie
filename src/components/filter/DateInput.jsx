@@ -23,12 +23,14 @@ export const DateRangeInput = (props) => {
     )));
     
     const DateInput = (inputProps) => (
-        <ReactDatePicker
-            dateFormat="dd/MM/yyyy"
-            startDate={props.startDate}
-            endDate={props.endDate}
-            {...inputProps}
-        />
+        <div>
+            <ReactDatePicker
+                dateFormat="dd/MM/yyyy"
+                startDate={props.startDate}
+                endDate={props.endDate}
+                {...inputProps}
+            />
+        </div>
     )
 
     const StartDate = CustomInput({label:"Start Date", id:"set-start-date-input", onChange: onDateChange(props.setStartDate)});

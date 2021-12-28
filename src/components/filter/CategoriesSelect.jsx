@@ -10,7 +10,7 @@ const CategoriesSelect = (props) => (
         id="categories"
         className="categories-select"
         onChange={props.setCategories}
-        value={props.categories.map((val) => categories.find((({value}) => value === val)))}
+        value={props.categories.map((val) => categoryOptions.find((({value}) => value === val)))}
         options={categoryOptions}
     />
 )

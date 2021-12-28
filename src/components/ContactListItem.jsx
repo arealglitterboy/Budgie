@@ -7,7 +7,6 @@ const imgOnError = (e) => {
 };
 
 const buttonOnFocus = (e) => {
-    console.log();
     e.target.nextSibling.classList.add('contact__categories__list--active')
 };
 

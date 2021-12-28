@@ -2,12 +2,13 @@
 import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
-import { setFilterTerm, setContacts, setSortBy, setEndDate, setStartDate } from '../actions/filters.action';
+import { setFilterTerm, setContacts, setSortBy, setEndDate, setStartDate, setCategories } from '../actions/filters.action';
 
 import SearchInput from './filter/SearchInput';
 import SortSelect from './filter/SortSelect';
 import DateRangeInput from './filter/DateInput';
 import ContactsSelect from './filter/ContactsSelect';
+import CategoriesSelect from './filter/CategoriesSelect'
 import { expenseSortOptions } from './filter/options';
 
 export const ExpenseListFilters = (props) => {
@@ -15,10 +16,12 @@ export const ExpenseListFilters = (props) => {
     const toggleFiltersVisibility = () => setFiltersVisible(!filtersVisible);
     
     const clearFilters = () => {
+        props.setFilterTerm();
         props.setStartDate();
         props.setEndDate();
         props.setSortBy();
         props.setContacts();
+        props.setCategories();
     };
 
     return (
@@ -47,6 +50,10 @@ export const ExpenseListFilters = (props) => {
                     contacts={props.contacts}
                     setContacts={props.setContacts}
                 />
+                <CategoriesSelect 
+                    setCategories={props.setCategories}
+                    categories={props.filters.categories}
+                />
                 <button className="filters__options__clear" onClick={clearFilters}>clear</button>
             </section>
         </header>
@@ -59,7 +66,8 @@ const mapDispatchToProps = (dispatch) => ({
     setStartDate: (startDate) => dispatch(setStartDate(startDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setSortBy: (sortBy) => dispatch(setSortBy(sortBy)),
-    setContacts: (contacts) => dispatch(setContacts(contacts))
+    setContacts: (contacts) => dispatch(setContacts(contacts)),
+    setCategories: (categories) => dispatch(setCategories(categories))
 });
 
 const mapStateToProps = connect(({ filters, contacts }) => ({ filters, contacts }), mapDispatchToProps);
